@@ -1,0 +1,16 @@
+{
+  "name": "privus-api",
+  "version": "1.0",
+  "description": "A modding API for Civilzation 7 that significantly eases modding development",
+  "homepage": "https://github.com/Arastais/privus-api#readme",
+  "bugs": {
+    "url": "https://github.com/Arastais/privus-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arastais/privus-api.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Arastais",
+  "type": "commonjs"
+}

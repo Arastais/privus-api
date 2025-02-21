@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="privus-api" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name>Privus API</Name>
+		<Description>LOC_PRIVUS_API_DESCRIPTION</Description>
+		<Authors>Arastais</Authors>
+		<Package>Mod</Package>
+		<AffectsSavedGames>0</AffectsSavedGames>
+	</Properties>
+	<Dependencies>
+		<Mod id="core" title="LOC_MODULE_CORE_NAME"/>
+		<Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
+	</Dependencies>
+	<ActionCriteria>
+		<Criteria id="always">
+			<AlwaysMet></AlwaysMet>
+		</Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="privus-api-shell-always" scope="shell" criteria="always">
+			<Actions>
+				<UpdateText>
+					<Item>text/privus-api-i18n.sql</Item>
+				</UpdateText>
+				<UIScripts>
+					<Item>ui/component-support.js</Item>
+				</UIScripts>
+			</Actions>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>
