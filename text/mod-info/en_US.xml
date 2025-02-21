@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<EnglishText>
+		<Row Tag="LOC_PRIVUS_API_DESCRIPTION"><Text>A modding API for Civilzation 7 that significantly eases modding development</Text></Row>
+	</EnglishText>
+</Database>

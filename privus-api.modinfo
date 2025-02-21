@@ -28,4 +28,7 @@
 			</Actions>
 		</ActionGroup>
 	</ActionGroups>
+	<LocalizedText>
+		<File>text/mod-info/en_US.xml</File>
+	</LocalizedText>
 </Mod>
