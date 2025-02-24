@@ -4,6 +4,6 @@ INSERT OR REPLACE INTO LocalizedText
 	(Tag,	Language,	Text)
 VALUES
     -- English --
-	-- ('LOC_PRIVUS_API_DESCRIPTION',	'en_US',    "A modding API for Civilzation 7 that significantly eases modding development"),
+	('LOC_PRIVUS_API_SAMPLE',	'en_US',    "Sample Text"),
 --========================================================================================================================
 --========================================================================================================================

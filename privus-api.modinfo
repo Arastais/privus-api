@@ -12,19 +12,38 @@
 		<Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
 	</Dependencies>
 	<ActionCriteria>
-		<Criteria id="always">
-			<AlwaysMet></AlwaysMet>
-		</Criteria>
+		<Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
 	</ActionCriteria>
 	<ActionGroups>
 		<ActionGroup id="privus-api-shell-always" scope="shell" criteria="always">
+			<Properties>
+				<LoadOrder>10</LoadOrder>
+			</Properties>
 			<Actions>
-				<UpdateText>
-					<Item>text/privus-api-i18n.sql</Item>
-				</UpdateText>
-				<UIScripts>
-					<Item>ui/component-support.js</Item>
-				</UIScripts>
+				<ImportFiles>
+					<!-- <Item>ui/component-support.js</Item> -->
+					<Item>mod/privus-mods.js</Item>
+				</ImportFiles>
+				<!-- <UIScripts>
+					<Item>ui/shell/main-menu/privus-main-menu.js</Item>
+				</UIScripts> -->
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="privus-api-game-always" scope="game" criteria="always">
+			<Properties>
+				<LoadOrder>10</LoadOrder>
+			</Properties>
+			<Actions>
+				<ImportFiles>
+					<!-- <Item>ui/component-support.js</Item> -->
+					<Item>mod/privus-mods.js</Item>
+				</ImportFiles>
+				<!-- <UpdateText> -->
+					<!-- <Item>text/privus-api-i18n.sql</Item> -->
+				<!-- </UpdateText> -->
+				<!-- <UIScripts>
+					<Item>ui/pause-menu/privus-pause-menu.js</Item>
+				</UIScripts> -->
 			</Actions>
 		</ActionGroup>
 	</ActionGroups>
