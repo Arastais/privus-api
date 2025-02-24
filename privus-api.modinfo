@@ -41,9 +41,9 @@
 				<!-- <UpdateText> -->
 					<!-- <Item>text/privus-api-i18n.sql</Item> -->
 				<!-- </UpdateText> -->
-				<!-- <UIScripts>
+				<UIScripts>
 					<Item>ui/pause-menu/privus-pause-menu.js</Item>
-				</UIScripts> -->
+				</UIScripts>
 			</Actions>
 		</ActionGroup>
 	</ActionGroups>
