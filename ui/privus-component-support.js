@@ -4,36 +4,56 @@ const baseDefineFn = ComponentManager.prototype.define;
 
 class PrivusComponentManager {
     constructor() {
-        //super();
         this._privusMods = {};
         this._defaultTypes = {};
         this._privusDefs = {};
         this._privusDefaultInstances = {};
         this._privusInstances = {};
-        //Loading.runWhenLoaded(() => { this.registerControls(); });
         console.info(`[PRIVUS] Privus API initiated`);
     }
     
-
+    /**
+     * Sets the class for the default functionality of a component
+     * @param {string} category Category string
+     * @param {class} type Class with default functionality of the component
+     */
     defineDefaultType(category, type) {
         this._defaultTypes[category] = type;
     }
 
+    /**
+     * Defines a Privus API component
+     * @param {string} category Category string
+     * @param {object} definition Component definition
+     */
     define(category, definition) {
         this._privusDefs[category] = definition;
         baseDefineFn.call(Controls, category, definition);
         console.info(`[PRIVUS] Registered ${category} with ${definition.createDefaultInstance.name || 'base game class'} as default class for ${definition.createInstance.name}`);
     }
 
-    
+    /**
+     * Gets the class for the default functionality of a component
+     * @param {string} category Category string
+     */
     getDefaultType(category) {
         return this._defaultTypes[category];
     }
 
+    /**
+     * Gets the definition of a Privus API component
+     * @param {string} category Category string
+     */
     getDefinition(category) {
         return this._privusDefs[category];
     }
 
+
+    /**
+     * Creates the objects for each privus mod class
+     * @param {string} category Category string
+     * @param {ComponentRoot} root Root component
+     */
     createModInstances(category, root) {
         if(!Object.hasOwn(this._privusMods, category)) return;
 
@@ -48,11 +68,23 @@ class PrivusComponentManager {
         console.info(`[PRIVUS] Initialized '${category}' of mods: ${modsInitialized.join(', ')}`);
     }
 
+
+    /**
+     * Sets the object of a default component class
+     * @param {string} category Category string
+     * @param {object} obj Default component object instance
+     */
     setDefaultInstance(category, obj) {
         this._privusDefaultInstances[category] = obj;
     }
 
-    
+    /**
+     * Calls the Privus API function of each mod, of the default if no mods implement it
+     * @param {string} category Category string
+     * @param {string} functionName Name of the function to call
+     * @param {...any} funcArgs Any arguments to pass to the API function
+     * @returns An array that contains the return value of each function
+     */
     privusFn(category, functionName, ...funcArgs) {
         let modIds = [];
         let rets = [];
@@ -73,6 +105,13 @@ class PrivusComponentManager {
     //TODO?
     //privusProperty(...)
 
+
+    /**
+     * Calls the default/base game functionality of a Privus API function
+     * @param {string} category Category string
+     * @param {string} functionName Name of the function to call
+     * @returns The unbounded function
+     */
     defaultFn(category, functionName) {
         if(!this._privusDefaultInstances[category][functionName])
             throw new Error(`No default function '${functionName}' for category '${category}'!`);
@@ -83,6 +122,13 @@ class PrivusComponentManager {
     }
     
 
+    /**
+     * Defines a Privus API function class for a mod
+     * @param {string} category Id of the mod
+     * @param {string} category Category string
+     * @param {string} componentClass Class with implmented API functions
+     * @returns The unbounded function
+     */
     defineModClass(modId, category, componentClass) {
         if(!this._privusMods[category])
             this._privusMods[category] = [];
