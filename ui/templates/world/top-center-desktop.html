@@ -1,0 +1,23 @@
+<fxs-vslot class="w-full">
+    <fxs-hslot class="relative flex-auto items-start justify-between gradient-top-bar">
+        <panel-yield-banner></panel-yield-banner>
+        <div class="absolute inset-0 flow-row justify-center">
+            <panel-radial-dock class="absolute" data-bind-if="{{g_NavTray.isTrayRequired}} && {{g_RadialMenu.canUseRadialMenu}}"></panel-radial-dock>
+        </div>
+        <div class="relative flex">
+            <div class="relative"><panel-diplo-ribbon class="absolute right-0"></panel-diplo-ribbon></div>
+            <panel-system-bar></panel-system-bar>
+        </div>
+    </fxs-hslot>
+    <fxs-hslot>
+        <panel-sub-system-dock></panel-sub-system-dock>
+    </fxs-hslot>
+    <fxs-hslot>
+        <quest-list></quest-list>
+    </fxs-hslot>
+</fxs-vslot>
+<fxs-vslot>
+    <fxs-hslot>
+        <appeal-plotkey></appeal-plotkey>
+    </fxs-hslot>
+</fxs-vslot>

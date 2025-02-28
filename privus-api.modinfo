@@ -21,12 +21,16 @@
 			</Properties>
 			<Actions>
 				<ImportFiles>
-					<!-- <Item>ui/component-support.js</Item> -->
-					<Item>mod/privus-mods.js</Item>
+					<Item>ui/privus-component-support.js</Item>
+					
+					<Item>ui/shell/root-shell.html</Item>
 				</ImportFiles>
-				<!-- <UIScripts>
-					<Item>ui/shell/main-menu/privus-main-menu.js</Item>
-				</UIScripts> -->
+				<UIScripts>
+					<!-- <Item>ui/shell/main-menu/privus-main-menu.js</Item> -->
+				</UIScripts>
+				<UIShortcuts>
+					<Item>ui/shell/root-shell.html</Item>
+				</UIShortcuts>
 			</Actions>
 		</ActionGroup>
 		<ActionGroup id="privus-api-game-always" scope="game" criteria="always">
@@ -35,15 +39,25 @@
 			</Properties>
 			<Actions>
 				<ImportFiles>
-					<!-- <Item>ui/component-support.js</Item> -->
-					<Item>mod/privus-mods.js</Item>
+					<Item>ui/privus-component-support.js</Item>
+
+					<Item>ui/templates/world/bottom-left.html</Item>
+					<Item>ui/templates/world/bottom-right-desktop.html</Item>
+					<Item>ui/templates/world/bottom-right.html</Item>
+					<Item>ui/templates/world/middle-center.html</Item>
+					<Item>ui/templates/world/sidepanel-left.html</Item>
+					<Item>ui/templates/world/top-center-desktop.html</Item>
+					<Item>ui/templates/world/top-center.html</Item>
+					<Item>ui/templates/root-templates.html</Item>
+					<Item>ui/root-game.html</Item>
 				</ImportFiles>
-				<!-- <UpdateText> -->
-					<!-- <Item>text/privus-api-i18n.sql</Item> -->
-				<!-- </UpdateText> -->
 				<UIScripts>
 					<Item>ui/pause-menu/privus-pause-menu.js</Item>
 				</UIScripts>
+				<UIShortcuts>
+					<Item>ui/shell/root-shell.html</Item>
+					<Item>ui/root-game.html</Item>
+				</UIShortcuts>
 			</Actions>
 		</ActionGroup>
 	</ActionGroups>

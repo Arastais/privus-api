@@ -11,28 +11,28 @@ const PauseMenuCategory = 'screen-pause-menu';
 class PrivusPauseMenu extends Panel {
     constructor(root) {
         super(root);
-        this.engineInputListener = PrivusMods.defaultFn(PauseMenuCategory, "onEngineInput").bind(this);
+        this.engineInputListener = Privus.defaultFn(PauseMenuCategory, "onEngineInput").bind(this);
         this.buttons = new Set();
         console.error("WE HAVE LIFTOFF!");
     }
 
-    initUINetworkInfo()    { return PrivusMods.privusFn(PauseMenuCategory, "initUINetworkInfo"); }
-    initUIPlayerInfo()     { return PrivusMods.privusFn(PauseMenuCategory, "initUIPlayerInfo"); }
-    initUIButtons(buttons) { return PrivusMods.privusFn(PauseMenuCategory, "initUIButtons", buttons); }
-    initUIHeader()         { return PrivusMods.privusFn(PauseMenuCategory, "initUIHeader"); }
-    initUIGameInfo()       { return PrivusMods.privusFn(PauseMenuCategory, "initUIGameInfo"); }
-    initUIMapSeed()        { return PrivusMods.privusFn(PauseMenuCategory, "initUIMapSeed"); }
-    initUIGameBuildInfo()  { return PrivusMods.privusFn(PauseMenuCategory, "initUIGameBuildInfo"); }
+    initUINetworkInfo()            { return Privus.privusFn(PauseMenuCategory, "initUINetworkInfo"    ); }
+    initUIPlayerInfo(playerInfo)   { return Privus.privusFn(PauseMenuCategory, "initUIPlayerInfo",    playerInfo); }
+    initUIButtons(buttons)         { return Privus.privusFn(PauseMenuCategory, "initUIButtons",       buttons); }
+    initUIHeader()                 { return Privus.privusFn(PauseMenuCategory, "initUIHeader",        ); }
+    initUIGameInfo(gameInfo)       { return Privus.privusFn(PauseMenuCategory, "initUIGameInfo",      gameInfo); }
+    initUIMapSeed(mapSeedInfo)     { return Privus.privusFn(PauseMenuCategory, "initUIMapSeed",       mapSeedInfo); }
+    initUIGameBuildInfo(buildInfo) { return Privus.privusFn(PauseMenuCategory, "initUIGameBuildInfo", buildInfo); }
 
-    onLocalPlayerTurnBegin() { return PrivusMods.privusFn(PauseMenuCategory, "onLocalPlayerTurnBegin"); }
-    onLocalPlayerTurnEnd()   { return PrivusMods.privusFn(PauseMenuCategory, "onLocalPlayerTurnEnd"); }
-    onStartSaveRequest()     { return PrivusMods.privusFn(PauseMenuCategory, "onStartSaveRequest"); }
-    onSaveComplete()         { return PrivusMods.privusFn(PauseMenuCategory, "onSaveComplete"); }
+    onLocalPlayerTurnBegin(retireButton) { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnBegin", retireButton); }
+    onLocalPlayerTurnEnd(retireButton)   { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnEnd",   retireButton); }
+    onStartSaveRequest()                 { return Privus.privusFn(PauseMenuCategory, "onStartSaveRequest"      ); }
+    onSaveComplete()                     { return Privus.privusFn(PauseMenuCategory, "onSaveComplete"          ); }
 
 
     /* Component functions */
-    onRecieveFocus() { return PrivusMods.privusFn(PauseMenuCategory, "onRecieveFocus"); }
-    onLoseFocus()    { return PrivusMods.privusFn(PauseMenuCategory, "onLoseFocus"); }
+    onRecieveFocus() { return Privus.privusFn(PauseMenuCategory, "onRecieveFocus"); }
+    onLoseFocus()    { return Privus.privusFn(PauseMenuCategory, "onLoseFocus"); }
 
     onAttach() {
         super.onAttach();
@@ -44,13 +44,13 @@ class PrivusPauseMenu extends Panel {
 
         //Initialize all the pause menu ui (including the buttons)
         this.initUINetworkInfo();
-        this.initUIPlayerInfo();
+        this.initUIPlayerInfo(this.Root.querySelector(".pause-menu__player-info"));
         this.initUIButtons(this.buttons);
         this.Root.addEventListener(InputEngineEventName, this.engineInputListener);
-        this.initUIHeader();
-        this.initUIGameInfo();
-        this.initUIMapSeed();
-        this.initUIGameBuildInfo();
+        this.initUIHeader(this.Root.querySelector(".pauselist"));
+        this.initUIGameInfo(this.Root.querySelector(".pause-menu__game-info"));
+        this.initUIMapSeed(this.Root.querySelector(".pause-menu__game-info-map-seed"));
+        this.initUIGameBuildInfo(document.querySelector('.build-info'));
         
         //Signal a tutorial event to the window
         window.dispatchEvent(new LowerCalloutEvent({closed: false}));
@@ -99,8 +99,7 @@ class DefaultPauseMenu extends ScreenPauseMenu {
 
     
     initUINetworkInfo() {}
-    initUIPlayerInfo() {
-        const playerInfo = this.Root.querySelector(".pause-menu__player-info");
+    initUIPlayerInfo(playerInfo) {
         if(!playerInfo) return;
 
         if(!Network.supportsSSO()) {
@@ -182,8 +181,7 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         if (!headerBackground) return;
         headerBackground.setAttribute("headerimage", Icon.getPlayerBackgroundImage(GameContext.localPlayerID));
     }
-    initUIGameInfo() {
-        const gameInfo = this.Root.querySelector(".pause-menu__game-info");
+    initUIGameInfo(gameInfo) {
         if(!gameInfo) return;
 
         const config = Configuration.getGame();
@@ -212,8 +210,7 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         //Join game info details together with " | "
         gameInfo.textContent = details.join(" | ");
     }
-    initUIMapSeed() {        
-        const mapSeedInfo = this.Root.querySelector(".pause-menu__game-info-map-seed");
+    initUIMapSeed(mapSeedInfo) {        
         if (!mapSeedInfo) return;
 
         //Get the map seed from the config
@@ -226,19 +223,17 @@ class DefaultPauseMenu extends ScreenPauseMenu {
 
         mapSeedInfo.textContent = Locale.compose("LOC_MAPSEED_NAME") + " " + "is Dog Shit";
     }
-    initUIGameBuildInfo() {
+    initUIGameBuildInfo(buildInfo) {
         this.realizeBuildInfoString();
     }
 
-    onLocalPlayerTurnBegin() {
+    onLocalPlayerTurnBegin(retireButton) {
         //Enable retire button
-        const retireButton = this.Root.querySelector(".pause-retire-button");
         if (!retireButton) return;
         this.updateRetireButton(retireButton, true);
     }
-    onLocalPlayerTurnEnd() {
+    onLocalPlayerTurnEnd(retireButton) {
         //Disable retire button
-        const retireButton = this.Root.querySelector(".pause-retire-button");
         if (!retireButton) return;
         this.updateRetireButton(retireButton, false);
     }
@@ -256,7 +251,7 @@ class DefaultPauseMenu extends ScreenPauseMenu {
     }
 }
 
-PrivusMods.define(PauseMenuCategory, {
+Privus.define(PauseMenuCategory, {
     createInstance: PrivusPauseMenu,
     createDefaultInstance: DefaultPauseMenu,
     description: 'Pause menu',

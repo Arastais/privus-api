@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Menus</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Stylesheets -->
+	<link href="fs://game/core/ui/shell/root-shell.css" rel="stylesheet">
+	<link href="fs://game/core/ui/themes/default/default.css" rel="stylesheet">
+	<link href="fs://game/core/ui/themes/default/panel-animations.css" rel="stylesheet">
+	<link href="fs://game/core/ui/shell/main-menu/main-menu.css" rel="stylesheet">
+
+	<!-- Core (non-module) scripts-->
+	<script src="fs://game/core/ui/cohtml.js"></script>
+	<script src="fs://game/core/ui/accessibility/cohtml-speech-api.js"></script>
+	<script src="fs://game/core/ui/jsx-support.js"></script>
+	<script src="fs://game/core/ui/component-support.js"></script>
+	<script src="fs://game/privus-api/ui/privus-component-support.js"></script>
+	<script src="fs://game/core/ui/themes/default/global-scaling.js"></script>
+
+	<!-- Managers and core modules -->
+	<script src="fs://game/core/ui/context-manager/context-manager.js" type="module"></script>
+	<script src="fs://game/core/ui/input/focus-manager.js" type="module"></script>
+	<script src="fs://game/core/ui/input/action-handler.js" type="module"></script>
+	<script src="fs://game/core/ui/input/cursor.js" type="module"></script>
+	<script src="fs://game/core/ui/tooltips/tooltip-manager.js" type="module"></script>
+	<script src="fs://game/core/ui/tooltips/default-tooltip.js" type="module"></script>
+	<script src="fs://game/core/ui/spatial/spatial-manager.js" type="module"></script>
+
+	<!-- Self script -->
+	<script src="fs://game/core/ui/shell/root-shell.js" type="module"></script>
+
+	<!-- Misc. modules -->
+	<script src="fs://game/core/ui/dialog-box/manager-dialog-box.js" type="module"></script>
+	<script src="fs://game/core/ui/shell/mp-shell-logic/mp-shell-logic.js" type="module"></script>
+	<script src="fs://game/core/ui/shell/live-event-logic/live-event-logic.js" type="module"></script>
+</head>
+
+<body class="font-body text-base text-accent-2">
+	<!-- Hide any body tags except this one -->
+	<style>body { visibility: hidden; opacity: 0; }</style>
+
+	<!-- Containers -->
+	<div id="roots"></div>
+	<div class="fxs-popups"></div>
+	<div id="popups" class="fullscreen pointer-events-none"></div>
+	<nav-tray></nav-tray>
+	<div id="tooltips" class="absolute pointer-events-none"></div>
+
+	<!-- Main tooltip container -->
+	<div id="tooltip-root" class="new-tooltip--root absolute max-w-96 p-3 img-tooltip-border img-tooltip-bg pointer-events-none" style="visibility:hidden; z-index: 99;">
+		<div id="tooltip-root-content" class="relative font-body text-xs"></div>
+	</div>
+</body>
+
+</html>

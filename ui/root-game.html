@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Game</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="fs://game/base-standard/ui/root-game.css">
+	<link rel="stylesheet" href="fs://game/base-standard/ui/loading/root-game-loading.css">
+	<link rel="stylesheet" href="fs://game/core/ui/themes/default/panel-animations.css">
+	<link rel="stylesheet" href="fs://game/base-standard/ui/hex-grid/panel-hex-grid.css">
+	<link rel="stylesheet" href="fs://game/base-standard/ui/tutorial/tutorial-styles.css">
+	<link rel="stylesheet" href="fs://game/core/ui/themes/default/default.css">
+
+	<!-- Core (non-module) scripts-->
+	<script src="fs://game/core/ui/cohtml.js"></script>
+	<script src="fs://game/core/ui/accessibility/cohtml-speech-api.js"></script>
+	<script src="fs://game/core/ui/jsx-support.js"></script>
+	<script src="fs://game/core/ui/component-support.js"></script>
+	<script src="fs://game/privus-api/ui/privus-component-support.js"></script>
+	<script src="fs://game/core/ui/utilities/utilities-tuner.js"></script>
+	<script src="fs://game/core/ui/external/chart-js/chart.js"></script>
+
+	<!-- Spatial Manager module -->
+	<script src="fs://game/core/ui/spatial/spatial-manager.js" type="module"></script>
+
+	<!-- Font icons -->
+	<script src="fs://game/core/ui/components/fxs-font-icon.js" type="module"></script>
+</head>
+
+<body class="font-body text-base text-accent-2">
+	<!-- Layout templates -->
+	<fxs-include content="fs://game/base-standard/ui/loading/root-templates.html"></fxs-include>
+
+	<!-- Loading screen -->
+	<div id="loading-curtain" class="loading-curtain">
+		<fxs-include content="fs://game/base-standard/ui/loading/root-game-loading.html"></fxs-include>
+	</div>
+
+	<!-- World screen elements (plot icons, city banners, unit flags, etc.)-->
+	<plot-icons-root class="fullscreen"></plot-icons-root>
+	<city-banners class="fullscreen"></city-banners>
+	<unit-flags class="fullscreen"></unit-flags>
+	<div id="worldanchor" class="fullscreen" style="pointer-events:none"></div>
+	<div id="interact" class="fullscreen" style="pointer-events:none"></div>
+	<district-health-bars class="fullscreen"></district-health-bars>
+	<world-anchor-texts class="fullscreen"></world-anchor-texts>
+
+	<!-- World screen itself-->
+	<div class="screen" id="world"><div class="harness" id="world-1"></div></div>
+
+	<!-- Misc. screen elements -->
+	<div class="fullscreen fxs-trees"></div>
+	<div id="target-slot-screen-resource-allocation" class="fullscreen"></div>
+	<div class="fullscreen fxs-popups"></div>
+	<tutorial-display class="fullscreen"></tutorial-display>
+	<nav-tray class="column"></nav-tray>
+	<div class="fullscreen" id="debug-panels"></div>
+
+	<!-- Plot tooltip container -->
+	<div id="tooltips" class="absolute pointer-events-none"></div>
+
+	<!-- Main tooltip container -->
+	<div id="tooltip-root"
+		 class="new-tooltip--root absolute max-w-96 p-3 img-tooltip-border img-tooltip-bg pointer-events-none"
+		 style="visibility:hidden; z-index: 99;">
+		<div id="tooltip-root-content" class="relative font-body text-xs"></div>
+	</div>
+	<div id="in-game-video-root" class="fullscreen"></div>
+
+	<!-- Quick save indicator -->
+	<quick-save-indicator class="fullscreen"></quick-save-indicator>
+</body>
+
+</html>
