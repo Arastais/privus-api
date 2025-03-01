@@ -7,7 +7,7 @@ class ExamplePauseMenu {
     }
 
     //Change the map seed info text
-    initUIMapSeed(modIds, mapSeedInfo) {
+    renderUIMapSeed(modIds, mapSeedInfo) {
         console.info(`[EXAMPLE-PAUSE-MENU] Mods that have already overriden the map seed ui: ${modIds}`);
         
         if (!mapSeedInfo) throw new Error('Could not find map seed element!');
@@ -15,7 +15,7 @@ class ExamplePauseMenu {
     }
 
     //Change the game info text
-    initUIGameInfo(modIds, gameInfo) {
+    renderUIGameInfo(modIds, gameInfo) {
         console.info(`[EXAMPLE-PAUSE-MENU] Mods that have already overriden the build info ui: ${modIds}`);
 
         if(!gameInfo) throw new Error('Could not find game info element!');

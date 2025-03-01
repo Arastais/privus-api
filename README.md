@@ -64,7 +64,7 @@ class MyPauseMenu {
     //Other functions...
     
     //I want to change the game info in the pause menu
-    initUIGameInfo(modIds, gameInfo) {
+    renderUIGameInfo(modIds, gameInfo) {
         //...
     }
 }
@@ -105,7 +105,7 @@ class ExamplePauseMenu {
     }
 
     //Change the map seed info text
-    initUIMapSeed(modIds, mapSeedInfo) {
+    renderUIMapSeed(modIds, mapSeedInfo) {
         console.info(`[EXAMPLE-PAUSE-MENU] Mods that have already overriden the map seed ui: ${modIds}`);
         
         //You can also get the map seed info using `this._root.querySelector(...)`
@@ -114,7 +114,7 @@ class ExamplePauseMenu {
     }
 
     //Change the game info text
-    initUIGameInfo(modIds, gameInfo) {
+    renderUIGameInfo(modIds, gameInfo) {
         console.info(`[EXAMPLE-PAUSE-MENU] Mods that have already overriden the build info ui: ${modIds}`);
 
         if(!gameInfo) throw new Error('Could not find game info element!');

@@ -13,16 +13,24 @@ class PrivusPauseMenu extends Panel {
         super(root);
         this.engineInputListener = Privus.defaultFn(PauseMenuCategory, "onEngineInput").bind(this);
         this.buttons = new Set();
+        this.queries = Object.freeze({
+            PrimaryHeader:   '.pause-menu__header-buttons>.pauselist',
+            SecondaryHeader: '.pause-menu__header-buttons>.morelist',
+            Primary:         '.pause-menu__main-buttons>.pauselist',
+            Secondary:       '.pause-menu__main-buttons>.morelist',
+            PrimaryFooter:   '.pause-menu__footer-buttons>.pauselist',
+            SecondaryFooter: '.pause-menu__footer-buttons>.morelist'
+        });
         console.error("WE HAVE LIFTOFF!");
     }
 
-    initUINetworkInfo()            { return Privus.privusFn(PauseMenuCategory, "initUINetworkInfo"    ); }
-    initUIPlayerInfo(playerInfo)   { return Privus.privusFn(PauseMenuCategory, "initUIPlayerInfo",    playerInfo); }
-    initUIButtons(buttons)         { return Privus.privusFn(PauseMenuCategory, "initUIButtons",       buttons); }
-    initUIHeader()                 { return Privus.privusFn(PauseMenuCategory, "initUIHeader",        ); }
-    initUIGameInfo(gameInfo)       { return Privus.privusFn(PauseMenuCategory, "initUIGameInfo",      gameInfo); }
-    initUIMapSeed(mapSeedInfo)     { return Privus.privusFn(PauseMenuCategory, "initUIMapSeed",       mapSeedInfo); }
-    initUIGameBuildInfo(buildInfo) { return Privus.privusFn(PauseMenuCategory, "initUIGameBuildInfo", buildInfo); }
+    renderUINetworkInfo()            { return Privus.privusFn(PauseMenuCategory, "renderUINetworkInfo"    ); }
+    renderUIPlayerInfo(playerInfo)   { return Privus.privusFn(PauseMenuCategory, "renderUIPlayerInfo",    playerInfo); }
+    renderUIButtons(sectionQueries)  { return Privus.privusFn(PauseMenuCategory, "renderUIButtons",       sectionQueries); }
+    renderUIHeader(header)           { return Privus.privusFn(PauseMenuCategory, "renderUIHeader",        header); }
+    renderUIGameInfo(gameInfo)       { return Privus.privusFn(PauseMenuCategory, "renderUIGameInfo",      gameInfo); }
+    renderUIMapSeed(mapSeedInfo)     { return Privus.privusFn(PauseMenuCategory, "renderUIMapSeed",       mapSeedInfo); }
+    renderUIGameBuildInfo(buildInfo) { return Privus.privusFn(PauseMenuCategory, "renderUIGameBuildInfo", buildInfo); }
 
     onLocalPlayerTurnBegin(retireButton) { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnBegin", retireButton); }
     onLocalPlayerTurnEnd(retireButton)   { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnEnd",   retireButton); }
@@ -43,14 +51,16 @@ class PrivusPauseMenu extends Panel {
         engine.on("SaveComplete",         this.onSaveComplete,         this);
 
         //Initialize all the pause menu ui (including the buttons)
-        this.initUINetworkInfo();
-        this.initUIPlayerInfo(this.Root.querySelector(".pause-menu__player-info"));
-        this.initUIButtons(this.buttons);
+        this.renderUINetworkInfo();
+        this.renderUIPlayerInfo(this.Root.querySelector(".pause-menu__player-info"));
+        const buttonArr = this.renderUIButtons(this.queries);
+        //Concat the array of sets into a single set of buttons
+        this.buttons = new Set(buttonArr.reduce(( arr, button ) => arr.concat([...button]), []));
         this.Root.addEventListener(InputEngineEventName, this.engineInputListener);
-        this.initUIHeader(this.Root.querySelector(".pauselist"));
-        this.initUIGameInfo(this.Root.querySelector(".pause-menu__game-info"));
-        this.initUIMapSeed(this.Root.querySelector(".pause-menu__game-info-map-seed"));
-        this.initUIGameBuildInfo(document.querySelector('.build-info'));
+        this.renderUIHeader(document.getElementById("pause-top"));
+        this.renderUIGameInfo(this.Root.querySelector(".pause-menu__game-info"));
+        this.renderUIMapSeed(this.Root.querySelector(".pause-menu__game-info-map-seed"));
+        this.renderUIGameBuildInfo(document.querySelector('.build-info'));
         
         //Signal a tutorial event to the window
         window.dispatchEvent(new LowerCalloutEvent({closed: false}));
@@ -98,8 +108,8 @@ class DefaultPauseMenu extends ScreenPauseMenu {
     }
 
     
-    initUINetworkInfo() {}
-    initUIPlayerInfo(playerInfo) {
+    renderUINetworkInfo() {}
+    renderUIPlayerInfo(playerInfo) {
         if(!playerInfo) return;
 
         if(!Network.supportsSSO()) {
@@ -109,7 +119,7 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         playerInfo.setAttribute("data-player-info", JSON.stringify(getPlayerCardInfo()));
         playerInfo.addEventListener("action-activate", this.progressionListener);
     }
-    initUIButtons(buttons) {
+    renderUIButtons(sectionQueries) {
         const multiplayer = Configuration.getGame().isNetworkMultiplayer;
 
         ///Resume
@@ -171,17 +181,15 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         if (UI.canExitToDesktop())
             this.addButton("LOC_PAUSE_MENU_QUIT_TO_DESKTOP", this.onExitToDesktopButton, this.styleGroup.SecondaryFooter);
 
-        //Copy over local buttons to "global" ones
-        buttons = this.buttons;
+        return this.buttons;
     }
-    initUIHeader() {        
+    renderUIHeader(header) {        
         this.pauseList = this.Root.querySelector(".pauselist");
         //Set header background
-        const headerBackground = document.getElementById("pause-top");
-        if (!headerBackground) return;
-        headerBackground.setAttribute("headerimage", Icon.getPlayerBackgroundImage(GameContext.localPlayerID));
+        if (!header) return;
+        header.setAttribute("headerimage", Icon.getPlayerBackgroundImage(GameContext.localPlayerID));
     }
-    initUIGameInfo(gameInfo) {
+    renderUIGameInfo(gameInfo) {
         if(!gameInfo) return;
 
         const config = Configuration.getGame();
@@ -210,7 +218,7 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         //Join game info details together with " | "
         gameInfo.textContent = details.join(" | ");
     }
-    initUIMapSeed(mapSeedInfo) {        
+    renderUIMapSeed(mapSeedInfo) {        
         if (!mapSeedInfo) return;
 
         //Get the map seed from the config
@@ -220,10 +228,8 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         const mapSeedText = Locale.compose("LOC_MAPSEED_NAME") + " " + Locale.compose(mapSeed);
         if (!mapSeedText) return;
         mapSeedInfo.textContent = mapSeedText;
-
-        mapSeedInfo.textContent = Locale.compose("LOC_MAPSEED_NAME") + " " + "is Dog Shit";
     }
-    initUIGameBuildInfo(buildInfo) {
+    renderUIGameBuildInfo(buildInfo) {
         this.realizeBuildInfoString();
     }
 
@@ -237,12 +243,14 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         if (!retireButton) return;
         this.updateRetireButton(retireButton, false);
     }
+    //May not need to be defined
     onStartSaveRequest() {
         //Disable save, load, and quick save (since we're in the middle of saving)
         this.quickSaveButton?.classList.add(this.disableClass);
         this.saveButton?.classList.add(this.disableClass);
         this.loadButton?.classList.add(this.disableClass);
     }
+    //May not need to be defined
     onSaveComplete() {
         //Re-enable save, load, and quick save (since we're done saving)
         this.quickSaveButton?.classList.remove(this.disableClass);
