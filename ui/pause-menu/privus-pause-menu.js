@@ -24,13 +24,12 @@ class PrivusPauseMenu extends Panel {
         console.error("WE HAVE LIFTOFF!");
     }
 
-    renderUINetworkInfo()            { return Privus.privusFn(PauseMenuCategory, "renderUINetworkInfo"    ); }
-    renderUIPlayerInfo(playerInfo)   { return Privus.privusFn(PauseMenuCategory, "renderUIPlayerInfo",    playerInfo); }
-    renderUIButtons(sectionQueries)  { return Privus.privusFn(PauseMenuCategory, "renderUIButtons",       sectionQueries); }
-    renderUIHeader(header)           { return Privus.privusFn(PauseMenuCategory, "renderUIHeader",        header); }
-    renderUIGameInfo(gameInfo)       { return Privus.privusFn(PauseMenuCategory, "renderUIGameInfo",      gameInfo); }
-    renderUIMapSeed(mapSeedInfo)     { return Privus.privusFn(PauseMenuCategory, "renderUIMapSeed",       mapSeedInfo); }
-    renderUIGameBuildInfo(buildInfo) { return Privus.privusFn(PauseMenuCategory, "renderUIGameBuildInfo", buildInfo); }
+    renderUIPlayerInfo(playerInfo)               { return Privus.privusFn(PauseMenuCategory, "renderUIPlayerInfo",        playerInfo); }
+    renderUIButtons(sectionQueries)              { return Privus.privusFn(PauseMenuCategory, "renderUIButtons",           sectionQueries); }
+    renderUIHeader(header)                       { return Privus.privusFn(PauseMenuCategory, "renderUIHeader",            header); }
+    renderUIGameInfo(gameInfo)                   { return Privus.privusFn(PauseMenuCategory, "renderUIGameInfo",          gameInfo); }
+    renderUIMapSeed(mapSeedInfo)                 { return Privus.privusFn(PauseMenuCategory, "renderUIMapSeed",           mapSeedInfo); }
+    renderUIGameBuildInfo(buildInfo)             { return Privus.privusFn(PauseMenuCategory, "renderUIGameBuildInfo",     buildInfo); }
 
     onLocalPlayerTurnBegin(retireButton) { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnBegin", retireButton); }
     onLocalPlayerTurnEnd(retireButton)   { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnEnd",   retireButton); }
@@ -51,7 +50,6 @@ class PrivusPauseMenu extends Panel {
         engine.on("SaveComplete",         this.onSaveComplete,         this);
 
         //Initialize all the pause menu ui (including the buttons)
-        this.renderUINetworkInfo();
         this.renderUIPlayerInfo(this.Root.querySelector(".pause-menu__player-info"));
         const buttonArr = this.renderUIButtons(this.queries);
         //Concat the array of sets into a single set of buttons
@@ -107,8 +105,7 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         this.disableClass = "disabled";
     }
 
-    
-    renderUINetworkInfo() {}
+
     renderUIPlayerInfo(playerInfo) {
         if(!playerInfo) return;
 

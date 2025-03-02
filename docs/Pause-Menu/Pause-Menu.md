@@ -13,7 +13,6 @@ Describes the in-game pause menu UI
 
 |UI Initialization||
 |:--|:--|
-|[`renderUINetworkInfo`](renderUINetworkInfo)     | Renders the network info section |
 |[`renderUIPlayerInfo`](renderUIPlayerInfo)       | Renders the player info section |
 |[`renderUIButtons`](renderUIButtons)             | Renders the buttons |
 |[`renderUIHeader`](renderUIHeader)               | Renders the header section |
