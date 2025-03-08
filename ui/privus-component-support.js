@@ -7,8 +7,8 @@ class PrivusComponentManager {
         this._privusMods = {};
         this._defaultTypes = {};
         this._privusDefs = {};
-        this._privusDefaultInstances = {};
         this._privusInstances = {};
+        this._privusModInstances = {};
         console.info(`[PRIVUS] Privus API initiated`);
     }
     
@@ -57,12 +57,12 @@ class PrivusComponentManager {
     createModInstances(category, root) {
         if(!Object.hasOwn(this._privusMods, category)) return;
 
-        if(!this._privusInstances[category])
-            this._privusInstances[category] = {};
+        if(!this._privusModInstances[category])
+            this._privusModInstances[category] = {};
 
         let modsInitialized = [];
         this._privusMods[category].forEach(componentPair => {
-            this._privusInstances[category][componentPair[1]] = new componentPair[0](root);
+            this._privusModInstances[category][componentPair[1]] = new componentPair[0](root);
             modsInitialized.push(componentPair[1])
         });
         console.info(`[PRIVUS] Initialized '${category}' of mods: ${modsInitialized.join(', ')}`);
@@ -70,13 +70,23 @@ class PrivusComponentManager {
 
 
     /**
-     * Sets the object of a default component class
+     * Sets the object of a Privus API class
      * @param {string} category Category string
      * @param {object} obj Default component object instance
      */
-    setDefaultInstance(category, obj) {
-        this._privusDefaultInstances[category] = obj;
+    setInstance(category, obj) {
+        this._privusInstances[category] = obj;
     }
+
+
+    /**
+     * Gets the object of a Privus API class
+     * @param {string} category Category string
+     */
+    getInstance(category) {
+        return this._privusInstances[category];
+    }
+    
 
     /**
      * Calls the Privus API function of each mod, of the default if no mods implement it
@@ -91,13 +101,13 @@ class PrivusComponentManager {
         if(this._privusMods[category]){
         	this._privusMods[category].forEach(componentPair => {
         		if (typeof componentPair[0].prototype[functionName] !== "function") return;
-        		rets.push(componentPair[0].prototype[functionName].call(this._privusInstances[category][componentPair[1]], modIds, ...funcArgs));
+        		rets.push(componentPair[0].prototype[functionName].call(this._privusModInstances[category][componentPair[1]], modIds, ...funcArgs));
                 modIds.push(componentPair[1]);
         	});
         }
 
         if(modIds.length === 0)
-            rets.push(this.defaultFn(category, functionName).call(this._privusDefaultInstances[category], ...funcArgs));
+            rets.push(this.defaultFn(category, functionName).call(this._privusInstances[category], ...funcArgs));
 
         return rets;
     }
@@ -113,12 +123,12 @@ class PrivusComponentManager {
      * @returns The unbounded function
      */
     defaultFn(category, functionName) {
-        if(!this._privusDefaultInstances[category][functionName])
+        if(!this._privusDefs[category].createDefaultInstance.prototype[functionName])
             throw new Error(`No default function '${functionName}' for category '${category}'!`);
-        if (typeof this._privusDefaultInstances[category][functionName] !== "function") 
+        if (typeof this._privusDefs[category].createDefaultInstance.prototype[functionName] !== "function") 
             throw new Error(`Default function '${functionName}' for category '${category}' isn't actually a function!`);
 
-        return this._privusDefaultInstances[category][functionName];
+        return this._privusDefs[category].createDefaultInstance.prototype[functionName];
     }
     
 
@@ -151,10 +161,15 @@ ComponentRoot.prototype.initialize = function() {
 
     Privus.createModInstances(this.typeName, this);
     
+    const baseType = Privus.getDefaultType(this.typeName);
     const def = Controls.getDefinition(this.typeName);
     if(!def) return;
     if(!def.createDefaultInstance || def.createDefaultInstance === null)
-        def.createDefaultInstance = Privus.getDefaultType(this.typeName);
+        def.createDefaultInstance = baseType;
+    else if(baseType.name !== def.createDefaultInstance.name)
+        for(let propName of Object.getOwnPropertyNames(baseType.prototype))
+            if(typeof baseType.prototype[propName] === "function" && !def.createDefaultInstance.prototype[propName])
+                def.createDefaultInstance.prototype[propName] = baseType.prototype[propName];
 
 
     const classNames = def.classNames;
@@ -172,14 +187,17 @@ ComponentRoot.prototype.initialize = function() {
     if (def.tabIndex != undefined && !this.hasAttribute("tabindex")) 
         this.setAttribute("tabindex", def.tabIndex.toString());
     
-    if(def.createInstance.name !== def.createDefaultInstance.name) {
-        const defaultComponent = new def.createDefaultInstance(this);
-        Privus.setDefaultInstance(this.typeName, defaultComponent);
+    if(def.createInstance.name !== def.createDefaultInstance.name) 
         console.info(`[PRIVUS] Initializing Privus API Class ${def.createInstance.name} with ${def.createDefaultInstance.name} as default`);
-    } 
     else 
         console.debug(`[PRIVUS] Initialized ${this.typeName} using default class ${def.createInstance.name}`);
+    
+    if(def.extend === true)
+        for(let propName of Object.getOwnPropertyNames(def.createDefaultInstance.prototype))
+            if(typeof def.createDefaultInstance.prototype[propName] === "function" && !def.createInstance.prototype[propName])
+                def.createInstance.prototype[propName] = def.createDefaultInstance.prototype[propName];
     const component = new def.createInstance(this);
+    Privus.setInstance(this.typeName, component);
     this._component = component;
     
 

@@ -24,9 +24,11 @@
 					<Item>ui/privus-component-support.js</Item>
 					
 					<Item>ui/shell/root-shell.html</Item>
+					
+					<Item>ui/shell/main-menu/privus-carousel.js</Item>
 				</ImportFiles>
 				<UIScripts>
-					<!-- <Item>ui/shell/main-menu/privus-main-menu.js</Item> -->
+					<Item>ui/shell/main-menu/privus-main-menu.js</Item>
 				</UIScripts>
 				<UIShortcuts>
 					<Item>ui/shell/root-shell.html</Item>

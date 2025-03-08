@@ -9,31 +9,31 @@ Describes the in-game pause menu UI
 
 ### Functions
 
-[`(constructor)`](constructor) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Constructs the component
+[`(constructor)`](Pause-Menu-@-constructor) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Constructs the component
 
 |UI Initialization||
 |:--|:--|
-|[`renderUIPlayerInfo`](renderUIPlayerInfo)       | Renders the player info section |
-|[`renderUIButtons`](renderUIButtons)             | Renders the buttons |
-|[`renderUIHeader`](renderUIHeader)               | Renders the header section |
-|[`renderUIGameInfo`](renderUIGameInfo)           | Renders the game info text |
-|[`renderUIMapSeed`](renderUIMapSeed)             | Renders the map seed text |
-|[`renderUIGameBuildInfo`](renderUIGameBuildInfo) | Renders the map seed text |
+|[`renderUIPlayerInfo`](Pause-Menu-@-renderUIPlayerInfo)       | Renders the player info section |
+|[`renderUIButtons`](Pause-Menu-@-renderUIButtons)             | Renders the buttons |
+|[`renderUIHeader`](Pause-Menu-@-renderUIHeader)               | Renders the header section |
+|[`renderUIGameInfo`](Pause-Menu-@-renderUIGameInfo)           | Renders the game info text |
+|[`renderUIMapSeed`](Pause-Menu-@-renderUIMapSeed)             | Renders the map seed text |
+|[`renderUIGameBuildInfo`](Pause-Menu-@-renderUIGameBuildInfo) | Renders the map seed text |
 
 |Player Turn||
 |:--|:--|
-|[`onLocalPlayerTurnBegin`](onLocalPlayerTurnBegin) | Called when the player's turn begins |
-|[`onLocalPlayerTurnEnd`](onLocalPlayerTurnEnd)     | Called when the player's turn ends |
+|[`onLocalPlayerTurnBegin`](Pause-Menu-@-onLocalPlayerTurnBegin) | Called when the player's turn begins |
+|[`onLocalPlayerTurnEnd`](Pause-Menu-@-onLocalPlayerTurnEnd)     | Called when the player's turn ends |
 
 |Saving||
 |:--|:--|
-|[`onStartSaveRequest`](onStartSaveRequest) | Called when the game saving process begins |
-|[`onSaveComplete`](onSaveComplete)         | Called when the game saving process completes |
+|[`onStartSaveRequest`](Pause-Menu-@-onStartSaveRequest) | Called when the game saving process begins |
+|[`onSaveComplete`](Pause-Menu-@-onSaveComplete)         | Called when the game saving process completes |
 
 |Focus||
 |:--|:--|
-|[`onRecieveFocus`](onRecieveFocus) | Called when element is focused |
-|[`onLoseFocus`](onLoseFocus)       | Called when element is un-focused |
+|[`onRecieveFocus`](Pause-Menu-@-onRecieveFocus) | Called when element is focused |
+|[`onLoseFocus`](Pause-Menu-@-onLoseFocus)       | Called when element is un-focused |
 
 ### Example
 

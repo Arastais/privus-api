@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="example-main-menu" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name>Example Privus API Main Menu</Name>
+		<Description>An example mod that showcases the Privus API by changing the main menu</Description>
+		<Authors>Arastais</Authors>
+		<Package>Mod</Package>
+		<AffectsSavedGames>0</AffectsSavedGames>
+	</Properties>
+	<Dependencies>
+		<Mod id="privus-api" title="Privus API"/>
+	</Dependencies>
+	<ActionCriteria>
+		<Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="example-main-menu-shell-always" scope="shell" criteria="always">
+			<Actions>
+				<UIScripts>
+					<Item>example-main-menu.js</Item>
+				</UIScripts>
+			</Actions>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>

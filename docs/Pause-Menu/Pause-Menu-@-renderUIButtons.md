@@ -1,5 +1,5 @@
 ```ts
-Element[] renderUIButtons(modIds: string[], sectionQueries: object);
+Set<Element> renderUIButtons(modIds: string[], sectionQueries: object);
 ```
 
 <hr>
@@ -13,7 +13,7 @@ Renders the buttons of the pause menu UI.
 
 ### Return Value
 
-Returns an array containing the button elements to render
+Returns a Set containing the button elements to render
 
 ### Notes
 

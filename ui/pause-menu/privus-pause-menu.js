@@ -13,6 +13,7 @@ class PrivusPauseMenu extends Panel {
         super(root);
         this.engineInputListener = Privus.defaultFn(PauseMenuCategory, "onEngineInput").bind(this);
         this.buttons = new Set();
+        this.slot = null;
         this.queries = Object.freeze({
             PrimaryHeader:   '.pause-menu__header-buttons>.pauselist',
             SecondaryHeader: '.pause-menu__header-buttons>.morelist',
@@ -21,7 +22,16 @@ class PrivusPauseMenu extends Panel {
             PrimaryFooter:   '.pause-menu__footer-buttons>.pauselist',
             SecondaryFooter: '.pause-menu__footer-buttons>.morelist'
         });
+        this.styleGroup = Object.freeze({
+            PrimaryHeader:   0,
+            SecondaryHeader: 1,
+            Primary:         2,
+            Secondary:       3,
+            PrimaryFooter:   4,
+            SecondaryFooter: 5
+        });
         console.error("WE HAVE LIFTOFF!");
+        this.addButton = Privus.defaultFn(PauseMenuCategory, "addButton").bind(this);
     }
 
     renderUIPlayerInfo(playerInfo)               { return Privus.privusFn(PauseMenuCategory, "renderUIPlayerInfo",        playerInfo); }
@@ -51,10 +61,14 @@ class PrivusPauseMenu extends Panel {
 
         //Initialize all the pause menu ui (including the buttons)
         this.renderUIPlayerInfo(this.Root.querySelector(".pause-menu__player-info"));
+
         const buttonArr = this.renderUIButtons(this.queries);
         //Concat the array of sets into a single set of buttons
         this.buttons = new Set(buttonArr.reduce(( arr, button ) => arr.concat([...button]), []));
+
         this.Root.addEventListener(InputEngineEventName, this.engineInputListener);
+        this.slot = this.Root.querySelector(".pauselist");
+
         this.renderUIHeader(document.getElementById("pause-top"));
         this.renderUIGameInfo(this.Root.querySelector(".pause-menu__game-info"));
         this.renderUIMapSeed(this.Root.querySelector(".pause-menu__game-info-map-seed"));
@@ -76,21 +90,11 @@ class PrivusPauseMenu extends Panel {
                 button.style.widthPX = width;
         });
     }
-
-    onDetach() {        
-        //Disable the save and turn end/begin listeners
-        this.Root.removeEventListener(InputEngineEventName, this.engineInputListener);
-        engine.off('LocalPlayerTurnBegin', this.onLocalPlayerTurnBegin, this);
-        engine.off('LocalPlayerTurnEnd',   this.onLocalPlayerTurnEnd,   this);
-        engine.off('StartSaveRequest',     this.onStartSaveRequest,     this);
-        engine.off("SaveComplete",         this.onSaveComplete,         this);
-        super.onDetach();
-    }
 }
 
 
 
-class DefaultPauseMenu extends ScreenPauseMenu {
+class DefaultPauseMenu extends Panel {//ScreenPauseMenu {
     constructor(root) {
         super(root);
         this.styleGroup = Object.freeze({
@@ -101,8 +105,8 @@ class DefaultPauseMenu extends ScreenPauseMenu {
             PrimaryFooter:   4,
             SecondaryFooter: 5
         });
-        this.pauseList = null;
         this.disableClass = "disabled";
+        this.buttons = new Set();
     }
 
 
@@ -181,7 +185,6 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         return this.buttons;
     }
     renderUIHeader(header) {        
-        this.pauseList = this.Root.querySelector(".pauselist");
         //Set header background
         if (!header) return;
         header.setAttribute("headerimage", Icon.getPlayerBackgroundImage(GameContext.localPlayerID));
@@ -240,14 +243,13 @@ class DefaultPauseMenu extends ScreenPauseMenu {
         if (!retireButton) return;
         this.updateRetireButton(retireButton, false);
     }
-    //May not need to be defined
+    
     onStartSaveRequest() {
         //Disable save, load, and quick save (since we're in the middle of saving)
         this.quickSaveButton?.classList.add(this.disableClass);
         this.saveButton?.classList.add(this.disableClass);
         this.loadButton?.classList.add(this.disableClass);
     }
-    //May not need to be defined
     onSaveComplete() {
         //Re-enable save, load, and quick save (since we're done saving)
         this.quickSaveButton?.classList.remove(this.disableClass);
@@ -259,6 +261,7 @@ class DefaultPauseMenu extends ScreenPauseMenu {
 Privus.define(PauseMenuCategory, {
     createInstance: PrivusPauseMenu,
     createDefaultInstance: DefaultPauseMenu,
+    extend: true,
     description: 'Pause menu',
     classNames: ['pause-menu'],
     styles: ['fs://game/base-standard/ui/pause-menu/screen-pause-menu.css'],

@@ -76,7 +76,13 @@ class MyPauseMenu {
 You can get the default/base game functionality at any time with `Privus.defaultFn(...)`
 ```js
 //I want to use the base game's `onEngineInput()` function
-this.engineInputListener = Privus.defaultFn(PauseMenuCategory, "onEngineInput").bind(this);
+this.engineInputFn = Privus.defaultFn(PauseMenuCategory, "onEngineInput");
+```
+
+You can also get the default instance with `Privus.getInstance(...)`
+```js
+//I want to call the default functionality for the `onRecieveFocus()` function
+Privus.defaultFn(PauseMenuCategory, "onRecieveFocus").call(Privus.getInstance(PauseMenuCategory));
 ```
 
 <br>
