@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="example-additional-content" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name>Example Privus API Additional Content</Name>
+		<Description>An example mod that showcases the Privus API by changing the additional content panel</Description>
+		<Authors>Arastais</Authors>
+		<Package>Mod</Package>
+		<AffectsSavedGames>0</AffectsSavedGames>
+	</Properties>
+	<Dependencies>
+		<Mod id="privus-api" title="Privus API"/>
+	</Dependencies>
+	<ActionCriteria>
+		<Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="example-additional-content-shell-always" scope="shell" criteria="always">
+			<Actions>
+				<UIScripts>
+					<Item>example-additional-content.js</Item>
+				</UIScripts>
+			</Actions>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>

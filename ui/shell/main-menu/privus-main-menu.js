@@ -54,38 +54,38 @@ class PrivusMainMenu extends Component {
         
         
         //Function listeners
-        this.engineInputListener                  = Privus.defaultFn(MainMenuCategory, "onEngineInput"                 ).bind(this);
-        this.carouselEngineInputListener          = Privus.defaultFn(MainMenuCategory, "onCarouselEngineInput"         ).bind(this);
-        this.navigateInputListener                = Privus.defaultFn(MainMenuCategory, "onNavigateInput"               ).bind(this);
-        this.qrCompletedListener                  = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"              ).bind(this);
-        this.accountUpdatedListener               = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"              ).bind(this);
-        this.accountLoggedOutListener             = Privus.defaultFn(MainMenuCategory, "onLogoutResults"               ).bind(this);
-        this.accountUnlinkedListener              = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"              ).bind(this);
-        this.accountIconListener                  = Privus.defaultFn(MainMenuCategory, "onClickedAccount"              ).bind(this);
-        this.creditsOpenedListener                = Privus.defaultFn(MainMenuCategory, "onCreditsOpened"               ).bind(this);
-        this.creditsClosedListener                = Privus.defaultFn(MainMenuCategory, "onCreditsClosed"               ).bind(this);
-        this.returnToMainMenuListener             = Privus.defaultFn(MainMenuCategory, "returnedToMainMenu"            ).bind(this);
-        this.calibrateHDROpenedListener           = Privus.defaultFn(MainMenuCategory, "onCalibrateHDROpened"          ).bind(this);
-        this.calibrateHDRClosedListener           = Privus.defaultFn(MainMenuCategory, "onCalibrateHDRClosed"          ).bind(this);
-        this.eventsGoSinglePlayerListener         = Privus.defaultFn(MainMenuCategory, "onEventsGoSP"                  ).bind(this);
-        this.eventsGoMultiPlayerListener          = Privus.defaultFn(MainMenuCategory, "onEventsGoMP"                  ).bind(this);
-        this.eventsGoLoadListener                 = Privus.defaultFn(MainMenuCategory, "onEventsGoLoad"                ).bind(this);
-        this.eventsGoContinueListener             = Privus.defaultFn(MainMenuCategory, "onEventsGoContinue"            ).bind(this);
-        this.gameCreatorOpenedListener            = Privus.defaultFn(MainMenuCategory, "onGameCreatorOpened"           ).bind(this);
-        this.gameCreatorClosedListener            = Privus.defaultFn(MainMenuCategory, "onGameCreatorClosed"           ).bind(this);
-        this.startNewCampaignListener             = Privus.defaultFn(MainMenuCategory, "onNewCampaignStart"            ).bind(this);
-        this.promosDataReceivedListener           = Privus.defaultFn(MainMenuCategory, "resolvePromoDataReceived"      ).bind(this);
-        this.refreshPromosListener                = Privus.defaultFn(MainMenuCategory, "refreshPromos"                 ).bind(this);
-        this.activeLiveEventListener              = Privus.defaultFn(MainMenuCategory, "onActiveLiveEvent"             ).bind(this);
-        this.startGameSectionListener             = Privus.defaultFn(MainMenuCategory, "startSection"                  ).bind(this);
-        this.spoPCompleteListener                 = Privus.defaultFn(MainMenuCategory, "onSPoPComplete"                ).bind(this);
-        this.spoPKickPromptCheckListener          = Privus.defaultFn(MainMenuCategory, "onSPoPKickPromptCheck"         ).bind(this);
-        this.spopHeartBeatReceivedListener        = Privus.defaultFn(MainMenuCategory, "onSPoPHeartBeatReceived"       ).bind(this);
-        this.onLaunchHostMPGameListener           = Privus.defaultFn(MainMenuCategory, "onLaunchToHostMPGame"          ).bind(this);
-        this.queryCompleteListener                = Privus.defaultFn(MainMenuCategory, "onQueryComplete"               ).bind(this);
-        this.saveLoadClosedListener               = Privus.defaultFn(MainMenuCategory, "onSaveLoadClosed"              ).bind(this);
-        this.connectionStatusChangedListener      = Privus.defaultFn(MainMenuCategory, "onConnectionStatusChanged"     ).bind(this);
-        this.liveEventsSettingsChangeListener     = Privus.defaultFn(MainMenuCategory, "onLiveEventsSettingsChanged"   ).bind(this);
+        this.engineInputListener                  = Privus.defaultFn(MainMenuCategory, "onEngineInput"              ).bind(this);
+        this.carouselEngineInputListener          = Privus.defaultFn(MainMenuCategory, "onCarouselEngineInput"      ).bind(this);
+        this.navigateInputListener                = Privus.defaultFn(MainMenuCategory, "onNavigateInput"            ).bind(this);
+        this.qrCompletedListener                  = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
+        this.accountUpdatedListener               = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
+        this.accountLoggedOutListener             = Privus.defaultFn(MainMenuCategory, "onLogoutResults"            ).bind(this);
+        this.accountUnlinkedListener              = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
+        this.accountIconListener                  = Privus.defaultFn(MainMenuCategory, "onClickedAccount"           ).bind(this);
+        this.creditsOpenedListener                = Privus.defaultFn(MainMenuCategory, "onCreditsOpened"            ).bind(this);
+        this.creditsClosedListener                = Privus.defaultFn(MainMenuCategory, "onCreditsClosed"            ).bind(this);
+        this.returnToMainMenuListener             = Privus.defaultFn(MainMenuCategory, "returnedToMainMenu"         ).bind(this);
+        this.calibrateHDROpenedListener           = Privus.defaultFn(MainMenuCategory, "onCalibrateHDROpened"       ).bind(this);
+        this.calibrateHDRClosedListener           = Privus.defaultFn(MainMenuCategory, "onCalibrateHDRClosed"       ).bind(this);
+        this.eventsGoSinglePlayerListener         = Privus.defaultFn(MainMenuCategory, "onEventsGoSP"               ).bind(this);
+        this.eventsGoMultiPlayerListener          = Privus.defaultFn(MainMenuCategory, "onEventsGoMP"               ).bind(this);
+        this.eventsGoLoadListener                 = Privus.defaultFn(MainMenuCategory, "onEventsGoLoad"             ).bind(this);
+        this.eventsGoContinueListener             = Privus.defaultFn(MainMenuCategory, "onEventsGoContinue"         ).bind(this);
+        this.gameCreatorOpenedListener            = Privus.defaultFn(MainMenuCategory, "onGameCreatorOpened"        ).bind(this);
+        this.gameCreatorClosedListener            = Privus.defaultFn(MainMenuCategory, "onGameCreatorClosed"        ).bind(this);
+        this.startNewCampaignListener             = Privus.defaultFn(MainMenuCategory, "onNewCampaignStart"         ).bind(this);
+        this.promosDataReceivedListener           = Privus.defaultFn(MainMenuCategory, "resolvePromoDataReceived"   ).bind(this);
+        this.refreshPromosListener                = Privus.defaultFn(MainMenuCategory, "refreshPromos"              ).bind(this);
+        this.activeLiveEventListener              = Privus.defaultFn(MainMenuCategory, "onActiveLiveEvent"          ).bind(this);
+        this.startGameSectionListener             = Privus.defaultFn(MainMenuCategory, "startSection"               ).bind(this);
+        this.spoPCompleteListener                 = Privus.defaultFn(MainMenuCategory, "onSPoPComplete"             ).bind(this);
+        this.spoPKickPromptCheckListener          = Privus.defaultFn(MainMenuCategory, "onSPoPKickPromptCheck"      ).bind(this);
+        this.spopHeartBeatReceivedListener        = Privus.defaultFn(MainMenuCategory, "onSPoPHeartBeatReceived"    ).bind(this);
+        this.onLaunchHostMPGameListener           = Privus.defaultFn(MainMenuCategory, "onLaunchToHostMPGame"       ).bind(this);
+        this.queryCompleteListener                = Privus.defaultFn(MainMenuCategory, "onQueryComplete"            ).bind(this);
+        this.saveLoadClosedListener               = Privus.defaultFn(MainMenuCategory, "onSaveLoadClosed"           ).bind(this);
+        this.connectionStatusChangedListener      = Privus.defaultFn(MainMenuCategory, "onConnectionStatusChanged"  ).bind(this);
+        this.liveEventsSettingsChangeListener     = Privus.defaultFn(MainMenuCategory, "onLiveEventsSettingsChanged").bind(this);
         this.motdCompletedListener                = this.updateMotd.bind(this);
 
         //Function definitions
@@ -122,6 +122,8 @@ class PrivusMainMenu extends Component {
     updateMotd(motd) { return Privus.privusFn(MainMenuCategory, "updateMotd", motd); }
 
     onPostAppend() { return Privus.privusFn(MainMenuCategory, "onPostAppend"); }
+
+    onReturnedToMainMenu() { return Privus.privusFn(MainMenuCategory, "onReturnedToMainMenu"); }
 
     onReceiveFocus() { return Privus.privusFn(MainMenuCategory, "onReceiveFocus"); }
     onLoseFocus()    { return Privus.privusFn(MainMenuCategory, "onLoseFocus"); }
@@ -453,6 +455,43 @@ class DefaultMainMenu extends Component {
 
     onPostAppend() {}
 
+    onReturnedToMainMenu() {
+        //Set focus to button slot
+        if (ContextManager.getCurrentTarget() == this.Root)
+            FocusManager.setFocus(this.slot);
+
+        //Render 3D models
+        this.build3DScene();
+
+        //Unhide main UI
+        this.bgContainer.classList.remove("create");
+        this.Root.classList.remove("hidden");
+        this.slot.classList.remove("hidden");
+        this.buildInfo.classList.remove("hidden");
+        this.Root.classList.add("trigger-nav-help");
+
+        //Update online-related UI (carousel, account, profile, etc.)
+        this.onAccountUpdated();
+        this.showOnlineFeaturesUI();
+        this.updatePromoCarouselVisibility();
+        this.updateProfileHeader();
+        this.lowerShroud();
+        this.inSubScreen = false;
+        
+        //Signal to sound engine
+        Sound.onGameplayEvent(GameplayEvent.MainMenu);
+        
+        //Handle getting kicked from multiplayer game
+        if (this.needKickDecision) {
+            this.needKickDecision = false;
+            this.getKickDecision();
+        }
+        
+        //Determinme if we can recieve invites
+        if (Network.requireSPoPKickPrompt() || Network.isWaitingForValidHeartbeat()) return;
+        Network.setMainMenuInviteReady(true);
+    }
+
     
     /* Non-API functions */
     makeButtonDef(text, key, hasSeparator = false, className = "", isDisabled = false) {
@@ -463,6 +502,10 @@ class DefaultMainMenu extends Component {
             disabled: isDisabled,
             separator: hasSeparator
         }
+    }
+    
+    returnedToMainMenu() {
+        return this.onReturnedToMainMenu();
     }
 }
 

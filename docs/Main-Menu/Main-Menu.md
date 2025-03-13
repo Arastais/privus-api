@@ -19,6 +19,7 @@ Describes the in-game main menu UI
 |[`renderUIMotd`](Main-Menu-@-renderUIMotd)                         | Renders the motd section |
 |[`renderUIBuildInfo`](Main-Menu-@-renderUIBuildInfo)               | Renders the build info text |
 |[`renderUIVideoContainer`](Main-Menu-@-renderUIVideoContainer)     | Renders the intro video container |
+|[`renderUIButtons`](Main-Menu-@-renderUIButtons)                   | Renders the main buttons
 |[`renderUIConnectionIcon`](Main-Menu-@-renderUIConnectionIcon)     | Renders the connection status icon |
 |[`renderUIAccountIcon`](Main-Menu-@-renderUIAccountIcon)           | Renders the account status icon |
 |[`renderUIAccountStatus`](Main-Menu-@-renderUIAccountStatus)       | Renders the account status section |
@@ -30,6 +31,8 @@ Describes the in-game main menu UI
 |UI Events||
 |:--|:--|
 |[`onPostAppend`](Main-Menu-@-onPostAppend) | Called when all UI elements have been appended to the root element |
+|[`onReturnedToMainMenu`](Main-Menu-@-onReturnedToMainMenu) | Called when once an overlaying panel is exited |
+
 
 |Focus||
 |:--|:--|

@@ -29,6 +29,7 @@
 				</ImportFiles>
 				<UIScripts>
 					<Item>ui/shell/main-menu/privus-main-menu.js</Item>
+					<Item>ui/shell/extras/privus-additional-content.js</Item>
 				</UIScripts>
 				<UIShortcuts>
 					<Item>ui/shell/root-shell.html</Item>

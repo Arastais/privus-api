@@ -4,6 +4,12 @@ import MainMenuCategory from '/privus-api/ui/shell/main-menu/privus-main-menu.js
 class ExampleMainMenu {
     constructor(root) {
         this._root = root;
+
+        //Set the show and hide online ui functions to do nothing
+        //Ideally these functions would be part of the API but this is a easy temporary workaround
+        const defaultClass = Privus.getDefinition(MainMenuCategory).createDefaultInstance;
+        defaultClass.prototype.showOnlineFeaturesUI = function() {};
+        defaultClass.prototype.hideOnlineFeaturesUI = function() {};
     }
 
     //Completly hide the carousel
@@ -16,22 +22,17 @@ class ExampleMainMenu {
         //Then hide it by hiding all its direct children
         for(const child of carouselMain.children)
             child.classList.add('hidden');
+        carouselMain.classList.add('hidden');
     }
 
-    //Do not render the profile header, the motd, nor the build info
-    renderUIProfileHeader(modIds, profileHeader) { this._profileHeader = profileHeader; return; }
-    renderUIMotd(modIds, motd) { return; }
-    renderUIBuildInfo(modIds, buildInfo) { return; }
-    renderUIConnectionIcon(modIds, connectionIcon) { return; }
-    renderUIAccountIcon(modIds, accountIcon, activatable) { return; }
-    renderUIConnectionStatus(modIds, connectionStatus) { return; }
-    renderUIAccountStatus(modIds,  accountStatus, accountIcon, navHelp) { return; }
-
-    onPostAppend(modIds) {
-        //Remove the profile header
-        //This prevents any functions of the base game from modifying it
-        this._profileHeader.remove();
-    }
+    //Render account and connection info but make them all hidden
+    renderUIProfileHeader(modIds, profileHeader)                       { this.renderThenHide("profileHeader",    profileHeader);                       return; }
+    renderUIMotd(modIds, motd)                                         { this.renderThenHide("motd",             motd);                                return; }
+    renderUIBuildInfo(modIds, buildInfo)                               { this.renderThenHide("buildInfo",        buildInfo);                           return; }
+    renderUIConnectionIcon(modIds, connectionIcon)                     { this.renderThenHide("connectionIcon",   connectionIcon);                      return; }
+    renderUIAccountIcon(modIds, accountIcon, activatable)              { this.renderThenHide("accountIcon",      accountIcon, activatable);            return; }
+    renderUIConnectionStatus(modIds, connectionStatus)                 { this.renderThenHide("connectionStatus", connectionStatus);                    return; }
+    renderUIAccountStatus(modIds, accountStatus, accountIcon, navHelp) { this.renderThenHide("accountStatus",    accountStatus, accountIcon, navHelp); return; }
 
 
     //Render each button
@@ -115,12 +116,21 @@ class ExampleMainMenu {
     }
 
 
+    /* Event functions */
+    onReturnedToMainMenu(modIds) {
+        Privus.defaultFn(MainMenuCategory, "onReturnedToMainMenu").call(Privus.getInstance(MainMenuCategory));
+        Privus.getInstance(MainMenuCategory).buildInfo.classList.add("hidden");
+    }
+
+
+    /* Non-API event functions */
     showSocialPage() {
         Animations.cancelAllChainedAnimations();
         ContextManager.push('screen-mp-friends', { singleton: true, createMouseGuard: true });
     }
 
 
+    /* Non-API shortcut functions */
     //Copied from default main menu (see definition in privus-main-menu.js)
     makeButtonDef(text, key, hasSeparator = false, className = "", isDisabled = false) {
         return {
@@ -130,6 +140,16 @@ class ExampleMainMenu {
             disabled: isDisabled,
             separator: hasSeparator
         }
+    }
+
+    renderThenHide(elementName, ...args) {
+        //Render normally
+        const renderFnName = "renderUI" + String(elementName[0]).toUpperCase() + String(elementName).slice(1);
+        Privus.defaultFn(MainMenuCategory, renderFnName).call(Privus.getInstance(MainMenuCategory), ...args);
+        
+        //Hide and disable the main element
+        const element = args[0];
+        element.classList.add('hidden');
     }
 }
 
