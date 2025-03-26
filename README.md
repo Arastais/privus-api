@@ -79,11 +79,19 @@ You can get the default/base game functionality at any time with `Privus.default
 this.engineInputFn = Privus.defaultFn(PauseMenuCategory, "onEngineInput");
 ```
 
-You can also get the default instance with `Privus.getInstance(...)`
+You can get the default instance with `Privus.getInstance(...)`
 ```js
 //I want to call the default functionality for the `onRecieveFocus()` function
 Privus.defaultFn(PauseMenuCategory, "onRecieveFocus").call(Privus.getInstance(PauseMenuCategory));
 ```
+
+You can set and get data members of the API with `Privus.getMember(...)` and `Privus.setMember(...)`
+```js
+//I want to get/set the handle of the currently selected mod
+this.selectedHandle = Privus.getMember(ModsContentCategory, "selectedModHandle");
+Privus.setMember(ModsContentCategory, "selectedModHandle", 0);
+```
+Note that not all data members have both a set and get available. This will be listed under the API reference for the data member.
 
 <br>
 
