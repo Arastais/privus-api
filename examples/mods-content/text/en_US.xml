@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<EnglishText>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_OFFICIAL_HEADER">
+			<Text>Firaxis</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_UNOFFICIAL_HEADER">
+			<Text>Mods</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DETAILS_HEADER">
+			<Text>Details</Text>
+		</Row>
+		
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DESCRIPTION_HEADER">
+			<Text>Description</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_GATED_HEADER">
+			<Text>Locked Content</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_PROPERTIES_HEADER">
+			<Text>Properties</Text>
+		</Row>
+		
+		<Row Tag="LOC_EXAMPLE_MOD_UI_ENABLE_ALL">
+			<Text>[icon:EXAMPLE_ICON_YES] All</Text>
+		</Row>	
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DISABLE_ALL">
+			<Text>[icon:EXAMPLE_ICON_NO] All</Text>
+		</Row>			
+		
+		<Row Tag="LOC_EXAMPLE_MOD_UI_AUTHOR">
+			<Text>[icon:EXAMPLE_ICON_AUTHOR] [B]Author:[/B] {1_String}</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_SPECIAL_THANKS">
+			<Text>[icon:EXAMPLE_ICON_THANKS] [B]Special Thanks:[/B] {1_String}</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DLC_PACKAGE">
+			<Text>This content is either unowned or unreleased, and requires {1_String}.</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DLC_ADDITIONAL">
+			<Text>additional DLC</Text>
+		</Row>
+		
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DLC_CROSSROADS_CONTENT">
+			<Text>the [B]Crossroads of the World Collection[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DLC_RIGHT_TO_RULE_CONTENT">
+			<Text>the [B]Right to Rule Collection[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DLC_DELUXE_CONTENT">
+			<Text>the [B]Deluxe Content Pack[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DLC_FOUNDERS_CONTENT">
+			<Text>the [B]Founders Content Pack[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DLC_SHAWNEE_CONTENT">
+			<Text>the [B]Tecumseh and Shawnee Pack[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DLC_NAPOLEON_CONTENT">
+			<Text>signing up for a [B]2K Account[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DLC_NAPOLEON_ALT_CONTENT">
+			<Text>signing up for a [B]2K Account[/B] and owning [B]Civilization VI[/B]</Text>
+		</Row>
+		
+		
+		<Row Tag="LOC_EXAMPLE_MOD_UI_VERSION">
+			<Text>[icon:EXAMPLE_ICON_VERSION] Version [B]{1_String}[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_OFFICIAL">
+			<Text>[icon:EXAMPLE_ICON_OFFICIAL] Official content created by [B]Firaxis[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_UNOFFICIAL">
+			<Text>[icon:EXAMPLE_ICON_UNOFFICIAL] Unofficial content created by [B]fans[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DATE_CREATED">
+			<Text>[icon:EXAMPLE_ICON_PUBLISH] Published on [B]{1_String}[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_AFFECTS_SAVE_GAMES">
+			<Text>[icon:EXAMPLE_ICON_SAVES] This mod [B]Affects Save Games[/B]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_MOD_ID">
+			<Text>[icon:EXAMPLE_ICON_ID] [B]Mod Id:[/B] {1_String}</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_COMPATIBILITY">
+			<Text>[icon:EXAMPLE_ICON_COMPAT] [B]Compatibility Notes:[/B] {1_String}</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_MOD_URL">
+			<Text>[icon:EXAMPLE_ICON_WEB] [STYLE:clickable-link]Mod Homepage[/STYLE]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_MOD_URL_TOOLTIP">
+			<Text>Click to copy to clipboard.</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_MOD_URL_TOOLTIP_COPIED">
+			<Text>Copied!</Text>
+		</Row>
+		
+		<Row Tag="LOC_EXAMPLE_MOD_UI_ENABLED">
+			<Text>[icon:EXAMPLE_ICON_YES]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_DISABLED">
+			<Text>[icon:EXAMPLE_ICON_NO]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_GATED">
+			<Text>[icon:EXAMPLE_ICON_LOCK]</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_UI_CORE">
+			<Text>[icon:EXAMPLE_ICON_CORE]</Text>
+		</Row>
+		
+	</EnglishText>
+</Database>

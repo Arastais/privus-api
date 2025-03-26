@@ -78,13 +78,32 @@ class PrivusComponentManager {
         this._privusInstances[category] = obj;
     }
 
-
     /**
      * Gets the object of a Privus API class
      * @param {string} category Category string
      */
     getInstance(category) {
         return this._privusInstances[category];
+    }
+
+
+    /**
+     * Sets a public API member of a Privus API class
+     * @param {string} category Category string
+     * @param {string} memberName Name of the API member, as a string
+     * @param {*} value New value of the member
+     */
+    setMember(category, memberName, value) {
+        this.getInstance(category)[memberName] = value;
+    }
+
+    /**
+     * Gets a public API member of a Privus API class
+     * @param {string} category Category string
+     * @param {string} memberName Name of the API member, as a string
+     */
+    getMember(category, memberName) {
+        return this.getInstance(category)[memberName];
     }
     
 
@@ -109,7 +128,7 @@ class PrivusComponentManager {
         if(modIds.length === 0)
             rets.push(this.defaultFn(category, functionName).call(this._privusInstances[category], ...funcArgs));
 
-        return rets;
+        return rets.flat(1);
     }
 
     //TODO?

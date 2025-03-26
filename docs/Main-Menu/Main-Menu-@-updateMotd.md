@@ -1,5 +1,5 @@
 ```ts
-void renderUIMotd(modIds: string[], motd: HTMLElement);
+void updateMotd(modIds: string[], motd: HTMLElement);
 ```
 
 <hr>

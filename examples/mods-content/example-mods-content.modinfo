@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="example-mods-content" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name>Example Privus API Mods Content</Name>
+		<Description>An example mod that showcases the Privus API by changing the mods content panel</Description>
+		<Authors>Arastais</Authors>
+		<Package>Mod</Package>
+		<AffectsSavedGames>0</AffectsSavedGames>
+	</Properties>
+	<Dependencies>
+		<Mod id="privus-api" title="Privus API"/>
+	</Dependencies>
+	<ActionCriteria>
+		<Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="example-mods-content-shell-always" scope="shell" criteria="always">
+			<Actions>
+				<UIScripts>
+					<Item>example-mods-content.js</Item>
+				</UIScripts>
+
+				<ImportFiles>
+					<Item>icons/example-ui-yes.png</Item>
+					<Item>icons/example-ui-no.png</Item>
+					<Item>icons/example-ui-lock.png</Item>
+					<Item>icons/example-ui-core.png</Item>
+					<Item>icons/example-ui-author.png</Item>
+					<Item>icons/example-ui-thanks.png</Item>
+					<Item>icons/example-ui-version.png</Item>
+					<Item>icons/example-ui-official.png</Item>
+					<Item>icons/example-ui-unofficial.png</Item>
+					<Item>icons/example-ui-publish.png</Item>
+					<Item>icons/example-ui-saves.png</Item>
+					<Item>icons/example-ui-id.png</Item>
+					<Item>icons/example-ui-compat.png</Item>
+					<Item>icons/example-ui-web.png</Item>
+				</ImportFiles>
+				<UpdateIcons>
+					<Item>icons/icons.xml</Item>
+				</UpdateIcons>
+				<UpdateText>
+					<Item>text/en_US.xml</Item>
+				</UpdateText>
+			</Actions>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>
