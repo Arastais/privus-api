@@ -17,6 +17,7 @@ class PrivusAdditionalContent extends Panel {
         
         this.enableOpenSound = true;
         this.enableCloseSound = true;
+        this.title = MustGetElement(".additional-content-header", this.Root);
         this.Root.setAttribute("data-audio-group-ref", "additional-content-audio");
     }
     
@@ -34,7 +35,7 @@ class PrivusAdditionalContent extends Panel {
         closeButton.addEventListener('action-activate', this.close);
         if (ActionHandler.isGamepadActive) closeButton.classList.add('hidden');
 
-        const buttons = this.renderUIButtons(this.makeButton.bind(this)).flat(1);
+        const buttons = this.renderUIButtons(this.makeButton.bind(this));
         const buttonParent = MustGetElement('#main > .w-full', this.Root);
         while (buttonParent.firstChild) buttonParent.removeChild(buttonParent.firstChild);
         buttons.forEach((button) => { buttonParent.appendChild(button); });

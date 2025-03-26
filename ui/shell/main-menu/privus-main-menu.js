@@ -76,7 +76,6 @@ class PrivusMainMenu extends Component {
         this.startNewCampaignListener             = Privus.defaultFn(MainMenuCategory, "onNewCampaignStart"         ).bind(this);
         this.promosDataReceivedListener           = Privus.defaultFn(MainMenuCategory, "resolvePromoDataReceived"   ).bind(this);
         this.refreshPromosListener                = Privus.defaultFn(MainMenuCategory, "refreshPromos"              ).bind(this);
-        this.activeLiveEventListener              = Privus.defaultFn(MainMenuCategory, "onActiveLiveEvent"          ).bind(this);
         this.startGameSectionListener             = Privus.defaultFn(MainMenuCategory, "startSection"               ).bind(this);
         this.spoPCompleteListener                 = Privus.defaultFn(MainMenuCategory, "onSPoPComplete"             ).bind(this);
         this.spoPKickPromptCheckListener          = Privus.defaultFn(MainMenuCategory, "onSPoPKickPromptCheck"      ).bind(this);
@@ -219,7 +218,7 @@ class PrivusMainMenu extends Component {
         Input.setActiveContext(InputContext.Shell);
 
         //Create buttons
-        this.mainMenuButtons = this.renderUIButtons(this.slot, this.functionDefs).flat(1);
+        this.mainMenuButtons = this.renderUIButtons(this.slot, this.functionDefs);
         
         //Create debug widget
         UI.Debug.registerWidget({
