@@ -213,7 +213,7 @@ ComponentRoot.prototype.initialize = function() {
     
     if(def.extend === true)
         for(let propName of Object.getOwnPropertyNames(def.createDefaultInstance.prototype))
-            if(typeof def.createDefaultInstance.prototype[propName] === "function" && !def.createInstance.prototype[propName])
+            if(typeof def.createDefaultInstance.prototype[propName] === "function" && (!def.createInstance.prototype[propName] || (def.override && def.override.includes(propName))))
                 def.createInstance.prototype[propName] = def.createDefaultInstance.prototype[propName];
     const component = new def.createInstance(this);
     Privus.setInstance(this.typeName, component);

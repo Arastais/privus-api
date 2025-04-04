@@ -3,6 +3,8 @@ import ModsContentCategory from '/privus-api/ui/shell/mods-content/privus-mods-c
 
 import { MustGetElement } from '/core/ui/utilities/utilities-dom.js';
 import FocusManager from '/core/ui/input/focus-manager.js';
+import ModOptions from '/privus-api/privus-options-manager.js';
+import { OptionType } from '/core/ui/options/model-options.js';
 
 class ExampleModsContent {
     constructor(root) { 
@@ -10,7 +12,6 @@ class ExampleModsContent {
         this.mods = Modding.getInstalledMods();
         this.mods.sort((a, b) => Locale.compare(a.name, b.name));
         //this.mods.sort((a, b) => +b.official - +a.official || Locale.compare(a.name, b.name));
-
     }
 
     renderUIModList(modIds, modHandle, root) {
@@ -83,11 +84,11 @@ class ExampleModsContent {
         MustGetElement('.enable-all-unofficial' ).addEventListener("action-activate", this.onAllModsToggled.bind(this, modIds, false, true ));
         MustGetElement('.disable-all-unofficial').addEventListener("action-activate", this.onAllModsToggled.bind(this, modIds, false, false));
 
-        const officialModCount = this.mods.filter(mod => mod.official && Modding.getModProperty(mod.handle, "ShowInBrowser") != 0).length;
+        const officialModCount = this.mods.filter(mod => mod.official && this.show(mod.handle)).length;
         const index = {official: 0, unofficial: 0};
         const activatables = [];
         for(const mod of this.mods) {
-            if (Modding.getModProperty(mod.handle, "ShowInBrowser") == 0) continue;
+            if (!this.show(mod.handle)) continue;
             const entryIndex = mod.official ? index.official++ : index.unofficial++;
 
             const modActivatable = document.createElement('fxs-activatable');
@@ -241,7 +242,7 @@ class ExampleModsContent {
         const selectedHandle = Privus.getMember(ModsContentCategory, "selectedModHandle");
 
         this.mods.forEach((mod, index) => {
-            if(Modding.getModProperty(mod.handle, "ShowInBrowser") == 0) return;
+            if(!this.show(mod.handle)) return;
             if(mod.official && (mod.allowance != ModAllowance.Full)) return;
             if(mod.official != official) return;
             if(enable === mod.enabled) return;
@@ -298,7 +299,12 @@ class ExampleModsContent {
         default:                     return "ADDITIONAL"
         }
 	}
+
+    show(modHandle) {
+        return ModOptions.option('example-mods-content', 'show-core').currentValue || Modding.getModProperty(modHandle, "ShowInBrowser") != 0;
+    }
 }
 
+ModOptions.addOption('example-mods-content', 'show-core', OptionType.Checkbox, "LOC_EXAMPLE_MOD_OPTIONS_SHOW_CORE", "LOC_EXAMPLE_MOD_OPTIONS_SHOW_CORE_DESC", false);
 // Register our class as this mod's changes to the pause menu
 Privus.defineModClass('example', ModsContentCategory, ExampleModsContent);

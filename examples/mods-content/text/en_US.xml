@@ -108,5 +108,12 @@
 			<Text>[icon:EXAMPLE_ICON_CORE]</Text>
 		</Row>
 		
+
+		<Row Tag="LOC_EXAMPLE_MOD_OPTIONS_SHOW_CORE">
+			<Text>Show core mods</Text>
+		</Row>
+		<Row Tag="LOC_EXAMPLE_MOD_OPTIONS_SHOW_CORE_DESC">
+			<Text>Should core mods be shown in the mod list?</Text>
+		</Row>
 	</EnglishText>
 </Database>

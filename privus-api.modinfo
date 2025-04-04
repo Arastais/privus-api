@@ -22,12 +22,16 @@
 			<Actions>
 				<ImportFiles>
 					<Item>ui/privus-component-support.js</Item>
+
+					<Item>ui/options/privus-options-category.js</Item>
+					<Item>privus-options-manager.js</Item>
 					
 					<Item>ui/shell/root-shell.html</Item>
 					
 					<Item>ui/shell/main-menu/privus-carousel.js</Item>
 				</ImportFiles>
 				<UIScripts>
+					<Item>ui/options/privus-options.js</Item>
 					<Item>ui/shell/main-menu/privus-main-menu.js</Item>
 					<Item>ui/shell/mods-content/privus-mods-content.js</Item>
 					<Item>ui/shell/extras/privus-additional-content.js</Item>
@@ -44,6 +48,9 @@
 			<Actions>
 				<ImportFiles>
 					<Item>ui/privus-component-support.js</Item>
+					
+					<Item>ui/options/privus-options-category.js</Item>
+					<Item>privus-options-manager.js</Item>
 
 					<Item>ui/templates/world/bottom-left.html</Item>
 					<Item>ui/templates/world/bottom-right-desktop.html</Item>
@@ -57,6 +64,7 @@
 				</ImportFiles>
 				<UIScripts>
 					<Item>ui/pause-menu/privus-pause-menu.js</Item>
+					<Item>ui/options/privus-options.js</Item>
 				</UIScripts>
 				<UIShortcuts>
 					<Item>ui/shell/root-shell.html</Item>
