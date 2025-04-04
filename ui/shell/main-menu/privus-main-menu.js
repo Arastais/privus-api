@@ -12,6 +12,7 @@ import { MustGetElement } from '/core/ui/utilities/utilities-dom.js';
 import { SaveLoadClosedEventName } from '/core/ui/save-load/screen-save-load.js';
 import { EditorCalibrateHDROpenedEventName } from '/core/ui/options/editors/index.js';
 import { MainMenuReturnEventName } from '/core/ui/events/shell-events.js';
+import FocusManager from '/core/ui/input/focus-manager.js';
 
 
 export const MainMenuCategory = "main-menu";
@@ -473,7 +474,6 @@ class DefaultMainMenu extends Component {
         this.onAccountUpdated();
         this.showOnlineFeaturesUI();
         this.updatePromoCarouselVisibility();
-        this.updateProfileHeader();
         this.lowerShroud();
         this.inSubScreen = false;
         
