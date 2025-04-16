@@ -1,6 +1,6 @@
 ### [Home](Home)
 
-### Global
+### [Global](Global)
 * [**Mod Options**](Global#mod-options)
 * [**Default Functions**](Global#default-functions)
 * [**Instances**](Global#instances)
