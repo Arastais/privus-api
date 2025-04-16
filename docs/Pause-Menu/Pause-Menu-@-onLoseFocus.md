@@ -2,8 +2,6 @@
 void onLoseFocus(modIds: string[]);
 ```
 
-<hr>
-
 Executes functionality whenever a component other than this one becomes the active gamepad UI component.
 
 ### Parameters

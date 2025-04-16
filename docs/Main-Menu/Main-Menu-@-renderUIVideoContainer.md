@@ -2,8 +2,6 @@
 void renderUIVideoContainer(modIds: string[], container: HTMLElement);
 ```
 
-<hr>
-
 Renders the introduction video container of the main menu UI
 
 ### Parameters

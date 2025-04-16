@@ -2,8 +2,6 @@
 void onModToggled(modIds: string[], event: Event);
 ```
 
-<hr>
-
 Called when a mod is to be toggled enabled/disabled.
 
 ### Parameters

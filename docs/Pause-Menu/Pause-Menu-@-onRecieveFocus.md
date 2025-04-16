@@ -2,8 +2,6 @@
 void onRecieveFocus(modIds: string[]);
 ```
 
-<hr>
-
 Executes functionality whenever the pause menu becomes the active gamepad UI component.
 
 ### Parameters

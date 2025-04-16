@@ -2,8 +2,6 @@
 void onReturnedToMainMenu(modIds: string[]);
 ```
 
-<hr>
-
 Executes functionality once an overlaying panel is exited and thus the user returns to the main menu.
 
 ### Parameters

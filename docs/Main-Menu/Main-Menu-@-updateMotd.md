@@ -2,8 +2,6 @@
 void updateMotd(modIds: string[], motd: HTMLElement);
 ```
 
-<hr>
-
 Updates the content of the motd text
 
 ### Parameters

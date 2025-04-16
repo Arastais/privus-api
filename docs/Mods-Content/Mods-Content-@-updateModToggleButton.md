@@ -2,8 +2,6 @@
 void updateModToggleButton(modIds: string[], modHandle: integer);
 ```
 
-<hr>
-
 Updates the enable/disable button for a given mod.
 
 ### Parameters

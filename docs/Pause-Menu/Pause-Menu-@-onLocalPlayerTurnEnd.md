@@ -2,8 +2,6 @@
 void onLocalPlayerTurnEnd(modIds: string[], retireButton: object);
 ```
 
-<hr>
-
 Executes functionality whenever the player ends their turn
 
 ### Parameters

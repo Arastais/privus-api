@@ -2,8 +2,6 @@
 void renderUIMotd(modIds: string[], motd: HTMLElement);
 ```
 
-<hr>
-
 Renders the motd strip of the main menu UI
 
 ### Parameters

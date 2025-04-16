@@ -2,8 +2,6 @@
 Element[] renderUIButtons(modIds: string[], makeButtonFn: (id: string, caption: string, onClickFn: () => void, tooltip: boolean) => HTMLElement);
 ```
 
-<hr>
-
 Renders the main buttons of the main menu UI.
 
 ### Parameters

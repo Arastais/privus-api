@@ -2,8 +2,6 @@
 void onStartSaveRequest(modIds: string[]);
 ```
 
-<hr>
-
 Executes functionality whenever a game save is requested
 
 ### Parameters

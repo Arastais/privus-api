@@ -2,8 +2,6 @@
 void renderUIBuildInfo(modIds: string[], buildInfo: HTMLElement);
 ```
 
-<hr>
-
 Renders the build information text of the main menu UI
 
 ### Parameters

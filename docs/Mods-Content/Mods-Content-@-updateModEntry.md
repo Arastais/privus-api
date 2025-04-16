@@ -2,8 +2,6 @@
 void updateModEntry(modIds: string[], modHandle: integer, entry: HTMLElement);
 ```
 
-<hr>
-
 Updates the enable/disable button for a given mod.
 
 ### Parameters

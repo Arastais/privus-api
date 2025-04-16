@@ -2,8 +2,6 @@
 void renderUIConnectionIcon(modIds: string[], connectionIcon: HTMLElement);
 ```
 
-<hr>
-
 Renders the connection status icon of the main menu UI
 
 ### Parameters

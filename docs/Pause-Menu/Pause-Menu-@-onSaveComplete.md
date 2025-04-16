@@ -2,8 +2,6 @@
 void onSaveComplete(modIds: string[]);
 ```
 
-<hr>
-
 Executes functionality whenever a game save is completed
 
 ### Parameters

@@ -2,8 +2,6 @@
 void onLocalPlayerTurnBegin(modIds: string[], retireButton: object);
 ```
 
-<hr>
-
 Executes functionality whenever the player begins their turn
 
 ### Parameters

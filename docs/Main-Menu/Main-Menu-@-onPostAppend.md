@@ -2,8 +2,6 @@
 void onPostAppend(modIds: string[]);
 ```
 
-<hr>
-
 Executes functionality once the all UI elements of the main menu have been appended to the root component.
 
 ### Parameters

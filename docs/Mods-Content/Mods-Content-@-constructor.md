@@ -2,8 +2,6 @@
 constructor(root: ComponentRoot);
 ```
 
-<hr>
-
 Constructs the mod class
 
 ### Parameters

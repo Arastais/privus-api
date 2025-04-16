@@ -2,8 +2,6 @@
 void renderUIConnectionStatus(modIds: string[], connectionStatus: HTMLElement);
 ```
 
-<hr>
-
 Renders the connection status section of the main menu UI
 
 ### Parameters

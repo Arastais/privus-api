@@ -2,8 +2,6 @@
 Set<Element> renderUIButtons(modIds: string[], sectionQueries: object);
 ```
 
-<hr>
-
 Renders the buttons of the pause menu UI.
 
 ### Parameters

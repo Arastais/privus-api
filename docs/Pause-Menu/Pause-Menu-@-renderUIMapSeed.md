@@ -2,8 +2,6 @@
 void renderUIMapSeed(modIds: string[], mapSeedInfo: Element);
 ```
 
-<hr>
-
 Renders the map seed information section of the pause menu UI.
 
 ### Parameters

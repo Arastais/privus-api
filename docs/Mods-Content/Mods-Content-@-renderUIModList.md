@@ -2,8 +2,6 @@
 Element[] renderUIModList(modIds: string[], initialModHandle: integer, root: HTMLElement);
 ```
 
-<hr>
-
 Renders the mod list of the mods panel UI.
 
 ### Parameters

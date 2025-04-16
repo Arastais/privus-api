@@ -2,8 +2,6 @@
 void onModClicked(modIds: string[], event: Event);
 ```
 
-<hr>
-
 Called when a mod in the mod list is clicked
 
 ### Parameters

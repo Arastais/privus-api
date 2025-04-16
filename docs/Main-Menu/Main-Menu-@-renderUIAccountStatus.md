@@ -2,8 +2,6 @@
 void renderUIAccountStatus(modIds: string[], accountStatus: HTMLElement, accountIcon: HTMLElement, navHelp, HTMLElement);
 ```
 
-<hr>
-
 Renders the 2K account status section of the main menu UI
 
 ### Parameters

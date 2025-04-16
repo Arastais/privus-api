@@ -2,8 +2,6 @@
 void renderUIPlayerInfo(modIds: string[], playerInfo: Element);
 ```
 
-<hr>
-
 Renders the player info section of the pause menu UI.
 
 ### Parameters

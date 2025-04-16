@@ -2,8 +2,6 @@
 void renderUIAccountIcon(modIds: string[], accountIcon: HTMLElement, activatable: HTMLElement);
 ```
 
-<hr>
-
 Renders the 2K account status icon of the main menu UI
 
 ### Parameters

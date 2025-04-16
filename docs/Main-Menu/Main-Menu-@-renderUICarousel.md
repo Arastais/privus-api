@@ -2,8 +2,6 @@
 void renderUICarousel(modIds: string[], carouselMain: HTMLElement);
 ```
 
-<hr>
-
 Renders the promotion carousel of the main menu UI
 
 ### Parameters

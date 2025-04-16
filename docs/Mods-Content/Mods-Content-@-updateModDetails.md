@@ -2,8 +2,6 @@
 void updateModDetails(modIds: string[], modHandle: integer);
 ```
 
-<hr>
-
 Updates the details content of a given mod
 
 ### Parameters

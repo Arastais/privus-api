@@ -2,8 +2,6 @@
 void renderUIHeader(modIds: string[], header: Element);
 ```
 
-<hr>
-
 Renders the header section of the pause menu UI.
 
 ### Parameters

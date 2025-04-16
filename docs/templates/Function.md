@@ -2,8 +2,6 @@
 return_type function_name([arg : type]...);
 ```
 
-<hr>
-
 function_description
 
 ### Parameters

@@ -2,8 +2,6 @@
 void renderUIProfileHeader(modIds: string[], profileHeader: HTMLElement);
 ```
 
-<hr>
-
 Renders the player profile info section of the main menu UI
 
 ### Parameters

@@ -2,8 +2,6 @@
 void renderUIGameBuildInfo(modIds: string[], mapSeedInfo: Element);
 ```
 
-<hr>
-
 Renders the build info section of the pause menu UI.
 
 ### Parameters

@@ -2,8 +2,6 @@
 Element[] renderUIButtons(modIds: string[], slot: HTMLElement, functionDefs: Object);
 ```
 
-<hr>
-
 Renders the main buttons of the main menu UI.
 
 ### Parameters
