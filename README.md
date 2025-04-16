@@ -8,35 +8,46 @@ The privus API solves the inherent mod incompatiblity by allowing mods to:
 - Use the default game functionality as desired
 - Not have to replace any original files of the base game
 
-<br>
-
+<details>
+<summary><i>More Details</i></summary>
 Traditional UI or other script changes involve replacing the entire script file in the base game of whatever aspect of the UI a mod wants to change, even if the mod makes very little modifications. This means that any other mod wanting to make changes to the same part of the UI will not be compatible, as one of the mods will replace the files of the other. Even mods that do not replace any UI script files have no idea of any changes made by other mods, and will still need to override base game functions that have very broad functionality. 
 
 This API instead breaks down major UI functionality into separate functions for each aspect of the UI.
 
 Additionally, any mods using this API will also not conflict with any traditional mods (i.e. any mods not using this api) for the most part - as long as they don't modify `root-game.html`, `root-shell.html` (which is true for most mods), or the `onAttach()` function of any components that Privus has an API implemented for.
+</details>
 
 
 ### Complexity
 The privus API reduces the complexity and tediousness of mod development by allowing modders to only have to implement the exact changes they want and to not have to reimplement **any** of the base game functionality.
 
-<br>
-
+<details>
+<summary><i>More Details</i></summary>
 Traditional methods of changing the game's functionality usually means that modders to have to copy original files of the game and make whatever changes they need inside the copied file. These changes can be small and thus hard to keep track of within the mess of the original script file. If a modder takes the function override approach, then they must either resuse the base gmae's functionality in it's entireity, or none at all. Otheriwse, they are stuck partially re-implementing the base game functionality. 
 
 This API instead allows modders to only have type out whatever changes they want to make in a new file and to more precisely use the base game's functionality.
+</details>
 
 ### Legality
 The privus API avoids copyright issues by not copying nor distributing any of the base game's source code; Any default/base game functionality is re-implmeneted using original source code.
 
-<br>
-
+<details>
+<summary><i>More Details</i></summary>
 The original script files of the game are copyrighted, and thus all rights are reserved. Copying, modifying, and then distrubting the base game's source code (which has to be done in the traditional modding process), as most mods do, violates copyright. While it is in fact extremely unlikely legal action will actually be pursued, one is still technically commiting copyright infringement by doing this. 
 
 This API instead re-implemnents any base game functionality it needs, which allows modders to not have to use any of the game's source code.
 
 There are modding development techniques to not have to replace the base game's script files (which means copying them is not needed either), but such techniques are neither always possible for every aspect of the UI nor are a perfect solution as they can still require re-implementing base game functionality as stated previously. 
+</details>
 
+## Features
+- Centralized modder-customizable mod options within the game's option menu.
+- Complete control over the game's default functionality.
+- Significantly easier compatibility with other mods with similar functionality
+- Ability to see other active mods and which API functions they have implemented.
+- Standardized and well-documented functions and members
+- Simple and concise API and function definitions
+- Access to fine-grained UI functionality within the game
 
 ## Quickstart
 
@@ -73,37 +84,19 @@ class MyPauseMenu {
 
 <br>
 
-You can get the default/base game functionality at any time with `Privus.defaultFn(...)`
-```js
-//I want to use the base game's `onEngineInput()` function
-this.engineInputFn = Privus.defaultFn(PauseMenuCategory, "onEngineInput");
-```
-
-You can get the default instance with `Privus.getInstance(...)`
-```js
-//I want to call the default functionality for the `onRecieveFocus()` function
-Privus.defaultFn(PauseMenuCategory, "onRecieveFocus").call(Privus.getInstance(PauseMenuCategory));
-```
-
-You can set and get data members of the API with `Privus.getMember(...)` and `Privus.setMember(...)`
-```js
-//I want to get/set the handle of the currently selected mod
-this.selectedHandle = Privus.getMember(ModsContentCategory, "selectedModHandle");
-Privus.setMember(ModsContentCategory, "selectedModHandle", 0);
-```
-Note that not all data members have both a set and get available. This will be listed under the API reference for the data member.
-
-<br>
-
 Register your class with the Privus API using your mod's id
 ```js
 Privus.defineModClass('my-mod', PauseMenuCategory, MyPauseMenu);
 ```
 
-
 <br>
 
+> Mod options, using default functionality, and modifying API data members are all explained under [Global](https://github.com/Arastais/privus-api/wiki/Global) in the API reference 
+
+
 Repeat the process for any other UI components you want to modify.
+
+
 
 
 ## Example
