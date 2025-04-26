@@ -63,8 +63,11 @@
 					<Item>ui/root-game.html</Item>
 				</ImportFiles>
 				<UIScripts>
+					<Item>ui/privus-tooltips.js</Item>
+					
 					<Item>ui/pause-menu/privus-pause-menu.js</Item>
 					<Item>ui/options/privus-options.js</Item>
+					<Item>ui/tooltip/privus-plot-tooltip.js</Item>
 				</UIScripts>
 				<UIShortcuts>
 					<Item>ui/shell/root-shell.html</Item>
