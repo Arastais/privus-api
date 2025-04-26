@@ -301,7 +301,7 @@ class ExampleModsContent {
 	}
 
     show(modHandle) {
-        return ModOptions.option('example-mods-content', 'show-core').currentValue || Modding.getModProperty(modHandle, "ShowInBrowser") != 0;
+        return ModOptions.option('example-mods-content', 'show-core')?.currentValue || Modding.getModProperty(modHandle, "ShowInBrowser") != 0;
     }
 }
 

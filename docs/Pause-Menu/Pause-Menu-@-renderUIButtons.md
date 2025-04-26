@@ -1,5 +1,5 @@
 ```ts
-Set<Element> renderUIButtons(modIds: string[], sectionQueries: object);
+HTMLElement[] renderUIButtons(modIds : string[], leftCol : HTMLDivElement, rightCol : HTMLDivElement, outerParent : HTMLDivElement, listenerFns : object, updateFns : object, newRowFn : function);
 ```
 
 Renders the buttons of the pause menu UI.
@@ -7,43 +7,90 @@ Renders the buttons of the pause menu UI.
 ### Parameters
 
 `modIds`         &ndash; array containing mod ID strings of mods that have previously called this function <br>
-`sectionQueries` &ndash; read-only object containing the query selector string of each button section<br>
+`leftCol` &ndash; element to optionally be used as the container for the left column buttons<br>
+`rightCol` &ndash; element to optionally be used as the container for the right column buttons<br>
+`outerParent` &ndash; element representing the parent container for the buttons - also the container for `leftCol` and `rightCol`.
+`listenerFns` &ndash; read-only object containing the bounded button listener functions<br>
+`updateFns` &ndash; read-only object containing the bounded button update functions<br>
+`newRowFn` &ndash; bounded function which creates a new row within `outerParent` and also updates `leftCol` and `rightCol` to be new columns within this row.
 
 ### Return Value
 
-Returns a Set containing the button elements to render
+Returns an array containing the `fxs-button` elements to render
 
 ### Notes
 
-`sectionQueries` is always defined as:
+`outerParent` initially contains no columns or row, and `leftCol` and `rightCol` are initially `null`. You must call `newRowFn` if you want `outerParent` to have any rows or columns, and to update `leftCol` and `rightCol`.
+
+`listenerFns` is always defined as:
 ```js
 Object.freeze({
-    PrimaryHeader:   '.pause-menu__header-buttons>.pauselist',
-    SecondaryHeader: '.pause-menu__header-buttons>.morelist',
-    Primary:         '.pause-menu__main-buttons>.pauselist',
-    Secondary:       '.pause-menu__main-buttons>.morelist',
-    PrimaryFooter:   '.pause-menu__footer-buttons>.pauselist',
-    SecondaryFooter: '.pause-menu__footer-buttons>.morelist'
+    close:         this.close.bind(this),
+    noMoreTurns:   this.onNoMoreTurnsButton.bind(this),
+    retire:        this.onRetireButton.bind(this),
+    eventRules:    this.onEventRules.bind(this),
+    joinCode:      this.onJoinCodeButton.bind(this),
+    restart:       this.onRestartGame.bind(this),
+    quickSave:     this.onQuickSaveGameButton.bind(this),
+    save:          this.onSaveGameButton.bind(this),
+    load:          this.onLoadGameButton.bind(this),
+    options:       this.onOptionsButton.bind(this),
+    challenges:    this.onChallenges.bind(this),
+    social:        this.onSocialButton.bind(this),
+    exitToMenu:    this.onExitToMainMenuButton.bind(this),
+    exitToDesktop: this.onExitToDesktopButton.bind(this),
+});
+```
+
+
+`updateFns` is always defined as:
+```js
+Object.freeze({
+    retire:  this.updateRetireButton.bind(this), //Takes the retire button element and if it's enabled as parameters 
+    restart: this.updateRestartButton.bind(this), //Takes the restart button element as a parameter
 });
 ```
 
 ### Example
 
 ```js
-renderUIButtons(modIds, sectionQueries) {
-    //Create the button element
-    const button = document.createElement('fxs-button');
+renderUIButtons(modIds, leftCol, rightCol, outerParent, listenerFns, updateFns, newRowFn) {
+    //Create the button elements
+    const buttonL = document.createElement('fxs-button');
+    const buttonR = document.createElement('fxs-button');
     //Add classes and attributes
-    button.classList.add('pause-menu-button', 'mb-1\\.5');
-    button.setAttribute('caption', Locale.compose('LOC_MY_MOD_BUTTON'));
+    buttonL.classList.add('pause-menu-button', 'mb-1\\.5');
+    buttonL.setAttribute("data-audio-group-ref", "pause-menu");
+    buttonL.setAttribute("data-audio-focus-ref", "data-audio-pause-menu-focus");
+    buttonL.setAttribute("data-audio-activate-ref", "data-audio-pause-menu-activate");
+    buttonL.setAttribute('caption', Locale.compose('LOC_MY_MOD_BUTTON_L'));
+    buttonL.addEventListener('action-activate', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        listenerFns.close(event);
+    });
+
+    buttonR.classList.add('pause-menu-button', 'mb-1\\.5');
+    buttonR.setAttribute("data-audio-group-ref", "pause-menu");
+    buttonR.setAttribute("data-audio-focus-ref", "data-audio-pause-menu-focus");
+    buttonR.setAttribute("data-audio-activate-ref", "data-audio-pause-menu-activate");
+    buttonR.setAttribute('caption', Locale.compose('LOC_MY_MOD_BUTTON_R'));
+    buttonR.addEventListener('action-activate', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        listenerFns.restart(event);
+    });
+    //We want to update the buttonR since it's acting as a 'restart'
+    updateFns.restart(buttonR); 
     
-    //Find the section for the button and add it to the section if it exists
-    const primarySection = this._root.querySelector(sectionQueries.Primary);
-    if(primarySection)
-        primarySection.appendChild(button);
+    //Create a new row and its associated 2 new columns
+    newRowFn();
+    //Add our buttons
+    leftCol.appendChild(buttonL);
+    rightCol.appendChild(buttonR);
 
     //Return the buttons we made
-    return [button];
+    return [buttonL, buttonR];
 }
 ```
 

@@ -52,6 +52,8 @@ class PrivusMainMenu extends Component {
         this.previousPromoAdded = false;
         this.selectedCarouselItem = 0;
         this.toggleCarouselAdded = false;
+        this.hdrCalibrationMenuOpen = false;
+
         
         
         //Function listeners
@@ -86,6 +88,7 @@ class PrivusMainMenu extends Component {
         this.saveLoadClosedListener               = Privus.defaultFn(MainMenuCategory, "onSaveLoadClosed"           ).bind(this);
         this.connectionStatusChangedListener      = Privus.defaultFn(MainMenuCategory, "onConnectionStatusChanged"  ).bind(this);
         this.liveEventsSettingsChangeListener     = Privus.defaultFn(MainMenuCategory, "onLiveEventsSettingsChanged").bind(this);
+        this.endStateListener                     = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
         this.motdCompletedListener                = this.updateMotd.bind(this);
 
         //Function definitions
@@ -196,6 +199,7 @@ class PrivusMainMenu extends Component {
         engine.on("LegalDocumentContentReceived", this.onLegalDocumentContentReceived, this);
         engine.on("StartGameSection", this.startGameSectionListener);
         engine.on("LiveEventActiveUpdated", this.activeLiveEventListener);
+        engine.on("EndStateReached", this.endStateListener);
         this.Root.addEventListener(InputEngineEventName, this.engineInputListener);
         this.Root.addEventListener('navigate-input', this.navigateInputListener);
         window.addEventListener(GameCreatorOpenedEventName, this.gameCreatorOpenedListener);
@@ -251,13 +255,31 @@ class PrivusMainMenu extends Component {
             this.accountIcon = document.createElement('div');
             this.accountIconActivatable = document.createElement("fxs-activatable");
             this.accountStatus = document.createElement('div');
+            this.accountStatusAnim = document.createElement("div");
+            this.accountStatusAnimFlipbook = document.createElement("fxs-flipbook");
 
             this.renderUIConnectionIcon(this.connIcon, this.connStatus);
             this.renderUIAccountIcon(this.accountIcon, this.accountIconActivatable);
             this.renderUIAccountStatus(this.accountStatus, this.accountIcon, this.accountStatusNavHelp);
+            //TODO?: renderUIAccountStatusAnim
+            this.accountStatusAnim.classList.add("connection-anim-container", "absolute", "hidden", "pointer-events-none");
+            this.accountStatusAnimFlipbook.classList.add("pointer-events-none");
+            this.accountStatusAnimFlipbook.setAttribute("data-flipbook-definition", JSON.stringify({
+                fps: 2,
+                preload: true,
+                atlas: [{
+                    src: 'fs://game/my2k_connecting_anim.png',
+                    spriteWidth: 128,
+                    spriteHeight: 128,
+                    size: 512,
+                    nFrames: 8
+                }]
+            }));
             
             this.connStatus.appendChild(this.connIcon);
             this.accountIcon.appendChild(this.accountIconActivatable);
+            this.accountStatusAnim.appendChild(this.accountStatusAnimFlipbook);
+            this.accountStatus.appendChild(this.accountStatusAnim);
             this.accountStatus.appendChild(this.accountIcon);
             this.accountStatus.appendChild(this.accountStatusNavHelp);
             this.Root.appendChild(this.accountStatus);
@@ -445,6 +467,7 @@ class DefaultMainMenu extends Component {
         navHelp.setAttribute("action-key", "inline-shell-action-2");
         navHelp.classList.add("absolute", "top-2", "left-2");
         navHelp.classList.toggle("hidden", Network.isWaitingForValidHeartbeat());
+        
     }
 
 

@@ -1,45 +1,74 @@
-import Panel from '/core/ui/panel-support.js';
+import Panel, { AnchorType } from '/core/ui/panel-support.js';
 import { getPlayerCardInfo } from '/core/ui/utilities/utilities-liveops.js';
 import { Icon } from '/core/ui/utilities/utilities-image.js';
-import { ScreenPauseMenu } from '/base-standard/ui/pause-menu/screen-pause-menu.js'
+import { displayRequestUniqueId } from '/core/ui/context-manager/display-handler.js';
 import DialogManager, { DialogSource } from '/core/ui/dialog-box/manager-dialog-box.js';
 import { InputEngineEventName } from '/core/ui/input/input-support.js';
 import { LowerCalloutEvent } from '/base-standard/ui/tutorial/tutorial-events.js';
 
 const PauseMenuCategory = 'screen-pause-menu';
+var Group;
+(function (Group) {
+    Group[Group["Primary"] = 0] = "Primary";
+    Group[Group["Secondary"] = 1] = "Secondary";
+})(Group || (Group = {}));
 
 class PrivusPauseMenu extends Panel {
     constructor(root) {
         super(root);
+        this.Root.setAttribute("data-audio-group-ref", "pause-menu");
+        this.buttonListener = (_) => {};
+
+        this.progressionListener = Privus.defaultFn(PauseMenuCategory, "onClickedProgression").bind(this);
         this.engineInputListener = Privus.defaultFn(PauseMenuCategory, "onEngineInput").bind(this);
+        
         this.buttons = new Set();
         this.slot = null;
-        this.queries = Object.freeze({
-            PrimaryHeader:   '.pause-menu__header-buttons>.pauselist',
-            SecondaryHeader: '.pause-menu__header-buttons>.morelist',
-            Primary:         '.pause-menu__main-buttons>.pauselist',
-            Secondary:       '.pause-menu__main-buttons>.morelist',
-            PrimaryFooter:   '.pause-menu__footer-buttons>.pauselist',
-            SecondaryFooter: '.pause-menu__footer-buttons>.morelist'
-        });
+        this.quickSaveButton = null;
+        this.saveButton = null;
+        this.loadButton = null;
+        this.restartButton = null;
+        this.currentLeft = null;
+        this.currentRight = null;
+        this.dialogId = displayRequestUniqueId();
+        this.animateInType = this.animateOutType = AnchorType.RelativeToRight;
+        this.enableOpenSound = true;
+        this.enableCloseSound = true;
+        
         this.styleGroup = Object.freeze({
-            PrimaryHeader:   0,
-            SecondaryHeader: 1,
-            Primary:         2,
-            Secondary:       3,
-            PrimaryFooter:   4,
-            SecondaryFooter: 5
+            Primary:         0,
+            Secondary:       1,
         });
-        console.error("WE HAVE LIFTOFF!");
-        this.addButton = Privus.defaultFn(PauseMenuCategory, "addButton").bind(this);
+
+        this.buttonFns = Object.freeze({
+            close:         this.close.bind(this),
+            noMoreTurns:   this.onNoMoreTurnsButton.bind(this),
+            retire:        this.onRetireButton.bind(this),
+            eventRules:    this.onEventRules.bind(this),
+            joinCode:      this.onJoinCodeButton.bind(this),
+            restart:       this.onRestartGame.bind(this),
+            quickSave:     this.onQuickSaveGameButton.bind(this),
+            save:          this.onSaveGameButton.bind(this),
+            load:          this.onLoadGameButton.bind(this),
+            options:       this.onOptionsButton.bind(this),
+            challenges:    this.onChallenges.bind(this),
+            social:        this.onSocialButton.bind(this),
+            exitToMenu:    this.onExitToMainMenuButton.bind(this),
+            exitToDesktop: this.onExitToDesktopButton.bind(this),
+        });
+
+        this.buttonUpdateFns = Object.freeze({
+            retire:  this.updateRetireButton.bind(this),
+            restart: this.updateRestartButton.bind(this),
+        });
     }
 
-    renderUIPlayerInfo(playerInfo)               { return Privus.privusFn(PauseMenuCategory, "renderUIPlayerInfo",        playerInfo); }
-    renderUIButtons(sectionQueries)              { return Privus.privusFn(PauseMenuCategory, "renderUIButtons",           sectionQueries); }
-    renderUIHeader(header)                       { return Privus.privusFn(PauseMenuCategory, "renderUIHeader",            header); }
-    renderUIGameInfo(gameInfo)                   { return Privus.privusFn(PauseMenuCategory, "renderUIGameInfo",          gameInfo); }
-    renderUIMapSeed(mapSeedInfo)                 { return Privus.privusFn(PauseMenuCategory, "renderUIMapSeed",           mapSeedInfo); }
-    renderUIGameBuildInfo(buildInfo)             { return Privus.privusFn(PauseMenuCategory, "renderUIGameBuildInfo",     buildInfo); }
+    renderUIPlayerInfo(playerInfo)                                                    { return Privus.privusFn(PauseMenuCategory, "renderUIPlayerInfo",    playerInfo); }
+    renderUIButtons(leftCol, rightCol, outerParent, listenerFns, updateFns, newRowFn) { return Privus.privusFn(PauseMenuCategory, "renderUIButtons",       leftCol, rightCol, outerParent, listenerFns, updateFns, newRowFn); }
+    renderUIHeader(header)                                                            { return Privus.privusFn(PauseMenuCategory, "renderUIHeader",        header); }
+    renderUIGameInfo(gameInfo)                                                        { return Privus.privusFn(PauseMenuCategory, "renderUIGameInfo",      gameInfo); }
+    renderUIMapSeed(mapSeedInfo)                                                      { return Privus.privusFn(PauseMenuCategory, "renderUIMapSeed",       mapSeedInfo); }
+    renderUIGameBuildInfo(buildInfo)                                                  { return Privus.privusFn(PauseMenuCategory, "renderUIGameBuildInfo", buildInfo); }
 
     onLocalPlayerTurnBegin(retireButton) { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnBegin", retireButton); }
     onLocalPlayerTurnEnd(retireButton)   { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnEnd",   retireButton); }
@@ -61,13 +90,12 @@ class PrivusPauseMenu extends Panel {
 
         //Initialize all the pause menu ui (including the buttons)
         this.renderUIPlayerInfo(this.Root.querySelector(".pause-menu__player-info"));
-
-        const buttonArr = this.renderUIButtons(this.queries);
-        //Concat the array of sets into a single set of buttons
-        this.buttons = new Set(buttonArr.reduce(( arr, button ) => arr.concat([...button]), []));
-
+        
         this.Root.addEventListener(InputEngineEventName, this.engineInputListener);
         this.slot = this.Root.querySelector(".pauselist");
+
+        this.buttons = new Set(this.renderUIButtons(this.currentLeft, this.currentRight, this.slot, this.buttonFns, this.buttonUpdateFns, this.addRow.bind(this)));
+        console.info(Array.from(this.buttons).map(b => b.getAttribute('caption')));
 
         this.renderUIHeader(document.getElementById("pause-top"));
         this.renderUIGameInfo(this.Root.querySelector(".pause-menu__game-info"));
@@ -84,7 +112,8 @@ class PrivusPauseMenu extends Panel {
         waitForLayout(() => {
             if (!this.Root.isConnected) return;
             
-            const widths = [...this.buttons].map(b => b.getBoundingClientRect().width);
+            
+            const widths = Array.from(this.buttons).map(b => b.getBoundingClientRect().width);
             const width = Math.max(350, ...widths);
             for (let button of this.buttons)
                 button.style.widthPX = width;
@@ -94,20 +123,8 @@ class PrivusPauseMenu extends Panel {
 
 
 
-class DefaultPauseMenu extends Panel {//ScreenPauseMenu {
-    constructor(root) {
-        super(root);
-        this.styleGroup = Object.freeze({
-            PrimaryHeader:   0,
-            SecondaryHeader: 1,
-            Primary:         2,
-            Secondary:       3,
-            PrimaryFooter:   4,
-            SecondaryFooter: 5
-        });
-        this.disableClass = "disabled";
-        this.buttons = new Set();
-    }
+class DefaultPauseMenu {
+    constructor() {}
 
 
     renderUIPlayerInfo(playerInfo) {
@@ -120,24 +137,22 @@ class DefaultPauseMenu extends Panel {//ScreenPauseMenu {
         playerInfo.setAttribute("data-player-info", JSON.stringify(getPlayerCardInfo()));
         playerInfo.addEventListener("action-activate", this.progressionListener);
     }
-    renderUIButtons(sectionQueries) {
+    renderUIButtons(leftCol, rightCol, outerParent, listenerFns, updateFns, newRowFn) {
         const multiplayer = Configuration.getGame().isNetworkMultiplayer;
 
-        ///Resume
-        this.addButton("LOC_GENERIC_RESUME", this.closeButtonListener, this.styleGroup.PrimaryHeader, "none");
-        
-        ///Event Rules
-        if (Online.Metaprogression.isPlayingActiveEvent())
-            this.addButton("LOC_PAUSE_MENU_EVENT_RULES", this.onEventRules, this.styleGroup.Primary);
+        this.addRow();
 
-        ///Retire (only in singleplayer)
-        if (!multiplayer) {
+        ///Resume
+        this.addButton("LOC_GENERIC_RESUME", this.close.bind(this), this.styleGroup.Primary, "none");
+
+        if (Game.turn > 1) {
             //If there are no more turns, replace the retire button with a button that says so.
             const playerDefeated = Game.VictoryManager.getLatestPlayerDefeat(GameContext.localPlayerID) != DefeatTypes.NO_DEFEAT;
             if (Game.AgeProgressManager.isAgeOver || playerDefeated)
-                this.addButton("LOC_PAUSE_MENU_NOMORETURNS", this.onNoMoreTurnsButton, this.styleGroup.SecondaryHeader);
-            else {
-                const retireButton = this.addButton("LOC_PAUSE_MENU_RETIRE", this.onRetireButton, this.styleGroup.SecondaryHeader);
+                this.addButton("LOC_PAUSE_MENU_NOMORETURNS", this.onNoMoreTurnsButton, this.styleGroup.Secondary);
+            else if(!multiplayer) {
+                ///Retire (only in singleplayer)
+                const retireButton = this.addButton("LOC_PAUSE_MENU_RETIRE", this.onRetireButton, this.styleGroup.Secondary);
                 retireButton.classList.add("pause-retire-button");
 
                 //Disable the retire button if it isn't the player's turn
@@ -147,42 +162,72 @@ class DefaultPauseMenu extends Panel {//ScreenPauseMenu {
             }
         }
 
+        
+        this.adjustItems();
+        this.addDivider();
+        this.addRow();
+
+        ///Event Rules
+        if (Online.Metaprogression.isPlayingActiveEvent())
+            this.addButton("LOC_PAUSE_MENU_EVENT_RULES", this.onEventRules, this.styleGroup.Primary);
+
+        //Join Code/Restart (in multiplayer and singleplayer, respectively)
+        if (multiplayer) {
+            this.addButton(Locale.compose("LOC_PAUSE_MENU_COPY_JOIN_CODE", Network.getJoinCode()), this.onJoinCodeButton, this.styleGroup.Secondary);
+        } else {
+            this.restartButton = this.addButton("LOC_PAUSE_MENU_RESTART", this.onRestartGame, this.styleGroup.Secondary);
+            this.updateRestartButton(this.restartButton);
+        }
+
+        this.adjustItems();
+        this.addDivider();
+        this.addRow();
+
         ///Quick Save
         this.quickSaveButton = this.addButton("LOC_PAUSE_MENU_QUICK_SAVE", this.onQuickSaveGameButton, this.styleGroup.Secondary);
         
         ///Save
         this.saveButton = this.addButton("LOC_PAUSE_MENU_SAVE", this.onSaveGameButton, this.styleGroup.Primary, "none");
 
+        this.adjustItems();
+        this.addRow();
+
         ///Load (only in singleplayer)
         if(!multiplayer)
             this.loadButton = this.addButton("LOC_PAUSE_MENU_LOAD", this.onLoadGameButton, this.styleGroup.Primary, "none");
 
-        ///Challenges
-        if (Network.isMetagamingAvailable())
-            this.addButton("LOC_PROFILE_TAB_CHALLENGES", this.onChallenges, this.styleGroup.Primary);
-
         ///Options
-        this.addButton("LOC_PAUSE_MENU_OPTIONS", this.onOptionsButton, this.styleGroup.Primary, "data-audio-options-activate");
+        this.addButton("LOC_PAUSE_MENU_OPTIONS", this.onOptionsButton, this.styleGroup.Secondary, "data-audio-options-activate");
 
-        ///Social
-        if (Network.supportsSSO())
-            this.addButton("LOC_UI_MP_SOCIAL_BUTTON_LABEL", this.onSocialButton, this.styleGroup.Primary, "data-audio-social-activate");
+        this.adjustItems();
+        this.addDivider();
+        
+        if (Network.isMetagamingAvailable() || Network.supportsSSO()) {
+            this.addRow(); 
+            ///Challenges
+            if (Network.isMetagamingAvailable())
+                this.addButton("LOC_PROFILE_TAB_CHALLENGES", this.onChallenges, this.styleGroup.Primary);
 
-        ///Show More
-        this.showMoreElement = this.addButton("LOC_PAUSE_MENU_SHOW_MORE", this.onToggleShowMoreOptions, this.styleGroup.Primary);
+            ///Social
+            if (Network.supportsSSO())
+                this.addButton("LOC_UI_MP_SOCIAL_BUTTON_LABEL", this.onSocialButton, this.styleGroup.Secondary, "data-audio-social-activate");
+            
+            this.addDivider();
+        }
+        
+        this.adjustItems();
+        this.addRow();
 
         ///Quit to Menu
-        this.addButton("LOC_PAUSE_MENU_QUIT_TO_MENU", this.onExitToMainMenuButton, this.styleGroup.PrimaryFooter);
-
-        ///Copy Join Code
-        if (Configuration.getGame().isAnyMultiplayer)
-            this.addButton(Locale.compose("LOC_PAUSE_MENU_COPY_JOIN_CODE", Network.getJoinCode()), this.onJoinCodeButton, this.styleGroup.Secondary);
+        this.addButton("LOC_PAUSE_MENU_QUIT_TO_MENU", this.onExitToMainMenuButton, this.styleGroup.Primary);
 
         //Exit to Desktop
         if (UI.canExitToDesktop())
-            this.addButton("LOC_PAUSE_MENU_QUIT_TO_DESKTOP", this.onExitToDesktopButton, this.styleGroup.SecondaryFooter);
+            this.addButton("LOC_PAUSE_MENU_QUIT_TO_DESKTOP", this.onExitToDesktopButton, this.styleGroup.Secondary);
 
-        return this.buttons;
+        this.addDivider();
+        
+        return Array.from(this.buttons);
     }
     renderUIHeader(header) {        
         //Set header background
