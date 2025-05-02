@@ -17,8 +17,8 @@ class PrivusOptions extends Panel {
         this.slotGroup = document.createElement('fxs-slot-group');
         this.dialogId = displayRequestUniqueId();
         this.categoryData = Object.assign(CategoryData, { mods: {
-            title: "LOC_UI_MP_HEADER_MODS",
-            description: "LOC_OPTIONS_REMAP_KBM_TEXT" //temp
+            title: "LOC_UI_CONTENT_MGR_SUBTITLE",
+            description: "LOC_UI_CONTENT_MGR_SUBTITLE_DESCRIPTION"
         }});
     }
 

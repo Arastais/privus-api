@@ -2,8 +2,8 @@
 <Mod id="example-mods-content" version="1" xmlns="ModInfo">
 	<Properties>
 		<Name>Example Privus API Mods Content</Name>
-		<Description>An example mod that showcases the Privus API by changing the mods content panel</Description>
-		<Authors>Arastais</Authors>
+		<Description>An example mod that showcases the Privus API by changing the mods content panel. Based on TCS' Improved Mod Page mod.</Description>
+		<Authors>Arastais, thecrazyscotsman</Authors>
 		<Package>Mod</Package>
 		<AffectsSavedGames>0</AffectsSavedGames>
 	</Properties>
@@ -18,6 +18,8 @@
 			<Actions>
 				<UIScripts>
 					<Item>example-mods-content.js</Item>
+
+					<Item>options.js</Item>
 				</UIScripts>
 
 				<ImportFiles>
@@ -39,6 +41,16 @@
 				<UpdateIcons>
 					<Item>icons/icons.xml</Item>
 				</UpdateIcons>
+				<UpdateText>
+					<Item>text/en_US.xml</Item>
+				</UpdateText>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="example-mods-content-game-always" scope="game" criteria="always">
+			<Actions>
+				<UIScripts>
+					<Item>options.js</Item>
+				</UIScripts>
 				<UpdateText>
 					<Item>text/en_US.xml</Item>
 				</UpdateText>

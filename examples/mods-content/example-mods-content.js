@@ -305,6 +305,5 @@ class ExampleModsContent {
     }
 }
 
-ModOptions.addOption('example-mods-content', 'show-core', OptionType.Checkbox, "LOC_EXAMPLE_MOD_OPTIONS_SHOW_CORE", "LOC_EXAMPLE_MOD_OPTIONS_SHOW_CORE_DESC", false);
 // Register our class as this mod's changes to the pause menu
 Privus.defineModClass('example', ModsContentCategory, ExampleModsContent);

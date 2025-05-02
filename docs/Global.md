@@ -5,8 +5,8 @@ Each mod can define and access any custom options specific to that mod. Each opt
 - The `Option` type (along with necessary supporting types) is defined under `/core/ui/options/options-helper.ts`. The most relevant parameter is `currentValue`. Most other parameters can be set manually using the `additionalProperties` arguement of `ModOptions.addOption`.
 - Possible values for the an OptionType argument are `OptionType.Editor`, `OptionType.Checkbox`, `OptionType.Dropdown`, `OptionType.Slider`, `OptionType.Stepper`, and `OptionType.Switch`. The `OptionType` enum is defined under `/core/ui/options/model-options.ts`.
 - Any `modId` arguement must **exactly** match the modId listed under the mod's associated `.modinfo` file.
-- The `ModOptions.addOption(...)` function should be declared in the global scope (i.e. the same level you have your `Privus.defineModClass()` declaration).
-- Unlike `Privus`, `ModOptions` must be imported using `import ModOptions from '/privus-api/privus-options-manager.js';`
+- The `ModOptions.addOption(...)` function should be declared in the global scope (i.e. the same level you have your `Privus.defineModClass()` declaration). In order for the option to always be present in the in game options menu, the decleration also needs to be in a file thats included in both the game and shell scopes of the game.
+- Unlike `PrivusControls`, `ModOptions` must be imported using `import ModOptions from '/privus-api/privus-options-manager.js';`
 
 ### Definitions
 ```ts

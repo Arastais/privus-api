@@ -6,6 +6,7 @@
 		<Authors>Arastais</Authors>
 		<Package>Mod</Package>
 		<AffectsSavedGames>0</AffectsSavedGames>
+		<SpecialThanks>beezany for helping me with localStorage cope</SpecialThanks>
 	</Properties>
 	<Dependencies>
 		<Mod id="core" title="LOC_MODULE_CORE_NAME"/>
