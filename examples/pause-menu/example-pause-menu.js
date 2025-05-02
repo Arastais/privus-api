@@ -41,6 +41,7 @@ class ExamplePauseMenu {
         return button;
     }
 
+    
     /* API functions */
     renderUIButtons(modIds, leftCol, rightCol, outerParent, listenerFns, updateFns, newRowFn) {
         const multiplayer = Configuration.getGame().isNetworkMultiplayer;
@@ -118,7 +119,8 @@ class ExamplePauseMenu {
         console.info(`[EXAMPLE-PAUSE-MENU] Mods that have already overriden the map seed ui: ${modIds}`);
         
         if (!mapSeedInfo) throw new Error('Could not find map seed element!');
-        mapSeedInfo.textContent = `<Example Map Seed>`;
+        Privus.defaultFn(PauseMenuCategory, 'renderUIMapSeed').call(Privus.getInstance(PauseMenuCategory), mapSeedInfo);
+        //mapSeedInfo.textContent = `<Example Map Seed>`;
     }
 
     //Change the game info text
@@ -126,7 +128,8 @@ class ExamplePauseMenu {
         console.info(`[EXAMPLE-PAUSE-MENU] Mods that have already overriden the build info ui: ${modIds}`);
 
         if(!gameInfo) throw new Error('Could not find game info element!');
-        gameInfo.textContent = `<Example Game Info>`;
+        Privus.defaultFn(PauseMenuCategory, 'renderUIGameInfo').call(Privus.getInstance(PauseMenuCategory), gameInfo);
+        //gameInfo.textContent = `<Example Game Info>`;
     }
 }
 
