@@ -22,10 +22,10 @@ onModClicked(modIds, event) {
     if (!(event.target instanceof HTMLElement)) return;
     
     const selectedHandle = parseInt(event.target.getAttribute('mod-handle') ?? "");
-    Privus.setMember(ModsContentCategory, "selectedModHandle", selectedHandle);
+    PrivusControls.setMember(ModsContentCategory, "selectedModHandle", selectedHandle);
     
-    Privus.defaultFn(ModsContentCategory, "updateModDetails").call(Privus.getInstance(ModsContentCateogry), selectedHandle);
-    Privus.defaultFn(ModsContentCategory, "updateNavTray").call(Privus.getInstance(ModsContentCategory));
+    PrivusControls.defaultFn(ModsContentCategory, "updateModDetails").call(PrivusControls.getInstance(ModsContentCateogry), selectedHandle);
+    PrivusControls.defaultFn(ModsContentCategory, "updateNavTray").call(PrivusControls.getInstance(ModsContentCategory));
 }
 ```
 

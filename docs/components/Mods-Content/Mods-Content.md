@@ -2,7 +2,7 @@ ModsContentCategory defined in `/privus-api/ui/shell/mods-content/privus-mods-co
 <hr>
 
 ```js
-Privus.defineModClass(`<mod-id>`, ModsContentCategory, <ModClass>);
+PrivusControls.defineModClass(`<mod-id>`, ModsContentCategory, <ModClass>);
 ```
 <hr>
 Describes the in-game mods/add-ons panel UI
@@ -59,5 +59,5 @@ class MyModsContent {
     }
 }
 
-Privus.defineModClass('my-mod', ModsContentCategory, MyModsContent);
+PrivusControls.defineModClass('my-mod', ModsContentCategory, MyModsContent);
 ```

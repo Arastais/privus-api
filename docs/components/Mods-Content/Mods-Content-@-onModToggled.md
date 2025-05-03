@@ -21,7 +21,7 @@ This function is also responsible for enabling or disabling the mod itself.
 onModToggled(modIds, event) {
     if (!(event.target instanceof HTMLElement)) return;
     
-    const selectedHandle = Privus.getMember(ModsContentCategory, "selectedModHandle");
+    const selectedHandle = PrivusControls.getMember(ModsContentCategory, "selectedModHandle");
     if (!selectedHandle) throw new Error(`[PRIVUS-DEFAULT] Invalid mod handle '${selectedHandle}'`);
     
     const modHandles = [selectedHandle];
@@ -33,12 +33,12 @@ onModToggled(modIds, event) {
         
     event.target.setAttribute('disabled', 'true');
 
-    const entries = Privus.getMember(ModsContentCategory, "modEntries");
+    const entries = PrivusControls.getMember(ModsContentCategory, "modEntries");
     const entry = Array.from(entries).find(elem => elem.getAttribute('mod-handle') === selectedHandle.toString());
-    Privus.defaultFn(ModsContentCategory, "updateModDetails").call(Privus.getInstance(ModsContentCateogry), selectedHandle);
-    Privus.defaultFn(ModsContentCategory, "updateModEntry").call(Privus.getInstance(ModsContentCateogry), selectedHandle, entry);
-    Privus.defaultFn(ModsContentCategory, "updateModToggleButton").call(Privus.getInstance(ModsContentCateogry), selectedHandle);
-    Privus.defaultFn(ModsContentCategory, "updateNavTray").call(Privus.getInstance(ModsContentCategory));
+    PrivusControls.defaultFn(ModsContentCategory, "updateModDetails").call(PrivusControls.getInstance(ModsContentCateogry), selectedHandle);
+    PrivusControls.defaultFn(ModsContentCategory, "updateModEntry").call(PrivusControls.getInstance(ModsContentCateogry), selectedHandle, entry);
+    PrivusControls.defaultFn(ModsContentCategory, "updateModToggleButton").call(PrivusControls.getInstance(ModsContentCateogry), selectedHandle);
+    PrivusControls.defaultFn(ModsContentCategory, "updateNavTray").call(PrivusControls.getInstance(ModsContentCategory));
 }
 ```
 

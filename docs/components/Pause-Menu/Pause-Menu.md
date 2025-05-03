@@ -2,7 +2,7 @@ PauseMenuCategory defined in `/privus-api/ui/pause-menu/privus-pause-menu.js`
 <hr>
 
 ```js
-Privus.defineModClass(`<mod-id>`, PauseMenuCategory, <ModClass>);
+PrivusControls.defineModClass(`<mod-id>`, PauseMenuCategory, <ModClass>);
 ```
 <hr>
 Describes the in-game pause menu UI
@@ -54,5 +54,5 @@ class MyPauseMenu {
 }
 
 
-Privus.defineModClass('my-mod', PauseMenuCategory, MyPauseMenu);
+PrivusControls.defineModClass('my-mod', PauseMenuCategory, MyPauseMenu);
 ```

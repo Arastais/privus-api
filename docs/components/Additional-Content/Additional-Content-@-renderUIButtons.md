@@ -33,7 +33,7 @@ makeButtonFn(id, caption, onClickFn, tooltip = true) {
     return button;
 }
 ```
-where `this` is equivalent to `Privus.getInstance(AdditionalContentCategory)`.
+where `this` is equivalent to `PrivusControls.getInstance(AdditionalContentCategory)`.
 
 ### Example
 
@@ -47,7 +47,7 @@ renderUIButtons(modIds, makeButtonFn) {
     const buttons = [];
     
     if(UI.supportsDLC())
-        buttons.push(makeButtonFn('mods', 'LOC_UI_CONTENT_MGR_SUBTITLE', Privus.defaultFn(AdditionalContentCategory, "onAdditionalContentButtonPressed")));
+        buttons.push(makeButtonFn('mods', 'LOC_UI_CONTENT_MGR_SUBTITLE', PrivusControls.defaultFn(AdditionalContentCategory, "onAdditionalContentButtonPressed")));
     
     buttons.push(divider);
     
@@ -55,14 +55,14 @@ renderUIButtons(modIds, makeButtonFn) {
     const giftbox = makeButtonFn('giftbox', 'LOC_REWARD_RECEIVED',         this.onGiftbox, false);
     giftbox.classList.add('hidden');
     buttons.push(giftbox);
-    buttons.push(makeButtonFn('credits', 'LOC_MAIN_MENU_CREDITS', Privus.defaultFn(AdditionalContentCategory, "onCredits")));
-    buttons.push(makeButtonFn('legal',   'LOC_UI_LEGAL_TITLE',    Privus.defaultFn(AdditionalContentCategory, "onLegal"  )));
+    buttons.push(makeButtonFn('credits', 'LOC_MAIN_MENU_CREDITS', PrivusControls.defaultFn(AdditionalContentCategory, "onCredits")));
+    buttons.push(makeButtonFn('legal',   'LOC_UI_LEGAL_TITLE',    PrivusControls.defaultFn(AdditionalContentCategory, "onLegal"  )));
 
     buttons.push(divider.cloneNode());
 
     if(!UI.shouldDisplayBenchmarkingTools()) return buttons;
-    buttons.push(makeButtonFn('benchmark-graphics', 'LOC_MAIN_MENU_BENCHMARK_GRAPHICS', Privus.defaultFn(AdditionalContentCategory, "onGraphicsBenchmark").bind(Privus.getInstance(AdditionalContentCategory))));
-    buttons.push(makeButtonFn('benchmark-ai',       'LOC_MAIN_MENU_BENCHMARK_AI',       Privus.defaultFn(AdditionalContentCategory, "onAiBenchmark"      ).bind(Privus.getInstance(AdditionalContentCategory))));
+    buttons.push(makeButtonFn('benchmark-graphics', 'LOC_MAIN_MENU_BENCHMARK_GRAPHICS', PrivusControls.defaultFn(AdditionalContentCategory, "onGraphicsBenchmark").bind(PrivusControls.getInstance(AdditionalContentCategory))));
+    buttons.push(makeButtonFn('benchmark-ai',       'LOC_MAIN_MENU_BENCHMARK_AI',       PrivusControls.defaultFn(AdditionalContentCategory, "onAiBenchmark"      ).bind(PrivusControls.getInstance(AdditionalContentCategory))));
     return buttons;
 }
 ```

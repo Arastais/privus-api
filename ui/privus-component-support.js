@@ -166,7 +166,7 @@ class PrivusComponentManager {
     }
 }
 
-const Privus = new PrivusComponentManager();
+const PrivusControls = new PrivusComponentManager();
 
 ComponentRoot.prototype.initialize = function() {
     if(this._isInitialized) return;
@@ -178,9 +178,9 @@ ComponentRoot.prototype.initialize = function() {
 
     console.debug('[PRIVUS] Initializing root component');
 
-    Privus.createModInstances(this.typeName, this);
+    PrivusControls.createModInstances(this.typeName, this);
     
-    const baseType = Privus.getDefaultType(this.typeName);
+    const baseType = PrivusControls.getDefaultType(this.typeName);
     const def = Controls.getDefinition(this.typeName);
     if(!def) return;
     if(!def.createDefaultInstance || def.createDefaultInstance === null)
@@ -216,7 +216,7 @@ ComponentRoot.prototype.initialize = function() {
             if(typeof def.createDefaultInstance.prototype[propName] === "function" && (!def.createInstance.prototype[propName] || (def.override && def.override.includes(propName))))
                 def.createInstance.prototype[propName] = def.createDefaultInstance.prototype[propName];
     const component = new def.createInstance(this);
-    Privus.setInstance(this.typeName, component);
+    PrivusControls.setInstance(this.typeName, component);
     this._component = component;
     
 
@@ -238,7 +238,7 @@ ComponentRoot.prototype.initialize = function() {
 };
 
 ComponentManager.prototype.define = function (name, definition) {
-    Privus.defineDefaultType(name, definition.createInstance);
-    const privusDef = Privus.getDefinition(name);
+    PrivusControls.defineDefaultType(name, definition.createInstance);
+    const privusDef = PrivusControls.getDefinition(name);
     baseDefineFn.call(this, name, privusDef ?? definition);
 };

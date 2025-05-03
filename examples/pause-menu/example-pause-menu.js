@@ -119,7 +119,7 @@ class ExamplePauseMenu {
         console.info(`[EXAMPLE-PAUSE-MENU] Mods that have already overriden the map seed ui: ${modIds}`);
         
         if (!mapSeedInfo) throw new Error('Could not find map seed element!');
-        Privus.defaultFn(PauseMenuCategory, 'renderUIMapSeed').call(Privus.getInstance(PauseMenuCategory), mapSeedInfo);
+        PrivusControls.defaultFn(PauseMenuCategory, 'renderUIMapSeed').call(PrivusControls.getInstance(PauseMenuCategory), mapSeedInfo);
         //mapSeedInfo.textContent = `<Example Map Seed>`;
     }
 
@@ -128,10 +128,10 @@ class ExamplePauseMenu {
         console.info(`[EXAMPLE-PAUSE-MENU] Mods that have already overriden the build info ui: ${modIds}`);
 
         if(!gameInfo) throw new Error('Could not find game info element!');
-        Privus.defaultFn(PauseMenuCategory, 'renderUIGameInfo').call(Privus.getInstance(PauseMenuCategory), gameInfo);
+        PrivusControls.defaultFn(PauseMenuCategory, 'renderUIGameInfo').call(PrivusControls.getInstance(PauseMenuCategory), gameInfo);
         //gameInfo.textContent = `<Example Game Info>`;
     }
 }
 
 // Register our class as this mod's changes to the pause menu
-Privus.defineModClass('example', PauseMenuCategory, ExamplePauseMenu);
+PrivusControls.defineModClass('example', PauseMenuCategory, ExamplePauseMenu);

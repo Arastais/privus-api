@@ -7,7 +7,7 @@ class ExampleMainMenu {
 
         //Set the show and hide online ui functions to do nothing
         //Ideally these functions would be part of the API but this is a easy temporary workaround
-        const defaultClass = Privus.getDefinition(MainMenuCategory).createDefaultInstance;
+        const defaultClass = PrivusControls.getDefinition(MainMenuCategory).createDefaultInstance;
         defaultClass.prototype.showOnlineFeaturesUI = function() {};
         defaultClass.prototype.hideOnlineFeaturesUI = function() {};
     }
@@ -17,7 +17,7 @@ class ExampleMainMenu {
         console.info(`[EXAMPLE-MAIN-MENU] Mods that have already overriden the carousel: ${modIds}`);
         
         //Render the ui carousel normally
-        Privus.defaultFn(MainMenuCategory, "renderUICarousel").call(Privus.getInstance(MainMenuCategory), carouselMain);
+        PrivusControls.defaultFn(MainMenuCategory, "renderUICarousel").call(PrivusControls.getInstance(MainMenuCategory), carouselMain);
         
         //Then hide it by hiding all its direct children
         for(const child of carouselMain.children)
@@ -70,7 +70,7 @@ class ExampleMainMenu {
             let onClickedFn = undefined;
             //Use the default button function if it's not an 'aditional-content' button
             if(buttonDef.name !== 'additional-content')
-                onClickedFn = functionDefs[buttonDef.name].bind(Privus.getInstance(MainMenuCategory));
+                onClickedFn = functionDefs[buttonDef.name].bind(PrivusControls.getInstance(MainMenuCategory));
             //Otherwise choose the function based on its text key
             else {
                 switch(buttonDef.caption) {
@@ -78,13 +78,13 @@ class ExampleMainMenu {
                     onClickedFn = this.showSocialPage.bind(this);
                     break;
                 case 'LOC_MAIN_MENU_META_PROGRESSION':
-                    onClickedFn = Privus.defaultFn(MainMenuCategory, "showProfilePage").bind(Privus.getInstance(MainMenuCategory));
+                    onClickedFn = PrivusControls.defaultFn(MainMenuCategory, "showProfilePage").bind(PrivusControls.getInstance(MainMenuCategory));
                     break;
                 case 'LOC_UI_CONTENT_MGR_TITLE':
-                    onClickedFn = Privus.defaultFn(MainMenuCategory, "openExtras").bind(Privus.getInstance(MainMenuCategory));
+                    onClickedFn = PrivusControls.defaultFn(MainMenuCategory, "openExtras").bind(PrivusControls.getInstance(MainMenuCategory));
                     break;
                 case 'LOC_UI_LINK_ACCOUNT_SUBTITLE':
-                    onClickedFn = Privus.defaultFn(MainMenuCategory, "onClickedAccount").bind(Privus.getInstance(MainMenuCategory));
+                    onClickedFn = PrivusControls.defaultFn(MainMenuCategory, "onClickedAccount").bind(PrivusControls.getInstance(MainMenuCategory));
                     break;
                 default:
                     throw new Error(buttonDef.caption);
@@ -92,7 +92,7 @@ class ExampleMainMenu {
             }
             
             button.addEventListener('action-activate', () => { 
-                if (Privus.defaultFn(MainMenuCategory, "canPerformInputs").call(Privus.getInstance(MainMenuCategory))) 
+                if (PrivusControls.defaultFn(MainMenuCategory, "canPerformInputs").call(PrivusControls.getInstance(MainMenuCategory))) 
                     onClickedFn(); 
             }, {});
             slot.appendChild(button);
@@ -118,8 +118,8 @@ class ExampleMainMenu {
 
     /* Event functions */
     onReturnedToMainMenu(modIds) {
-        Privus.defaultFn(MainMenuCategory, "onReturnedToMainMenu").call(Privus.getInstance(MainMenuCategory));
-        Privus.getInstance(MainMenuCategory).buildInfo.classList.add("hidden");
+        PrivusControls.defaultFn(MainMenuCategory, "onReturnedToMainMenu").call(PrivusControls.getInstance(MainMenuCategory));
+        PrivusControls.getInstance(MainMenuCategory).buildInfo.classList.add("hidden");
     }
 
 
@@ -145,7 +145,7 @@ class ExampleMainMenu {
     renderThenHide(elementName, ...args) {
         //Render normally
         const renderFnName = "renderUI" + String(elementName[0]).toUpperCase() + String(elementName).slice(1);
-        Privus.defaultFn(MainMenuCategory, renderFnName).call(Privus.getInstance(MainMenuCategory), ...args);
+        PrivusControls.defaultFn(MainMenuCategory, renderFnName).call(PrivusControls.getInstance(MainMenuCategory), ...args);
         
         //Hide and disable the main element
         const element = args[0];
@@ -154,4 +154,4 @@ class ExampleMainMenu {
 }
 
 // Register our class as this mod's changes to the pause menu
-Privus.defineModClass('example', MainMenuCategory, ExampleMainMenu);
+PrivusControls.defineModClass('example', MainMenuCategory, ExampleMainMenu);

@@ -86,7 +86,7 @@ class MyPauseMenu {
 
 Register your class with the Privus API using your mod's id
 ```js
-Privus.defineModClass('my-mod', PauseMenuCategory, MyPauseMenu);
+PrivusControls.defineModClass('my-mod', PauseMenuCategory, MyPauseMenu);
 ```
 
 <br>
@@ -130,7 +130,7 @@ class ExamplePauseMenu {
 }
 
 // Register our class as this mod's changes to the pause menu
-Privus.defineModClass('example', PauseMenuCategory, ExamplePauseMenu);
+PrivusControls.defineModClass('example', PauseMenuCategory, ExamplePauseMenu);
 ```
 
 The full example mod can be seen in [examples/pause-menu](examples/pause-menu/)

@@ -27,7 +27,7 @@ updateModDetails(modIds, modHandle) {
         this.modDateText.textContent = Locale.compose("LOC_UI_MOD_DATE", modInfo.created);
 
     if (!modInfo.dependsOn) {
-        Privus.defaultFn(ModsContentCategory, "updateModToggleButton").bind(Privus.getInstance(ModsContentCategory), modHandle);
+        PrivusControls.defaultFn(ModsContentCategory, "updateModToggleButton").bind(PrivusControls.getInstance(ModsContentCategory), modHandle);
         return;
     }
 
@@ -40,7 +40,7 @@ updateModDetails(modIds, modHandle) {
         modDependenciesContent.appendChild(depElement);
     });
 
-    Privus.defaultFn(ModsContentCategory, "updateModToggleButton").bind(Privus.getInstance(ModsContentCategory), modHandle);
+    PrivusControls.defaultFn(ModsContentCategory, "updateModToggleButton").bind(PrivusControls.getInstance(ModsContentCategory), modHandle);
 }
 ```
 

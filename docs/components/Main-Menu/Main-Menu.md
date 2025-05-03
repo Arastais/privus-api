@@ -2,7 +2,7 @@ MainMenuCategory defined in `/privus-api/ui/shell/main-menu/privus-main-menu.js`
 <hr>
 
 ```js
-Privus.defineModClass(`<mod-id>`, MainMenuCategory, <ModClass>);
+PrivusControls.defineModClass(`<mod-id>`, MainMenuCategory, <ModClass>);
 ```
 <hr>
 Describes the in-game main menu UI
@@ -64,5 +64,5 @@ class MyMainMenu {
 }
 
 
-Privus.defineModClass('my-mod', MainMenuCategory, MyMainMenu);
+PrivusControls.defineModClass('my-mod', MainMenuCategory, MyMainMenu);
 ```

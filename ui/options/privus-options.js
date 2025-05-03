@@ -23,13 +23,13 @@ class PrivusOptions extends Panel {
     }
 
     //No actual API yet
-    onDefaultOptions(event) { Privus.privusFn(OptionsCategory, "onDefaultOptions", event); }
-    onConfirmOptions(event) { Privus.privusFn(OptionsCategory, "onConfirmOptions", event); }
-    onCancelOptions(event)  { Privus.privusFn(OptionsCategory, "onCancelOptions",  event); }
+    onDefaultOptions(event) { PrivusControls.privusFn(OptionsCategory, "onDefaultOptions", event); }
+    onConfirmOptions(event) { PrivusControls.privusFn(OptionsCategory, "onConfirmOptions", event); }
+    onCancelOptions(event)  { PrivusControls.privusFn(OptionsCategory, "onCancelOptions",  event); }
 
-    onOptionsTabSelected(event) { Privus.privusFn(OptionsCategory, "onOptionsTabSelected", event); }
+    onOptionsTabSelected(event) { PrivusControls.privusFn(OptionsCategory, "onOptionsTabSelected", event); }
 
-    onEngineInput(event) { Privus.privusFn(OptionsCategory, "onEngineInput", event); }
+    onEngineInput(event) { PrivusControls.privusFn(OptionsCategory, "onEngineInput", event); }
 }
 
 class DefaultOptions {
@@ -158,7 +158,7 @@ class DefaultOptions {
 }
 
 
-Privus.define(OptionsCategory, {
+PrivusControls.define(OptionsCategory, {
     createInstance: PrivusOptions,
     createDefaultInstance: DefaultOptions,
     description: 'Game options',

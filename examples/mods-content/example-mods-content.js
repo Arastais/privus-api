@@ -210,7 +210,7 @@ class ExampleModsContent {
         const modUrlText = MustGetElement('.mod-url', this._root);
         modUrlText.classList.toggle('hidden', !modUrl);
         if (!modUrl) {
-            Privus.defaultFn(ModsContentCategory, "updateModToggleButton").call(Privus.getInstance(ModsContentCategory), modHandle);
+            PrivusControls.defaultFn(ModsContentCategory, "updateModToggleButton").call(PrivusControls.getInstance(ModsContentCategory), modHandle);
             return;
         }
 		modUrlText.setAttribute('data-l10n-id', Locale.stylize("LOC_EXAMPLE_MOD_UI_MOD_URL"));
@@ -220,7 +220,7 @@ class ExampleModsContent {
 			modUrlText.setAttribute('data-tooltip-content', Locale.compose("LOC_EXAMPLE_MOD_UI_MOD_URL_TOOLTIP_COPIED"));
         });
 
-        Privus.defaultFn(ModsContentCategory, "updateModToggleButton").call(Privus.getInstance(ModsContentCategory), modHandle);
+        PrivusControls.defaultFn(ModsContentCategory, "updateModToggleButton").call(PrivusControls.getInstance(ModsContentCategory), modHandle);
     }
 
     updateModEntry(modIds, modHandle, entry) {
@@ -239,7 +239,7 @@ class ExampleModsContent {
 
     /* Non-API functions */
     onAllModsToggled(modIds, official, enable, event) {
-        const selectedHandle = Privus.getMember(ModsContentCategory, "selectedModHandle");
+        const selectedHandle = PrivusControls.getMember(ModsContentCategory, "selectedModHandle");
 
         this.mods.forEach((mod, index) => {
             if(!this.show(mod.handle)) return;
@@ -253,10 +253,10 @@ class ExampleModsContent {
                 Modding.enableMods([mod.handle], true);
             else return;
 
-            const entry = Array.from(Privus.getMember(ModsContentCategory, "modEntries")).find(elem => elem.getAttribute('mod-handle') === mod.handle.toString());
+            const entry = Array.from(PrivusControls.getMember(ModsContentCategory, "modEntries")).find(elem => elem.getAttribute('mod-handle') === mod.handle.toString());
             if(mod.handle === selectedHandle) this.updateModDetails(modIds, mod.handle);
             this.updateModEntry(modIds, mod.handle, entry);
-            Privus.defaultFn(ModsContentCategory, "updateNavTray").call(Privus.getInstance(ModsContentCategory));
+            PrivusControls.defaultFn(ModsContentCategory, "updateNavTray").call(PrivusControls.getInstance(ModsContentCategory));
         
             //We need to "re-sync" the mod info in Modding with our mod info
             this.mods[index] = Modding.getModInfo(mod.handle);
@@ -306,4 +306,4 @@ class ExampleModsContent {
 }
 
 // Register our class as this mod's changes to the pause menu
-Privus.defineModClass('example', ModsContentCategory, ExampleModsContent);
+PrivusControls.defineModClass('example', ModsContentCategory, ExampleModsContent);

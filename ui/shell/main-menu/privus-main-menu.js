@@ -21,15 +21,15 @@ class PrivusMainMenu extends Component {
     constructor(root) {
         super(root);
         this.functionDefs = {
-            'continue':           Privus.defaultFn(MainMenuCategory, "goContinue"     ),
-            'create-game':        Privus.defaultFn(MainMenuCategory, "openCreateGame" ),
-            'load-game':          Privus.defaultFn(MainMenuCategory, "openLoadGame"   ),
-            'events':             Privus.defaultFn(MainMenuCategory, "openEvents"     ),
-            'multiplayer':        Privus.defaultFn(MainMenuCategory, "openMultiplayer"), 
-            'store':              Privus.defaultFn(MainMenuCategory, "openStore"      ), 
-            'additional-content': Privus.defaultFn(MainMenuCategory, "openExtras"     ), 
-            'options':            Privus.defaultFn(MainMenuCategory, "openOptions"    ), 
-            'exit':               Privus.defaultFn(MainMenuCategory, "exitToDesktop"  ), 
+            'continue':           PrivusControls.defaultFn(MainMenuCategory, "goContinue"     ),
+            'create-game':        PrivusControls.defaultFn(MainMenuCategory, "openCreateGame" ),
+            'load-game':          PrivusControls.defaultFn(MainMenuCategory, "openLoadGame"   ),
+            'events':             PrivusControls.defaultFn(MainMenuCategory, "openEvents"     ),
+            'multiplayer':        PrivusControls.defaultFn(MainMenuCategory, "openMultiplayer"), 
+            'store':              PrivusControls.defaultFn(MainMenuCategory, "openStore"      ), 
+            'additional-content': PrivusControls.defaultFn(MainMenuCategory, "openExtras"     ), 
+            'options':            PrivusControls.defaultFn(MainMenuCategory, "openOptions"    ), 
+            'exit':               PrivusControls.defaultFn(MainMenuCategory, "exitToDesktop"  ), 
         };
         //"Inherited" properties        
         this.areLegalDocsAccepted = false;
@@ -57,50 +57,50 @@ class PrivusMainMenu extends Component {
         
         
         //Function listeners
-        this.engineInputListener                  = Privus.defaultFn(MainMenuCategory, "onEngineInput"              ).bind(this);
-        this.carouselEngineInputListener          = Privus.defaultFn(MainMenuCategory, "onCarouselEngineInput"      ).bind(this);
-        this.navigateInputListener                = Privus.defaultFn(MainMenuCategory, "onNavigateInput"            ).bind(this);
-        this.qrCompletedListener                  = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
-        this.accountUpdatedListener               = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
-        this.accountLoggedOutListener             = Privus.defaultFn(MainMenuCategory, "onLogoutResults"            ).bind(this);
-        this.accountUnlinkedListener              = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
-        this.accountIconListener                  = Privus.defaultFn(MainMenuCategory, "onClickedAccount"           ).bind(this);
-        this.creditsOpenedListener                = Privus.defaultFn(MainMenuCategory, "onCreditsOpened"            ).bind(this);
-        this.creditsClosedListener                = Privus.defaultFn(MainMenuCategory, "onCreditsClosed"            ).bind(this);
-        this.returnToMainMenuListener             = Privus.defaultFn(MainMenuCategory, "returnedToMainMenu"         ).bind(this);
-        this.calibrateHDROpenedListener           = Privus.defaultFn(MainMenuCategory, "onCalibrateHDROpened"       ).bind(this);
-        this.calibrateHDRClosedListener           = Privus.defaultFn(MainMenuCategory, "onCalibrateHDRClosed"       ).bind(this);
-        this.eventsGoSinglePlayerListener         = Privus.defaultFn(MainMenuCategory, "onEventsGoSP"               ).bind(this);
-        this.eventsGoMultiPlayerListener          = Privus.defaultFn(MainMenuCategory, "onEventsGoMP"               ).bind(this);
-        this.eventsGoLoadListener                 = Privus.defaultFn(MainMenuCategory, "onEventsGoLoad"             ).bind(this);
-        this.eventsGoContinueListener             = Privus.defaultFn(MainMenuCategory, "onEventsGoContinue"         ).bind(this);
-        this.gameCreatorOpenedListener            = Privus.defaultFn(MainMenuCategory, "onGameCreatorOpened"        ).bind(this);
-        this.gameCreatorClosedListener            = Privus.defaultFn(MainMenuCategory, "onGameCreatorClosed"        ).bind(this);
-        this.startNewCampaignListener             = Privus.defaultFn(MainMenuCategory, "onNewCampaignStart"         ).bind(this);
-        this.promosDataReceivedListener           = Privus.defaultFn(MainMenuCategory, "resolvePromoDataReceived"   ).bind(this);
-        this.refreshPromosListener                = Privus.defaultFn(MainMenuCategory, "refreshPromos"              ).bind(this);
-        this.startGameSectionListener             = Privus.defaultFn(MainMenuCategory, "startSection"               ).bind(this);
-        this.spoPCompleteListener                 = Privus.defaultFn(MainMenuCategory, "onSPoPComplete"             ).bind(this);
-        this.spoPKickPromptCheckListener          = Privus.defaultFn(MainMenuCategory, "onSPoPKickPromptCheck"      ).bind(this);
-        this.spopHeartBeatReceivedListener        = Privus.defaultFn(MainMenuCategory, "onSPoPHeartBeatReceived"    ).bind(this);
-        this.onLaunchHostMPGameListener           = Privus.defaultFn(MainMenuCategory, "onLaunchToHostMPGame"       ).bind(this);
-        this.queryCompleteListener                = Privus.defaultFn(MainMenuCategory, "onQueryComplete"            ).bind(this);
-        this.saveLoadClosedListener               = Privus.defaultFn(MainMenuCategory, "onSaveLoadClosed"           ).bind(this);
-        this.connectionStatusChangedListener      = Privus.defaultFn(MainMenuCategory, "onConnectionStatusChanged"  ).bind(this);
-        this.liveEventsSettingsChangeListener     = Privus.defaultFn(MainMenuCategory, "onLiveEventsSettingsChanged").bind(this);
-        this.endStateListener                     = Privus.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
+        this.engineInputListener                  = PrivusControls.defaultFn(MainMenuCategory, "onEngineInput"              ).bind(this);
+        this.carouselEngineInputListener          = PrivusControls.defaultFn(MainMenuCategory, "onCarouselEngineInput"      ).bind(this);
+        this.navigateInputListener                = PrivusControls.defaultFn(MainMenuCategory, "onNavigateInput"            ).bind(this);
+        this.qrCompletedListener                  = PrivusControls.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
+        this.accountUpdatedListener               = PrivusControls.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
+        this.accountLoggedOutListener             = PrivusControls.defaultFn(MainMenuCategory, "onLogoutResults"            ).bind(this);
+        this.accountUnlinkedListener              = PrivusControls.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
+        this.accountIconListener                  = PrivusControls.defaultFn(MainMenuCategory, "onClickedAccount"           ).bind(this);
+        this.creditsOpenedListener                = PrivusControls.defaultFn(MainMenuCategory, "onCreditsOpened"            ).bind(this);
+        this.creditsClosedListener                = PrivusControls.defaultFn(MainMenuCategory, "onCreditsClosed"            ).bind(this);
+        this.returnToMainMenuListener             = PrivusControls.defaultFn(MainMenuCategory, "returnedToMainMenu"         ).bind(this);
+        this.calibrateHDROpenedListener           = PrivusControls.defaultFn(MainMenuCategory, "onCalibrateHDROpened"       ).bind(this);
+        this.calibrateHDRClosedListener           = PrivusControls.defaultFn(MainMenuCategory, "onCalibrateHDRClosed"       ).bind(this);
+        this.eventsGoSinglePlayerListener         = PrivusControls.defaultFn(MainMenuCategory, "onEventsGoSP"               ).bind(this);
+        this.eventsGoMultiPlayerListener          = PrivusControls.defaultFn(MainMenuCategory, "onEventsGoMP"               ).bind(this);
+        this.eventsGoLoadListener                 = PrivusControls.defaultFn(MainMenuCategory, "onEventsGoLoad"             ).bind(this);
+        this.eventsGoContinueListener             = PrivusControls.defaultFn(MainMenuCategory, "onEventsGoContinue"         ).bind(this);
+        this.gameCreatorOpenedListener            = PrivusControls.defaultFn(MainMenuCategory, "onGameCreatorOpened"        ).bind(this);
+        this.gameCreatorClosedListener            = PrivusControls.defaultFn(MainMenuCategory, "onGameCreatorClosed"        ).bind(this);
+        this.startNewCampaignListener             = PrivusControls.defaultFn(MainMenuCategory, "onNewCampaignStart"         ).bind(this);
+        this.promosDataReceivedListener           = PrivusControls.defaultFn(MainMenuCategory, "resolvePromoDataReceived"   ).bind(this);
+        this.refreshPromosListener                = PrivusControls.defaultFn(MainMenuCategory, "refreshPromos"              ).bind(this);
+        this.startGameSectionListener             = PrivusControls.defaultFn(MainMenuCategory, "startSection"               ).bind(this);
+        this.spoPCompleteListener                 = PrivusControls.defaultFn(MainMenuCategory, "onSPoPComplete"             ).bind(this);
+        this.spoPKickPromptCheckListener          = PrivusControls.defaultFn(MainMenuCategory, "onSPoPKickPromptCheck"      ).bind(this);
+        this.spopHeartBeatReceivedListener        = PrivusControls.defaultFn(MainMenuCategory, "onSPoPHeartBeatReceived"    ).bind(this);
+        this.onLaunchHostMPGameListener           = PrivusControls.defaultFn(MainMenuCategory, "onLaunchToHostMPGame"       ).bind(this);
+        this.queryCompleteListener                = PrivusControls.defaultFn(MainMenuCategory, "onQueryComplete"            ).bind(this);
+        this.saveLoadClosedListener               = PrivusControls.defaultFn(MainMenuCategory, "onSaveLoadClosed"           ).bind(this);
+        this.connectionStatusChangedListener      = PrivusControls.defaultFn(MainMenuCategory, "onConnectionStatusChanged"  ).bind(this);
+        this.liveEventsSettingsChangeListener     = PrivusControls.defaultFn(MainMenuCategory, "onLiveEventsSettingsChanged").bind(this);
+        this.endStateListener                     = PrivusControls.defaultFn(MainMenuCategory, "onAccountUpdated"           ).bind(this);
         this.motdCompletedListener                = this.updateMotd.bind(this);
 
         //Function definitions
 
-        this.onCarouselBack            = Privus.defaultFn(MainMenuCategory, "toggleCarouselMode"          ).bind(this);
-        this.onCarouselInteract        = Privus.defaultFn(MainMenuCategory, "interactWithSelectedPromo"   ).bind(this);
-        this.onActiveDeviceTypeChanged = Privus.defaultFn(MainMenuCategory, "updatePromoButtonsVisibility").bind(this);
+        this.onCarouselBack            = PrivusControls.defaultFn(MainMenuCategory, "toggleCarouselMode"          ).bind(this);
+        this.onCarouselInteract        = PrivusControls.defaultFn(MainMenuCategory, "interactWithSelectedPromo"   ).bind(this);
+        this.onActiveDeviceTypeChanged = PrivusControls.defaultFn(MainMenuCategory, "updatePromoButtonsVisibility").bind(this);
         this.onLegalDocsAccepted = (event) => {
             this.areLegalDocsAccepted = event.detail.accepted;
             if (this.areLegalDocsAccepted && this.firstLaunchTutorialPending) {
                 this.firstLaunchTutorialPending = false;
-                Privus.defaultFn(MainMenuCategory, "updatePromoButtonsVisibility").call(this);
+                PrivusControls.defaultFn(MainMenuCategory, "updatePromoButtonsVisibility").call(this);
             }
         };
         engine.on("LaunchToHostMPGame", this.onLaunchHostMPGameListener);
@@ -108,28 +108,28 @@ class PrivusMainMenu extends Component {
 
 
     /* API functionns */
-    renderUICarousel(carouselMain)             { return Privus.privusFn(MainMenuCategory, "renderUICarousel",         carouselMain); }
-    renderUIConnectionStatus(connectionStatus) { return Privus.privusFn(MainMenuCategory, "renderUIConnectionStatus", connectionStatus); }
-    renderUIProfileHeader(profileHeader)       { return Privus.privusFn(MainMenuCategory, "renderUIProfileHeader",    profileHeader); }
-    renderUIMotd(motd)                         { return Privus.privusFn(MainMenuCategory, "renderUIMotd",             motd); }
+    renderUICarousel(carouselMain)             { return PrivusControls.privusFn(MainMenuCategory, "renderUICarousel",         carouselMain); }
+    renderUIConnectionStatus(connectionStatus) { return PrivusControls.privusFn(MainMenuCategory, "renderUIConnectionStatus", connectionStatus); }
+    renderUIProfileHeader(profileHeader)       { return PrivusControls.privusFn(MainMenuCategory, "renderUIProfileHeader",    profileHeader); }
+    renderUIMotd(motd)                         { return PrivusControls.privusFn(MainMenuCategory, "renderUIMotd",             motd); }
 
-    renderUIBuildInfo(buildInfo)      { return Privus.privusFn(MainMenuCategory, "renderUIBuildInfo",      buildInfo); }
-    renderUIVideoContainer(container) { return Privus.privusFn(MainMenuCategory, "renderUIVideoContainer", container); }
+    renderUIBuildInfo(buildInfo)      { return PrivusControls.privusFn(MainMenuCategory, "renderUIBuildInfo",      buildInfo); }
+    renderUIVideoContainer(container) { return PrivusControls.privusFn(MainMenuCategory, "renderUIVideoContainer", container); }
 
-    renderUIButtons(slot, functionDefs) { return Privus.privusFn(MainMenuCategory, "renderUIButtons", slot, functionDefs); }
+    renderUIButtons(slot, functionDefs) { return PrivusControls.privusFn(MainMenuCategory, "renderUIButtons", slot, functionDefs); }
 
-    renderUIConnectionIcon(connectionIcon, connectionStatus)   { return Privus.privusFn(MainMenuCategory, "renderUIConnectionIcon", connectionIcon, connectionStatus); }
-    renderUIAccountIcon(accountIcon, activateable)             { return Privus.privusFn(MainMenuCategory, "renderUIAccountIcon",    accountIcon, activateable); }
-    renderUIAccountStatus(accountStatus, accountIcon, navHelp) { return Privus.privusFn(MainMenuCategory, "renderUIAccountStatus",  accountStatus, accountIcon, navHelp); }
+    renderUIConnectionIcon(connectionIcon, connectionStatus)   { return PrivusControls.privusFn(MainMenuCategory, "renderUIConnectionIcon", connectionIcon, connectionStatus); }
+    renderUIAccountIcon(accountIcon, activateable)             { return PrivusControls.privusFn(MainMenuCategory, "renderUIAccountIcon",    accountIcon, activateable); }
+    renderUIAccountStatus(accountStatus, accountIcon, navHelp) { return PrivusControls.privusFn(MainMenuCategory, "renderUIAccountStatus",  accountStatus, accountIcon, navHelp); }
 
-    updateMotd(motd) { return Privus.privusFn(MainMenuCategory, "updateMotd", motd); }
+    updateMotd(motd) { return PrivusControls.privusFn(MainMenuCategory, "updateMotd", motd); }
 
-    onPostAppend() { return Privus.privusFn(MainMenuCategory, "onPostAppend"); }
+    onPostAppend() { return PrivusControls.privusFn(MainMenuCategory, "onPostAppend"); }
 
-    onReturnedToMainMenu() { return Privus.privusFn(MainMenuCategory, "onReturnedToMainMenu"); }
+    onReturnedToMainMenu() { return PrivusControls.privusFn(MainMenuCategory, "onReturnedToMainMenu"); }
 
-    onReceiveFocus() { return Privus.privusFn(MainMenuCategory, "onReceiveFocus"); }
-    onLoseFocus()    { return Privus.privusFn(MainMenuCategory, "onLoseFocus"); }
+    onReceiveFocus() { return PrivusControls.privusFn(MainMenuCategory, "onReceiveFocus"); }
+    onLoseFocus()    { return PrivusControls.privusFn(MainMenuCategory, "onLoseFocus"); }
 
 
 
@@ -168,7 +168,7 @@ class PrivusMainMenu extends Component {
             this.carouselTextScrollable         = MustGetElement(".carousel-text-only-scrollable",  this.carouselMain);
 
             const closeButton = document.querySelector('.carousel-close-button');
-            closeButton?.addEventListener('action-activate', Privus.defaultFn(MainMenuCategory, "toggleCarouselMode").bind(this));
+            closeButton?.addEventListener('action-activate', PrivusControls.defaultFn(MainMenuCategory, "toggleCarouselMode").bind(this));
             
         }
 
@@ -233,12 +233,12 @@ class PrivusMainMenu extends Component {
             domainType: 'iota',
             value: false
         });
-        engine.on('DebugWidgetUpdated', (id, _) => { if (id == 'toggleTestScene') Privus.defaultFn(MainMenuCategory, "build3DScene").call(this); });
+        engine.on('DebugWidgetUpdated', (id, _) => { if (id == 'toggleTestScene') PrivusControls.defaultFn(MainMenuCategory, "build3DScene").call(this); });
 
         ContextManager.pushElement(this.Root);
 
         //Show any modding errors
-        Privus.defaultFn(MainMenuCategory, "checkForError").call(this);
+        PrivusControls.defaultFn(MainMenuCategory, "checkForError").call(this);
         
         //Show networking errors
         Network.onExitPremium();
@@ -247,7 +247,7 @@ class PrivusMainMenu extends Component {
             DialogManager.createDialog_Confirm({title: "LOC_MP_CANT_PLAY_ONLINE_ERROR_TITLE", body: lastNetworkError});
         Network.clearPremiumError();
         
-        Privus.defaultFn(MainMenuCategory, "updateAreLegalDocsAccepted").call(this);
+        PrivusControls.defaultFn(MainMenuCategory, "updateAreLegalDocsAccepted").call(this);
         if(Network.supportsSSO()) {
             //Render connection and account info
             this.accountStatusNavHelp = document.createElement('fxs-nav-help');
@@ -287,9 +287,9 @@ class PrivusMainMenu extends Component {
             this.onPostAppend();
 
             //Enable events button
-            Privus.defaultFn(MainMenuCategory, "enableMainMenuButtonbyName").call(this, 
+            PrivusControls.defaultFn(MainMenuCategory, "enableMainMenuButtonbyName").call(this, 
                 "LOC_MAIN_MENU_EVENTS", Online.LiveEvent.isEventsEnabled(), 
-                Privus.defaultFn(MainMenuCategory, "getAccountLinkPromptMsg").call(this)
+                PrivusControls.defaultFn(MainMenuCategory, "getAccountLinkPromptMsg").call(this)
             );
 
             //Set event listeners
@@ -305,7 +305,7 @@ class PrivusMainMenu extends Component {
         }
 
         //Skip to main menu if the loading video has ended
-        Privus.defaultFn(MainMenuCategory, "skipToMainMenu").call(this);
+        PrivusControls.defaultFn(MainMenuCategory, "skipToMainMenu").call(this);
 
         //Handle age transition
         if(Modding.getTransitionInProgress() === TransitionType.Age) {
@@ -313,25 +313,25 @@ class PrivusMainMenu extends Component {
                 MultiplayerShellManager.onAgeTransition();
             else {
                 this.buildInfo.classList.add("hidden");
-                Privus.defaultFn(MainMenuCategory, "hideOnlineFeaturesUI").call(this);
+                PrivusControls.defaultFn(MainMenuCategory, "hideOnlineFeaturesUI").call(this);
                 ContextManager.push("age-transition-civ-select", { singleton: true, createMouseGuard: true });
             }
         }
 
         //Render 3D scene
-        Privus.defaultFn(MainMenuCategory, "build3DScene").call(this);
+        PrivusControls.defaultFn(MainMenuCategory, "build3DScene").call(this);
 
         //Unlock the cursor and set it to default
         UI.lockCursor(false);
         UI.setCursorByType(UIHTMLCursorTypes.Default);
 
         //Get the local saved games list
-        Privus.defaultFn(MainMenuCategory, "onSaveLoadClosed").call(this);
+        PrivusControls.defaultFn(MainMenuCategory, "onSaveLoadClosed").call(this);
 
         //Handle network events
         if (Network.requireSPoPKickPrompt()) {
-            if(!Privus.defaultFn(MainMenuCategory, "checkForLegalDocs").call(this))
-                Privus.defaultFn(MainMenuCategory, "getKickDecision").call(this);
+            if(!PrivusControls.defaultFn(MainMenuCategory, "checkForLegalDocs").call(this))
+                PrivusControls.defaultFn(MainMenuCategory, "getKickDecision").call(this);
             else this.needKickDecision = true;
         }
         if (Network.checkAndClearDisplaySPoPLogout())
@@ -344,18 +344,18 @@ class PrivusMainMenu extends Component {
             waitForLayout(() => engine.trigger("NetworkDisconnected"));
 
         //Refresh carousel content (i.e. promos)
-        Privus.defaultFn(MainMenuCategory, "refreshPromos").call(this);
+        PrivusControls.defaultFn(MainMenuCategory, "refreshPromos").call(this);
 
         //Hanlde loading the game straight into a multiplayer game
         if(this.Root.getAttribute('data-launch-to-host-MP-game') == 'true')
-            Privus.defaultFn(MainMenuCategory, "onLaunchToHostMPGame").call(this);
+            PrivusControls.defaultFn(MainMenuCategory, "onLaunchToHostMPGame").call(this);
 
         //Notify that we're able to accept game invites now
         if (!Network.requireSPoPKickPrompt() && !Network.isWaitingForValidHeartbeat())
             Network.setMainMenuInviteReady(true);
 
         //Validate the user's name
-        Privus.defaultFn(MainMenuCategory, "onNewUserLogin").call(this);
+        PrivusControls.defaultFn(MainMenuCategory, "onNewUserLogin").call(this);
     }
 }
 
@@ -532,7 +532,7 @@ class DefaultMainMenu extends Component {
 }
 
 
-Privus.define(MainMenuCategory, {
+PrivusControls.define(MainMenuCategory, {
     createInstance: PrivusMainMenu,
     createDefaultInstance: DefaultMainMenu,
     description: 'Main Menu',

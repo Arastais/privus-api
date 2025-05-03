@@ -22,15 +22,15 @@ onModClicked(modIds, event) {
     if (!(event.target instanceof HTMLElement)) return;
     
     const selectedHandle = parseInt(event.target.getAttribute('mod-handle') ?? "");
-    Privus.setMember(ModsContentCategory, "selectedModHandle", selectedHandle);
+    PrivusControls.setMember(ModsContentCategory, "selectedModHandle", selectedHandle);
     
     if (ActionHandler.isGamepadActive) {
         Audio.playSound("data-audio-primary-button-press");
-        Privus.defaultFn(ModsContentCategory, "onModToggled").call(Privus.getInstance(ModsContentCateogry), selectedHandle, event);
+        PrivusControls.defaultFn(ModsContentCategory, "onModToggled").call(PrivusControls.getInstance(ModsContentCateogry), selectedHandle, event);
         return;
     }
 
-    Privus.defaultFn(ModsContentCategory, "updateModDetails").call(Privus.getInstance(ModsContentCateogry), selectedHandle);
+    PrivusControls.defaultFn(ModsContentCategory, "updateModDetails").call(PrivusControls.getInstance(ModsContentCateogry), selectedHandle);
 }
 ```
 

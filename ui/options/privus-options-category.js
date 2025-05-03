@@ -29,7 +29,7 @@ class DefaultOptionsCategory {
 }
 
 
-Privus.define(OptionsCategoryCategory, {
+PrivusControls.define(OptionsCategoryCategory, {
     createInstance: PrivusOptionsCategory,
     createDefaultInstance: DefaultOptionsCategory,
     extend: true,

@@ -17,9 +17,9 @@ This is an event function that is automatically called after a panel within the 
 ```js
 onReturnedToMainMenu(modIds) {
     //Render the main menu normally
-    Privus.defaultFn(MainMenuCategory, "onReturnedToMainMenu").call(Privus.getInstance(MainMenuCategory));
+    PrivusControls.defaultFn(MainMenuCategory, "onReturnedToMainMenu").call(PrivusControls.getInstance(MainMenuCategory));
     //Make sure the build info stays hidden
-    Privus.getInstance(MainMenuCategory).buildInfo.classList.add("hidden");
+    PrivusControls.getInstance(MainMenuCategory).buildInfo.classList.add("hidden");
 }
 ```
 

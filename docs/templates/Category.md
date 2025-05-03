@@ -2,7 +2,7 @@ ExampleCategory defined in `/privus-api/dir`
 <hr>
 
 ```js
-Privus.defineModClass(`<mod-id>`, ExampleCategory, <ModClass>);
+PrivusControls.defineModClass(`<mod-id>`, ExampleCategory, <ModClass>);
 ```
 <hr>
 Describes component_description

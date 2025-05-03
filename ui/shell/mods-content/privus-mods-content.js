@@ -23,20 +23,20 @@ class PrivusModsContent extends Panel {
         //    onModFocused: this.onModFocusListener
         //});
         
-        this.focusListener       = Privus.defaultFn(ModsContentCategory, "onFocus"      ).bind(this);
-        this.engineInputListener = Privus.defaultFn(ModsContentCategory, "onEngineInput").bind(this);
+        this.focusListener       = PrivusControls.defaultFn(ModsContentCategory, "onFocus"      ).bind(this);
+        this.engineInputListener = PrivusControls.defaultFn(ModsContentCategory, "onEngineInput").bind(this);
     }
 
 
-    renderUIModList(initialModHandle, root) { return Privus.privusFn(ModsContentCategory, "renderUIModList", initialModHandle, root); }
+    renderUIModList(initialModHandle, root) { return PrivusControls.privusFn(ModsContentCategory, "renderUIModList", initialModHandle, root); }
 
-    updateModDetails(modHandle)      { return Privus.privusFn(ModsContentCategory, "updateModDetails",      modHandle); }
-    updateModToggleButton(modHandle) { return Privus.privusFn(ModsContentCategory, "updateModToggleButton", modHandle); }
-    updateModEntry(modHandle, entry) { return Privus.privusFn(ModsContentCategory, "updateModEntry",        modHandle, entry); }
+    updateModDetails(modHandle)      { return PrivusControls.privusFn(ModsContentCategory, "updateModDetails",      modHandle); }
+    updateModToggleButton(modHandle) { return PrivusControls.privusFn(ModsContentCategory, "updateModToggleButton", modHandle); }
+    updateModEntry(modHandle, entry) { return PrivusControls.privusFn(ModsContentCategory, "updateModEntry",        modHandle, entry); }
 
-    onModToggled(event) { return Privus.privusFn(ModsContentCategory, "onModToggled", event); }
-    onModClicked(event) { return Privus.privusFn(ModsContentCategory, "onModClicked", event); }
-    onModFocused(event) { return Privus.privusFn(ModsContentCategory, "onModFocused", event); }
+    onModToggled(event) { return PrivusControls.privusFn(ModsContentCategory, "onModToggled", event); }
+    onModClicked(event) { return PrivusControls.privusFn(ModsContentCategory, "onModClicked", event); }
+    onModFocused(event) { return PrivusControls.privusFn(ModsContentCategory, "onModFocused", event); }
 
     get selectedModHandle() { return this.selectedHandle; }
     set selectedModHandle(value) {
@@ -49,7 +49,7 @@ class PrivusModsContent extends Panel {
 
     onInitialize() {
         super.onInitialize();
-        this.Root.innerHTML = Privus.defaultFn(ModsContentCategory, "getContent").call(this);
+        this.Root.innerHTML = PrivusControls.defaultFn(ModsContentCategory, "getContent").call(this);
 
         this.mainSlot               = MustGetElement(".additional-content-mods", this.Root);
         this.modNameHeader          = MustGetElement('.selected-mod-name',       this.Root);
@@ -84,7 +84,7 @@ class DefaultModsContent extends Panel {
     constructor(root) { super(root); }
 
     renderUIModList(initialModHandle, root, listeners) {
-        return Privus.defaultFn(ModsContentCategory, "renderModListContent").call(this);
+        return PrivusControls.defaultFn(ModsContentCategory, "renderModListContent").call(this);
     }
 
 
@@ -115,7 +115,7 @@ class DefaultModsContent extends Panel {
     updateModToggleButton(modHandle) {
         if(!modHandle) throw new Error(`[PRIVUS-DEFAULT]: Invalid mod handle '${modHandle}'`);
         this.selectedModHandle = modHandle;
-        Privus.defaultFn(ModsContentCategory, "determineEnableButtonState").call(this);
+        PrivusControls.defaultFn(ModsContentCategory, "determineEnableButtonState").call(this);
     }
 
     updateModEntry(modHandle, entry) {
@@ -149,7 +149,7 @@ class DefaultModsContent extends Panel {
         this.updateModDetails(this.selectedModHandle);
         this.updateModEntry(this.selectedModHandle, entry);
         this.updateModToggleButton(this.selectedModHandle);
-        Privus.defaultFn(ModsContentCategory, "updateNavTray").call(this);
+        PrivusControls.defaultFn(ModsContentCategory, "updateNavTray").call(this);
     }
 
     onModClicked(event) {
@@ -170,7 +170,7 @@ class DefaultModsContent extends Panel {
 
         this.selectedModHandle = parseInt(event.target.getAttribute('mod-handle') ?? "");
         this.updateModDetails(this.selectedModHandle);
-        Privus.defaultFn(ModsContentCategory, "updateNavTray").call(this);
+        PrivusControls.defaultFn(ModsContentCategory, "updateNavTray").call(this);
     }
 
 
@@ -182,14 +182,14 @@ class DefaultModsContent extends Panel {
 
     handleSelection(modHandle, index) {
         this.selectedModHandle = modHandle;
-        Privus.defaultFn(ModsContentCategory, "setSelectedModHandle").call(this, modHandle);
+        PrivusControls.defaultFn(ModsContentCategory, "setSelectedModHandle").call(this, modHandle);
         this.updateModDetails(modHandle);
     }
 
     onEngineInput(event) {}
 }
 
-Privus.define(ModsContentCategory, {
+PrivusControls.define(ModsContentCategory, {
     createInstance: PrivusModsContent,
     createDefaultInstance: DefaultModsContent,
     description: 'Mods List',

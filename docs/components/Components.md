@@ -5,7 +5,7 @@ Every component class of a mod that is using the Privus API and wants to be incl
 
 ### Definition
 ```ts
-void Privus.defineModClass(modId : string, category : string, componentClass : object);
+void PrivusControls.defineModClass(modId : string, category : string, componentClass : object);
 ```
 Register a class of your mod with the Privus API using the mod's ID, the category, and the class itself.
 
@@ -14,7 +14,7 @@ Register a class of your mod with the Privus API using the mod's ID, the categor
 ### Example
 ```js
 // Register our class as this mod's changes to the pause menu
-Privus.defineModClass('my-example-mod', MainMenuCategory, ExampleMainMenu);
+PrivusControls.defineModClass('my-example-mod', MainMenuCategory, ExampleMainMenu);
 ```
 
 
@@ -23,17 +23,17 @@ Some components within the API have public data members which are accessible by 
 
 ### Definitions
 ```ts
-any Privus.getMember(category : string, memberName : string)
+any PrivusControls.getMember(category : string, memberName : string)
 ```
 ```ts
-void Privus.setMember(category : string, memberName : string, value : any)
+void PrivusControls.setMember(category : string, memberName : string, value : any)
 ```
 
 ### Example
 ```js
 //I want to get/set the handle of the currently selected mod
-this.selectedHandle = Privus.getMember(ModsContentCategory, "selectedModHandle");
-Privus.setMember(ModsContentCategory, "selectedModHandle", 0);
+this.selectedHandle = PrivusControls.getMember(ModsContentCategory, "selectedModHandle");
+PrivusControls.setMember(ModsContentCategory, "selectedModHandle", 0);
 ```
 
 
@@ -42,17 +42,17 @@ Each API function has a default functionality, so it is possible to retrieve the
 
 ### Definition
 ```ts
-function Privus.defaultFn(category : string, functionName : string);
+function PrivusControls.defaultFn(category : string, functionName : string);
 ```
 Get the unbounded default function for a given category
 
 > Note that the default functions for components **do not** have `modIds` as a first parameter. Thus, the signature is the same minus the first argument. See the [instances example](#instances) for an example of this. 
 
 ### Example
-You can get the default/base game functionality at any time with `Privus.defaultFn(...)`
+You can get the default/base game functionality at any time with `PrivusControls.defaultFn(...)`
 ```js
 //I want to get the base game's `onEngineInput()` function
-this.engineInputFn = Privus.defaultFn(PauseMenuCategory, "onEngineInput");
+this.engineInputFn = PrivusControls.defaultFn(PauseMenuCategory, "onEngineInput");
 ```
 
 
@@ -61,7 +61,7 @@ Each component category has an API instance which contains all the API members a
 
 ### Definition
 ```ts
-object Privus.getInstance(category : string);
+object PrivusControls.getInstance(category : string);
 ```
 Get the asssociated API instance
 
@@ -70,7 +70,7 @@ Get the asssociated API instance
 renderUIMapSeed(modIds, mapSeedInfo) {
     //I want to call the default functionality for the `renderUIMapSeed(...)` function
     //(Note the lack of the modIds argument)
-    Privus.defaultFn(PauseMenuCategory, 'renderUIMapSeed').call(Privus.getInstance(PauseMenuCategory), mapSeedInfo);
+    PrivusControls.defaultFn(PauseMenuCategory, 'renderUIMapSeed').call(PrivusControls.getInstance(PauseMenuCategory), mapSeedInfo);
 }
 ```
 

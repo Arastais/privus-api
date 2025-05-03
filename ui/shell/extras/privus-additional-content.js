@@ -7,13 +7,13 @@ const AdditionalContentCategory = 'screen-extras';
 class PrivusAdditionalContent extends Panel {
     constructor(root) {
         super(root);
-        this.onDetach       = Privus.defaultFn(AdditionalContentCategory, "onDetach"      ).bind(this);
-        this.onReceiveFocus = Privus.defaultFn(AdditionalContentCategory, "onReceiveFocus").bind(this);
-        this.onLoseFocus    = Privus.defaultFn(AdditionalContentCategory, "onLoseFocus"   ).bind(this);
-        this.close          = Privus.defaultFn(AdditionalContentCategory, "close"         ).bind(this);
+        this.onDetach       = PrivusControls.defaultFn(AdditionalContentCategory, "onDetach"      ).bind(this);
+        this.onReceiveFocus = PrivusControls.defaultFn(AdditionalContentCategory, "onReceiveFocus").bind(this);
+        this.onLoseFocus    = PrivusControls.defaultFn(AdditionalContentCategory, "onLoseFocus"   ).bind(this);
+        this.close          = PrivusControls.defaultFn(AdditionalContentCategory, "close"         ).bind(this);
 
-        this.engineInputListener      = Privus.defaultFn(AdditionalContentCategory, "onEngineInput"            ).bind(this);
-        this.activeDeviceTypeListener = Privus.defaultFn(AdditionalContentCategory, "onActiveDeviceTypeChanged").bind(this);
+        this.engineInputListener      = PrivusControls.defaultFn(AdditionalContentCategory, "onEngineInput"            ).bind(this);
+        this.activeDeviceTypeListener = PrivusControls.defaultFn(AdditionalContentCategory, "onActiveDeviceTypeChanged").bind(this);
         
         this.enableOpenSound = true;
         this.enableCloseSound = true;
@@ -21,7 +21,7 @@ class PrivusAdditionalContent extends Panel {
         this.Root.setAttribute("data-audio-group-ref", "additional-content-audio");
     }
     
-    renderUIButtons(makeButtonFn) { return Privus.privusFn(AdditionalContentCategory, "renderUIButtons", makeButtonFn); }
+    renderUIButtons(makeButtonFn) { return PrivusControls.privusFn(AdditionalContentCategory, "renderUIButtons", makeButtonFn); }
 
 
     onAttach() {
@@ -67,18 +67,18 @@ class DefaultAdditionalContent extends Panel {
     renderUIButtons(makeButtonFn) {
         const buttons = [];
         if(UI.supportsDLC())
-            buttons.push(makeButtonFn('mods', 'LOC_UI_CONTENT_MGR_SUBTITLE', Privus.defaultFn(AdditionalContentCategory, "onAdditionalContentButtonPressed")));
+            buttons.push(makeButtonFn('mods', 'LOC_UI_CONTENT_MGR_SUBTITLE', PrivusControls.defaultFn(AdditionalContentCategory, "onAdditionalContentButtonPressed")));
         if(UI.shouldDisplayBenchmarkingTools()) {
-            buttons.push(makeButtonFn('benchmark-graphics', 'LOC_MAIN_MENU_BENCHMARK_GRAPHICS', Privus.defaultFn(AdditionalContentCategory, "onGraphicsBenchmark")));
-            buttons.push(makeButtonFn('benchmark-ai',       'LOC_MAIN_MENU_BENCHMARK_AI',       Privus.defaultFn(AdditionalContentCategory, "onAiBenchmark"      )));
+            buttons.push(makeButtonFn('benchmark-graphics', 'LOC_MAIN_MENU_BENCHMARK_GRAPHICS', PrivusControls.defaultFn(AdditionalContentCategory, "onGraphicsBenchmark")));
+            buttons.push(makeButtonFn('benchmark-ai',       'LOC_MAIN_MENU_BENCHMARK_AI',       PrivusControls.defaultFn(AdditionalContentCategory, "onAiBenchmark"      )));
         }
-        buttons.push(makeButtonFn('credits', 'LOC_MAIN_MENU_CREDITS', Privus.defaultFn(AdditionalContentCategory, "onCredits")));
-        buttons.push(makeButtonFn('legal',   'LOC_UI_LEGAL_TITLE',    Privus.defaultFn(AdditionalContentCategory, "onLegal"  )));
+        buttons.push(makeButtonFn('credits', 'LOC_MAIN_MENU_CREDITS', PrivusControls.defaultFn(AdditionalContentCategory, "onCredits")));
+        buttons.push(makeButtonFn('legal',   'LOC_UI_LEGAL_TITLE',    PrivusControls.defaultFn(AdditionalContentCategory, "onLegal"  )));
         return buttons;
     }
 }
 
-Privus.define(AdditionalContentCategory, {
+PrivusControls.define(AdditionalContentCategory, {
     createInstance: PrivusAdditionalContent,
     createDefaultInstance: DefaultAdditionalContent,
     description: 'Additional content panel of the main menu',

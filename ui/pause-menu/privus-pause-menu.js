@@ -19,8 +19,8 @@ class PrivusPauseMenu extends Panel {
         this.Root.setAttribute("data-audio-group-ref", "pause-menu");
         this.buttonListener = (_) => {};
 
-        this.progressionListener = Privus.defaultFn(PauseMenuCategory, "onClickedProgression").bind(this);
-        this.engineInputListener = Privus.defaultFn(PauseMenuCategory, "onEngineInput").bind(this);
+        this.progressionListener = PrivusControls.defaultFn(PauseMenuCategory, "onClickedProgression").bind(this);
+        this.engineInputListener = PrivusControls.defaultFn(PauseMenuCategory, "onEngineInput").bind(this);
         
         this.buttons = new Set();
         this.slot = null;
@@ -63,22 +63,22 @@ class PrivusPauseMenu extends Panel {
         });
     }
 
-    renderUIPlayerInfo(playerInfo)                                                    { return Privus.privusFn(PauseMenuCategory, "renderUIPlayerInfo",    playerInfo); }
-    renderUIButtons(leftCol, rightCol, outerParent, listenerFns, updateFns, newRowFn) { return Privus.privusFn(PauseMenuCategory, "renderUIButtons",       leftCol, rightCol, outerParent, listenerFns, updateFns, newRowFn); }
-    renderUIHeader(header)                                                            { return Privus.privusFn(PauseMenuCategory, "renderUIHeader",        header); }
-    renderUIGameInfo(gameInfo)                                                        { return Privus.privusFn(PauseMenuCategory, "renderUIGameInfo",      gameInfo); }
-    renderUIMapSeed(mapSeedInfo)                                                      { return Privus.privusFn(PauseMenuCategory, "renderUIMapSeed",       mapSeedInfo); }
-    renderUIGameBuildInfo(buildInfo)                                                  { return Privus.privusFn(PauseMenuCategory, "renderUIGameBuildInfo", buildInfo); }
+    renderUIPlayerInfo(playerInfo)                                                    { return PrivusControls.privusFn(PauseMenuCategory, "renderUIPlayerInfo",    playerInfo); }
+    renderUIButtons(leftCol, rightCol, outerParent, listenerFns, updateFns, newRowFn) { return PrivusControls.privusFn(PauseMenuCategory, "renderUIButtons",       leftCol, rightCol, outerParent, listenerFns, updateFns, newRowFn); }
+    renderUIHeader(header)                                                            { return PrivusControls.privusFn(PauseMenuCategory, "renderUIHeader",        header); }
+    renderUIGameInfo(gameInfo)                                                        { return PrivusControls.privusFn(PauseMenuCategory, "renderUIGameInfo",      gameInfo); }
+    renderUIMapSeed(mapSeedInfo)                                                      { return PrivusControls.privusFn(PauseMenuCategory, "renderUIMapSeed",       mapSeedInfo); }
+    renderUIGameBuildInfo(buildInfo)                                                  { return PrivusControls.privusFn(PauseMenuCategory, "renderUIGameBuildInfo", buildInfo); }
 
-    onLocalPlayerTurnBegin(retireButton) { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnBegin", retireButton); }
-    onLocalPlayerTurnEnd(retireButton)   { return Privus.privusFn(PauseMenuCategory, "onLocalPlayerTurnEnd",   retireButton); }
-    onStartSaveRequest()                 { return Privus.privusFn(PauseMenuCategory, "onStartSaveRequest"      ); }
-    onSaveComplete()                     { return Privus.privusFn(PauseMenuCategory, "onSaveComplete"          ); }
+    onLocalPlayerTurnBegin(retireButton) { return PrivusControls.privusFn(PauseMenuCategory, "onLocalPlayerTurnBegin", retireButton); }
+    onLocalPlayerTurnEnd(retireButton)   { return PrivusControls.privusFn(PauseMenuCategory, "onLocalPlayerTurnEnd",   retireButton); }
+    onStartSaveRequest()                 { return PrivusControls.privusFn(PauseMenuCategory, "onStartSaveRequest"      ); }
+    onSaveComplete()                     { return PrivusControls.privusFn(PauseMenuCategory, "onSaveComplete"          ); }
 
 
     /* Component functions */
-    onRecieveFocus() { return Privus.privusFn(PauseMenuCategory, "onRecieveFocus"); }
-    onLoseFocus()    { return Privus.privusFn(PauseMenuCategory, "onLoseFocus"); }
+    onRecieveFocus() { return PrivusControls.privusFn(PauseMenuCategory, "onRecieveFocus"); }
+    onLoseFocus()    { return PrivusControls.privusFn(PauseMenuCategory, "onLoseFocus"); }
 
     onAttach() {
         super.onAttach();
@@ -303,7 +303,7 @@ class DefaultPauseMenu {
     }
 }
 
-Privus.define(PauseMenuCategory, {
+PrivusControls.define(PauseMenuCategory, {
     createInstance: PrivusPauseMenu,
     createDefaultInstance: DefaultPauseMenu,
     extend: true,

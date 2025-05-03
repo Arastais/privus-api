@@ -19,18 +19,18 @@ Returns an array containing the button elements to render
 `sectionQueries` is always defined as:
 ```js
 {
-    'continue':           Privus.defaultFn(MainMenuCategory, "goContinue"     ),
-    'create-game':        Privus.defaultFn(MainMenuCategory, "openCreateGame" ),
-    'load-game':          Privus.defaultFn(MainMenuCategory, "openLoadGame"   ),
-    'events':             Privus.defaultFn(MainMenuCategory, "openEvents"     ),
-    'multiplayer':        Privus.defaultFn(MainMenuCategory, "openMultiplayer"), 
-    'store':              Privus.defaultFn(MainMenuCategory, "openStore"      ), 
-    'additional-content': Privus.defaultFn(MainMenuCategory, "openExtras"     ), 
-    'options':            Privus.defaultFn(MainMenuCategory, "openOptions"    ), 
-    'exit':               Privus.defaultFn(MainMenuCategory, "exitToDesktop"  ), 
+    'continue':           PrivusControls.defaultFn(MainMenuCategory, "goContinue"     ),
+    'create-game':        PrivusControls.defaultFn(MainMenuCategory, "openCreateGame" ),
+    'load-game':          PrivusControls.defaultFn(MainMenuCategory, "openLoadGame"   ),
+    'events':             PrivusControls.defaultFn(MainMenuCategory, "openEvents"     ),
+    'multiplayer':        PrivusControls.defaultFn(MainMenuCategory, "openMultiplayer"), 
+    'store':              PrivusControls.defaultFn(MainMenuCategory, "openStore"      ), 
+    'additional-content': PrivusControls.defaultFn(MainMenuCategory, "openExtras"     ), 
+    'options':            PrivusControls.defaultFn(MainMenuCategory, "openOptions"    ), 
+    'exit':               PrivusControls.defaultFn(MainMenuCategory, "exitToDesktop"  ), 
 };
 ```
-where `Privus.defaultFn(...)` calls the default function use by the base game.
+where `PrivusControls.defaultFn(...)` calls the default function use by the base game.
 
 ### Example
 
