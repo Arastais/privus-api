@@ -17,7 +17,7 @@
 
 ### [Tooltips](Tooltips)
 &nbsp;&nbsp;&nbsp;&nbsp; [**Registering Tooltip Sections**](Tooltips#registering-a-component-class) <br/>
-&nbsp;&nbsp;&nbsp;&nbsp; [**DSetting the Order of Tooltip Sections**](Tooltips#setting-the-order-of-tooltip-sections) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; [**Setting the Order of Tooltip Sections**](Tooltips#setting-the-order-of-tooltip-sections) <br/>
 &nbsp;&nbsp;&nbsp;&nbsp; [**Default Functions**](Tooltips#default-functions) <br/>
 &nbsp;&nbsp;&nbsp;&nbsp; [**Instances**](Tooltips#instances) <br/>
 &nbsp;&nbsp;&nbsp;&nbsp; [**Adding Dividers**](Tooltips#adding-dividers) <br/>

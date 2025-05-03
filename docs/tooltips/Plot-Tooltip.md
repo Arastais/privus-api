@@ -30,7 +30,7 @@ Object.freeze({
     biomeType:        GameplayMap.getBiomeType(this.plotCoord.x, this.plotCoord.y),
     biome:            GameInfo.Biomes.lookup(GameplayMap.getBiomeType(this.plotCoord.x, this.plotCoord.y)),
     featureLabel:     this.getFeatureLabel(this.plotCoord),
-	featureType:      GameplayMap.getFeatureType(this.plotCoord.x, this.plotCoord.y),
+    featureType:      GameplayMap.getFeatureType(this.plotCoord.x, this.plotCoord.y),
     feature:          GameInfo.Features.lookup(GameplayMap.getFeatureType(this.plotCoord.x, this.plotCoord.y)),
     continentName:    this.getContinentName(this.plotCoord),
     riverLabel:       this.getRiverLabel(this.plotCoord),
