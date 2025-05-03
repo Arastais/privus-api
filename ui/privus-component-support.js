@@ -155,7 +155,7 @@ class PrivusComponentManager {
      * Defines a Privus API function class for a mod
      * @param {string} category Id of the mod
      * @param {string} category Category string
-     * @param {string} componentClass Class with implmented API functions
+     * @param {object} componentClass Class with implmented API functions
      * @returns The unbounded function
      */
     defineModClass(modId, category, componentClass) {

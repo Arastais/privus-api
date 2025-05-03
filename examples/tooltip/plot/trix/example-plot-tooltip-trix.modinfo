@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="example-plot-tooltip-trix" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name>Example Privus API Plot Tooltip (Trix)</Name>
+		<Description>An example mod that showcases the Privus API by changing the plot tooltip. Based on beezany's Map Trix mod.</Description>
+		<Authors>Arastais, beezany</Authors>
+		<Package>Mod</Package>
+		<AffectsSavedGames>0</AffectsSavedGames>
+	</Properties>
+	<Dependencies>
+		<Mod id="privus-api" title="Privus API"/>
+	</Dependencies>
+	<ActionCriteria>
+		<Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="example-plot-tooltip-trix-game-always" scope="game" criteria="always">
+			<Actions>
+				<UIScripts>
+					<Item>example-plot-tooltip-trix.js</Item>
+				</UIScripts>
+			</Actions>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>

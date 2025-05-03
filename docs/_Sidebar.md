@@ -1,16 +1,25 @@
 ### [Home](Home)
 
 ### [Global](Global)
-* [**Mod Options**](Global#mod-options)
-* [**Default Functions**](Global#default-functions)
-* [**Instances**](Global#instances)
+&nbsp;&nbsp;&nbsp;&nbsp;[**Mod Options**](Global#mod-options)
 
 ### [Components](Components)
-* [**Main Menu**](Main-Menu)
-    * [**Additional Content**](Additional-Content)
-    * [**Mods Content**](Mods-Content)
-* [**Pause Menu**](Pause-Menu)
+&nbsp;&nbsp;&nbsp;&nbsp; [**Registering a Component Class**](Components#registering-a-component-class) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; [**Data Members**](Components#data-members) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; [**Default Functions**](Components#default-functions) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; [**Instances**](Components#instances) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; **Component Categories (API Reference)** <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [**Main Menu**](Main-Menu) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [**Additional Content**](Additional-Content) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [**Mods Content**](Mods-Content) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [**Pause Menu**](Pause-Menu) <br/>
 
 
 ### [Tooltips](Tooltips)
-* [**Plot**](Plot)
+&nbsp;&nbsp;&nbsp;&nbsp; [**Registering Tooltip Sections**](Tooltips#registering-a-component-class) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; [**DSetting the Order of Tooltip Sections**](Tooltips#setting-the-order-of-tooltip-sections) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; [**Default Functions**](Tooltips#default-functions) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; [**Instances**](Tooltips#instances) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; [**Adding Dividers**](Tooltips#adding-dividers) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; **Tooltip Types (API Reference)** <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [**Plot**](Plot-Tooltip)
