@@ -41,6 +41,7 @@ There are modding development techniques to not have to replace the base game's 
 </details>
 
 ## Features
+- Ability to easily modify both general UI components and tooltips
 - Centralized modder-customizable mod options within the game's option menu.
 - Complete control over the game's default functionality.
 - Significantly easier compatibility with other mods with similar functionality
@@ -48,6 +49,19 @@ There are modding development techniques to not have to replace the base game's 
 - Standardized and well-documented functions and members
 - Simple and concise API and function definitions
 - Access to fine-grained UI functionality within the game
+
+## Installation
+### Automatic​
+[<img src="https://civmods.com/static/install-button@2x.png">](https://civmods.com/install?modCfId=32298)
+
+### Manual​
+**Download the `.zip` or `.tar.gz` source code from the [latest github release](https://github.com/Arastais/privus-api/releases/latest) and extract the archive into the mods folder.**
+
+Default locations for the mods folder:
+- Windows: `%localappdata%\Firaxis Games\Sid Meier's Civilization VII\Mods`
+- Linux/Steam Deck: `~/My Games/Sid Meier's Civilization VII/Mods`
+- MacOS: `~/Library/Application Support/Civilization VII/Mods`
+
 
 ## Quickstart
 
@@ -91,8 +105,12 @@ PrivusControls.defineModClass('my-mod', PauseMenuCategory, MyPauseMenu);
 
 <br>
 
-> Mod options, using default functionality, and modifying API data members are all explained under [Global](https://github.com/Arastais/privus-api/wiki/Global) in the API reference 
 
+> Mod options are explained under [Global](https://github.com/Arastais/privus-api/wiki/Global) in the API reference
+
+> Overall usage guidelines (including using default functionality and modifying API data members) of the API for **general UI components** are listed under [Components](https://github.com/Arastais/privus-api/wiki/Components) in the API reference
+
+> Overall usage guidelines of the API for **tooltips** are listed under [Tooltips](https://github.com/Arastais/privus-api/wiki/Tooltips) in the API reference 
 
 Repeat the process for any other UI components you want to modify.
 
